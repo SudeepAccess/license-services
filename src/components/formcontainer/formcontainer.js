@@ -7,6 +7,9 @@ import ApllicantPuropseForm from "../forms/ApplicationPurpose";
 import AppliedDetailForm from "../forms/AppliedDetail";
 import LandScheduleForm from "../forms/LandSchedule";
 import FeesChargesForm from "../forms/FeesCharges";
+// import homeF from "../../Developer/Home";
+// import AddInfo from "../../Developer/AddInfo";
+
 
 const Formcontainer=(props)=>{
     const [ApplicantFormshow,SetApplicantForm] = useState(true);
@@ -14,6 +17,8 @@ const Formcontainer=(props)=>{
     const [LandScheduleFormshow,SetLandScheduleForm] = useState(false);
     const [AppliedDetailsFormshow,SetAppliedDetailsForm] = useState(false);
     const [FeesChargesFormshow,SetFeesChargesForm] = useState(false);
+    // const [Home,SetHome] = useState(false);
+    // const [AddInfo,SetAddInfo] = useState(false);
 
     const PuposeformHandler=(data)=>{
 
@@ -41,7 +46,16 @@ const Formcontainer=(props)=>{
         
         SetFeesChargesForm(false);
     }
-    
+    // const HomeHandler=(data)=>{
+        
+        
+    //     SetHome(true);
+    // }
+    // const AddInfoHandler=(data)=>{
+        
+        
+    //     SetAddInfo(true);
+    // }
     
     return(
         <>
@@ -90,6 +104,8 @@ const Formcontainer=(props)=>{
                 (LandScheduleFormshow)?<LandScheduleForm landFormSubmit={LandFormHandler} ></LandScheduleForm>:
                 (AppliedDetailsFormshow)?<AppliedDetailForm AppliedDetailsFormSubmit={AppliedDetailFormHandler}></AppliedDetailForm>:
                 (FeesChargesFormshow)?<FeesChargesForm FeesChrgesFormSubmit={FeesChargesFormHandler}></FeesChargesForm>:
+                /* (Home)?<Home HomeSubmit={HomeHandler}></Home>:
+                (AddInfo)?<AddInfo AddInfoSubmit={AddInfoHandler}></AddInfo>: */
                 <div></div>
                 }
                 

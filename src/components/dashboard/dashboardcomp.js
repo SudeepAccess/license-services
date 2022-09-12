@@ -10,10 +10,10 @@ const Dashboardcomp=(props)=>{
        <Container className="justify-content-center" style={{display:props.displayDashboardLanding,width:"100%", height:"100%", position:"relative"}}>
             <Row style={{position:"relative",marginTop:80}}>
             <Col xs lg="2">
-                <Card style={{backgroundcolor:commoncolor, height: '65px', width: '200px', borderleft:primarycolor}}>
+                <Card style={{backgroundcolor:commoncolor, height: '130px', width: '350px', borderLeftColor: '#0572bb', borderLeftWidth:'5px', textAlign:'center'}}>
                     <Card.Body>
                         <div className="text-center" onClick={()=>props.newLicenceCardClicked(true)}>
-                            <h2 style={{color:primarycolor,fontSize:15,marginTop:'8px'}}>Licence Service</h2>
+                            <h2 style={{color:'#0572bb',fontSize:30,marginTop:'8px'}}>Licence Service</h2>
                            
                         </div>
                     </Card.Body>
