@@ -20,10 +20,35 @@ const style = {
 
 
 const FeesChargesForm=(props)=> {
+
+    const[form,setForm]=useState([]);
+    const [feeDetail,setFeeDetail]=useState('');
+    const [licenseFee,setLicenseFee]=useState('');
+    const[ScrutinyFee,setScrutinyFee]=useState('');
+    const[totalFee,setTotalFee]=useState('');
+    const[remark,setRemark]=useState('');
+    const [aggregator,setAggregator]=useState('');
+    const[previousLic,setPreviousLic]=useState('');
+    const[amount,setAmount]=useState('');
+
     const [FeesChargesFormSubmitted,SetFeesChargesFormSubmitted] = useState(false);
     const FeesChrgesFormSubmitHandler=(e)=>{
         e.preventDefault();
         SetFeesChargesFormSubmitted(true);
+        let forms={
+            feeDetail:feeDetail,
+            licenseFee:licenseFee,
+            ScrutinyFee:ScrutinyFee,
+            totalFee:totalFee,
+            remark:remark,
+            aggregator:aggregator,
+            previousLic:previousLic,
+            amount:amount
+        }
+        console.log("FRMDATA",forms);
+        localStorage.setItem('step5',JSON.stringify(forms))
+        form.push(forms)
+        let frmData = JSON.parse(localStorage.getItem('step5') || "[]")
     };
     useEffect(()=>{
         if (FeesChargesFormSubmitted) {
@@ -48,6 +73,39 @@ const FeesChargesForm=(props)=> {
         const getshow=e.target.value;
         setShowhide(getshow);
     }
+    const handleFeesChange = event => {
+
+        setFeeDetail(event.target.value);
+    };
+    const handleLicFeesChange = event => {
+
+        setLicenseFee(event.target.value);
+    };
+    const handleScrutinyFeesChange = event => {
+
+        setScrutinyFee(event.target.value);
+    };
+    const handleTotalFeesChange = event => {
+
+        setTotalFee(event.target.value);
+    };
+    const handleRemarkChange = event => {
+
+        setRemark(event.target.value);
+    };
+    const handleAggregatorChange = event => {
+
+        setAggregator(event.target.value);
+    };
+    const handlePrevLicChange = event => {
+
+        setPreviousLic(event.target.value);
+    };
+    const handleAmountChange = event => {
+
+        setAmount(event.target.value);
+    };
+
    
     const handleChange=(e)=>{
         this.setState({ isRadioSelected: true });
@@ -69,36 +127,48 @@ const FeesChargesForm=(props)=> {
                             <div className="col col-3">
                               
                                         <h6>(i)Fees/Charges details Total area</h6>
-                                        <input type="number" className="form-control"/>
+                                        <input type="text" className="form-control"required  minLength={1} maxLength={20} pattern="[0-9]*"
+                                         onChange={(e)=>setFeeDetail(e.target.value)} value={feeDetail} onChange1={handleFeesChange} />
+                                         {errors.feeDetail && <p>Please check the First Name</p>}
                              </div>
                              <div className="col col-3">
                               
                                         <h6>(ii)Licence Fees (25%)</h6>
-                                        <input type="number" className="form-control"/>
+                                        <input type="text" className="form-control" required  minLength={1} maxLength={20} pattern="[0-9]*"
+                                         onChange={(e)=>setLicenseFee(e.target.value)} value={licenseFee} onChange1={handleLicFeesChange} />
+                                         {errors.licenseFee && <p>Please check the First Name</p>}
                              </div>
                              <div className="col col-3">
                               
                               <h6>(iii)Scrutiny Fees</h6>
-                              <input type="number" className="form-control"/>
+                              <input type="text" className="form-control" required  minLength={1} maxLength={20} pattern="[0-9]*"
+                               onChange={(e)=>setScrutinyFee(e.target.value)} value={ScrutinyFee} onChange1={handleScrutinyFeesChange} />
+                               {errors.ScrutinyFee && <p></p>}
                    </div>
                    <div className="col col-3">
                               
                               <h6>(iv)Total Fees (License fee 25% + Scrutiny Fees)</h6>
-                              <input type="number" className="form-control"/>
+                              <input type="text" className="form-control" required  minLength={1} maxLength={20} pattern="[0-9]*"
+                               onChange={(e)=>setTotalFee(e.target.value)} value={totalFee}onChange1={handleTotalFeesChange} />
+                               {errors.totalFee && <p></p>}
                    </div>
                              </div>
                              <div className="row">
                             <div className="col col-3">
                               
                                         <h6>(v)Remark (If any)</h6>
-                                        <input type="number" className="form-control"/>
+                                        <input type="number" className="form-control" minLength={2} maxLength={100}
+                                         onChange={(e)=>setRemark(e.target.value)} value={remark} onChange1={handleRemarkChange} />
+                                         {errors.remark && <p></p>}
                              </div>
                              <div className="col col-3">
                               
-                                        <h6>(vi)Select Aggregator</h6>
+                                        <h6 >(vi)Select Aggregator</h6>
                                         <select className="form-control" id="developer"
-                                                        name="developer"
-                                                    >
+                                                        name="developer"  onChange={(e)=>setAggregator(e.target.value)} value={aggregator}
+                                                        onChange1={handleAggregatorChange} >
+                               {errors.aggregator && <p></p>}
+                                                    
                                                         <option value="" >
                                                         </option>
                                                         <option ></option>
@@ -108,9 +178,12 @@ const FeesChargesForm=(props)=> {
                              </div>
                              <div className="col col-3">
                               
-                              <h6>(vii)Do you want to adjust the fee from any previous license (Yes/No)</h6>
+                              <h6  required onChange={(e)=>setPreviousLic(e.target.value)} value={previousLic}
+                                 onChange1={handlePrevLicChange } >
+                                 {errors.previousLic && <p></p>}(vii)Do you want to adjust the fee from any previous license (Yes/No)</h6>
                               <input type="radio" value="Yes" id="Yes"
-                                                onChange={handleChange} name="Yes" onClick={handleshow0}/>
+                                                onChange1={handleChange} name="Yes" onClick={handleshow0}
+                                              />
                                                 <label for="Yes">Yes</label>
 
                                                 <input type="radio" value="No" id="No"
@@ -132,7 +205,10 @@ const FeesChargesForm=(props)=> {
                    <div className="col col-3">
                               
                               <h6>(viii)Amount (previous)</h6>
-                              <input type="number" className="form-control"/>
+                              <input type="number" className="form-control"  required  minLength={1} maxLength={20} pattern="[0-9]*"
+                               onChange={(e)=>setAmount(e.target.value)} value={amount}
+                               onChange1={handleAmountChange  } />
+                               {errors.amount && <p></p>}
                    </div>
                              </div>
                              <hr/>

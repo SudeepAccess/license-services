@@ -2,14 +2,40 @@ import React,{useState,useEffect} from "react";
 import { Button, Form,Collapse } from "react-bootstrap";
 import { Card, Row, Col} from "react-bootstrap";
 import PurposeAddform from "./PurposeFormAddmore";
-
-
 import ParentLicenceAddform from "./PurposeFormAddParentLicence";
-
+import { useForm } from "react-hook-form";
 
 
 
 const ApllicantPuropseForm=(props)=>{
+    const[form,setForm]=useState([]);
+    const [purpose,setPurpose]=useState('');
+    const [district,setDistrict]=useState('');
+    const[revenueName,setRevenueName]=useState('');
+    const[khewat,setKhewat]=useState('');
+    const[mustil,setMustil]=useState('');
+    const[killa,setKilla]=useState('');
+    const[sector,setSector]=useState('');
+    const[kanal,setKanal]=useState('');
+    const[marla,setMarla]=useState('');
+    const[village,setVillage]=useState('');
+    const[Khasra,setKhasra]=useState('');
+    const[khatoni,setKhatoni]=useState('');
+    const [Rectangle,setRectangle]=useState('');
+    const[kanalBigha,setKanalBigha]=useState('');
+    const[marlaBiswa,setmarlaBiswa]=useState('');
+    const[sarsai,setsarsai]=useState('');
+    const[colKhasra,setcolKhasra]=useState('');
+    const[developerLlp,setDeveloperLlp]=useState('');
+    const[registeringdate,setRegisteringDate]=useState('');
+    const[validitydate,setvaliditydate]=useState('');
+    const[colirrevocialble,setColIrrevociable]=useState('');
+    const[authSignature,setAuthSignature]=useState('');
+    const[nameAuthSign,setNameAuthSign]=useState('');
+    const[registerAuthority,setRegisterauthority]=useState('');
+    const[totalAppliedArea,setTotalAppliedArea]=useState('')
+    const[details,setDetails]=useState('');
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const [PurposeformSubmitted,SetPurposeformSubmitted] =  useState(false);
     const [PurposeAdd,SetPurposeAdd] =useState([<PurposeAddform element="1"></PurposeAddform>]);
     const [EnterdetailsShow,SetEnterdetailsShow] = useState(false);
@@ -27,13 +53,73 @@ const ApllicantPuropseForm=(props)=>{
     const PurposeFormSubmitHandler=(e)=>{
         e.preventDefault();
         SetPurposeformSubmitted(true);
-    };
+        let forms={
+            pupose:purpose,
+            district:district,
+            revenueName:revenueName,
+            khewat:khewat,
+            mustil:mustil,
+            killa:killa,
+            sector:sector,
+            kanal:kanal,
+            marla:marla,
+            village:village,
+            Khasra:Khasra,
+            khatoni:khatoni,
+      
+ 
+          
+            Rectangle:Rectangle,
+            kanalBigha:kanalBigha,
+            marlaBiswa:marlaBiswa,
+            sarsai:sarsai,
+            colKhasra:colKhasra,
+            developerLlp:developerLlp,
+            registeringdate:registeringdate,
+            validitydate:validitydate,
+            colirrevocialble:colirrevocialble,
+            authSignature:authSignature,
+            nameAuthSign:nameAuthSign,
+            registerAuthority:registerAuthority,
+            totalAppliedArea:totalAppliedArea
+            
+        }
+         // console.log("FRMDATA",forms);
+         localStorage.setItem('step2',JSON.stringify(forms))
+         // form.push(forms)
+         let frData = JSON.parse(localStorage.getItem('step2') || "[]")
+     
+     };
+       
     useEffect(()=>{
         if (PurposeformSubmitted) {
             props.PurposeForm(true);
         }
     },[PurposeformSubmitted]);
-
+    const handleKhewatChange = event => {
+       
+        setKhewat(event.target.value);
+      };
+   
+      const handleKanalChange = event => {
+       
+        setKanal(event.target.value);
+      };
+      const handleMarlaChange= event => {
+       
+        setMarla(event.target.value);
+      };
+      const handleKhasraChange= event => {
+       
+        setKhasra(event.target.value);
+      };
+      const handleKhatoniChange= event => {
+       
+        setKhatoni(event.target.value);
+      };
+      const handlerectangleChange=event=>{
+        setRectangle(event.target.value);
+      }
     const AddMorfield=()=>{
         if (PurposeAdd.length===10) {
             return
@@ -78,7 +164,7 @@ const ApllicantPuropseForm=(props)=>{
     const handleshow=e=>{
         const getshow=e.target.value;
         setShowhide(getshow);
-    }
+    };
     
     return(
         <Form onSubmit={PurposeFormSubmitHandler}>
@@ -88,7 +174,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Puropse Of License <span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" placeholder="Puropse" >
+                        <Form.Select type="text" defaultValue="Select" placeholder="Puropse"  required onChange={(e)=>setPurpose(e.target.value)} value={purpose} >
                         <option>Plotted Commercial</option>
                                                         <option>Group Housing Commercial</option>
                                                         <option>AGH </option>
@@ -107,7 +193,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>District <span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" placeholder="District" >
+                        <Form.Select type="text" defaultValue="Select" placeholder="District"  required onChange={(e)=>setDistrict(e.target.value)} value={district}>
                             <option value="1">District 1</option>
                             <option value="2">District 2</option>
                             <option value="3">District 3</option>
@@ -128,7 +214,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Name of Revenue estate</Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select"  >
+                        <Form.Select type="text" defaultValue="Select"  required onChange={(e)=>setRevenueName(e.target.value)} value={revenueName} >
                         <option>revenuestate 1</option>
                                                         <option>revenuestate 2</option>
                                                         <option>revenuestate 3</option>
@@ -140,15 +226,16 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Khewat <span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="number"  >
-                           
+                        <Form.Control type="text"  required minLength={1} maxLength={10} pattern="[0-9]*"
+                        onChange={(e)=>setKhewat(e.target.value)} value={khewat} onChange1={handleKhewatChange} >
+                        {errors.khewat && <p></p>} 
                         </Form.Control>
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
                             <Form.Label>Mustil /Killa No.<span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" placeholder="Tehshil" >
+                        <Form.Select type="text" defaultValue="Select" placeholder="Tehshil"  required onChange={(e)=>setMustil(e.target.value)} value={mustil} >
                            
                         <option>mustil 1</option>
                                                         <option>mustil 2</option>
@@ -163,7 +250,8 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Killa<span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="number"  >
+                        <Form.Control type="text"  required  
+                        onChange={(e)=>setKilla(e.target.value)} value={killa} >
                            
                         </Form.Control>
                     </Col>
@@ -171,7 +259,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Sector</Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" placeholder="Developer" >
+                        <Form.Select type="text" defaultValue="Select" placeholder="Developer"  required onChange={(e)=>setSector(e.target.value)} value={sector} >
                             <option value="1">12</option>
                             <option value="2">14</option>
                             <option value="3">15</option>
@@ -182,7 +270,9 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Area in Kanal<span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="number"  >
+                        <Form.Control type="text"  required minLength={1} maxLength={10}  pattern="[0-9]*"
+                        onChange={(e)=>setKanal(e.target.value)} value={kanal} onChange1={handleKanalChange} >
+                        {errors.kanal && <p></p>} 
                            
                         </Form.Control>
                     </Col>
@@ -192,7 +282,10 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Area in Marla<span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="number"  >
+                        <Form.Control type="text"  required minLength={1} maxLength={10}  pattern="[0-9]*"
+                        onChange={(e)=>setMarla(e.target.value)} value={marla} onChange1={handleMarlaChange} >
+                        {errors.marla && <p></p>} 
+                           
                            
                         </Form.Control>
                     </Col>
@@ -208,7 +301,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Village<span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" placeholder="Tehshil" >
+                        <Form.Select type="text" defaultValue="Select" placeholder="Tehshil" required onChange={(e)=>setVillage(e.target.value)} value={village} >
                            
                         <option>village 1</option>
                                                         <option>village 2</option>
@@ -221,7 +314,9 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Khasra No. / Khewat<span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="number"  >
+                        <Form.Control type="text"  required minLength={1} maxLength={20}  pattern="[0-9]*"
+                        onChange={(e)=>setKhasra(e.target.value)} value={Khasra} onChange1={handleKhasraChange} >
+                        {errors.Khasra && <p></p>} 
                            
                         </Form.Control>
                     </Col>
@@ -229,7 +324,10 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Khatoni No</Form.Label>
                         </div>
-                        <Form.Control type="number" >
+                        <Form.Control type="text" required minLength={1} maxLength={20}  pattern="[0-9]*"
+                        onChange={(e)=>setKhatoni(e.target.value)} value={khatoni} onChange1={handleKhatoniChange} >
+                        {errors.khatoni && <p></p>} 
+                           
                            
                         </Form.Control>
                     </Col>
@@ -349,6 +447,43 @@ const ApllicantPuropseForm=(props)=>{
                     </Col>
                     
                 </Row> */}
+                  {/* <div class="my-3">
+                                            <p style="margin-bottom:0.5rem;">(Enclose the following documents as
+                                                Annexures)</p>
+                                             <button class="btn btn-primary" data-toggle="modal" data-target="#appPurpose">Upload Documents</button>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4 mb-2">
+                                                    <label class="font-weight-bold text-black ">Land schedule
+                                                    </label>
+                                                    <button class="btn btn-primary">View Document</button>
+                                                </div>
+                                                <div class="form-group col-md-4 mb-2">
+                                                    <label class="font-weight-bold text-black ">Copy of Mutation
+                                                    </label>
+                                                    <button class="btn btn-primary">View Document</button>
+                                                </div>
+                                                <div class="form-group col-md-4 mb-2">
+                                                    <label class="font-weight-bold text-black ">Copy of Jamabandi
+                                                    </label>
+                                                    <button class="btn btn-primary">View Document</button>
+                                                </div>
+                                                <div class="form-group col-md-4 mb-2">
+                                                    <label class="font-weight-bold text-black ">Details of lease /
+                                                        patta, if any </label>
+                                                    <button class="btn btn-primary">View Document</button>
+                                                </div>
+                                                <div class="form-group col-md-4 mb-2">
+                                                    <label class="font-weight-bold text-black ">Copy of Sajra
+                                                        Plan</label>
+                                                    <button class="btn btn-primary">View Document</button>
+                                                </div>
+                                                <div class="form-group col-md-4 mb-2">
+                                                    <label class="font-weight-bold text-black ">Another Copy of
+                                                        Sajra Plan</label>
+                                                    <button class="btn btn-primary">View Document</button>
+                                                </div>
+                                            </div>
+                                        </div> */}
                 <div className="ml-auto" style={{marginTop:20}}>
                     <h2 style={{fontSize:24}}>2. Details of applied land:</h2>
                     <p>(i) Khasra-wise information to be provided in the following format:</p>
@@ -365,9 +500,10 @@ const ApllicantPuropseForm=(props)=>{
                                             <div className="form-group">
                                                 <label htmlFor="rectangle">Rectangle No.:</label>
                                                 <input
-                                                    type="number" className="form-control"
-                                                   
-                                                />
+                                                    type="text" className="form-control" required minLength={1} maxLength={20}  pattern="[0-9]*"
+                                                    onChange={(e)=>setRectangle(e.target.value)} value={Rectangle}   onChange1={handlerectangleChange} />
+                                                    {errors.Rectangle && <p></p>} 
+                                              
                                                
                                             </div>
                                         </div>
@@ -375,9 +511,10 @@ const ApllicantPuropseForm=(props)=>{
                                             <div className="form-group">
                                                 <label htmlFor="bigha">Kanal/ Bigha:</label>
                                                 <input
-                                                    type="number" className="form-control"
-                                                   
-                                                />
+                                                    type="text" className="form-control" required minLength={1} maxLength={20}  pattern="[0-9]*"
+                                                    onChange1={handlerectangleChange} />
+                                                    {errors.Rectangle && <p></p>} 
+                                              
                                               
                                             </div>
                                         </div>
@@ -546,9 +683,9 @@ const ApllicantPuropseForm=(props)=>{
                                 </div>
 
                              </div>
-                                        <div className="modal-footer">
-                                            <button className="btn btn-primary">Submit</button>
-                                        </div>
+                             <Button style={{ alignSelf: "right", marginTop: 20, marginLeft: 960}} variant="primary" type="submit">
+                Submit
+            </Button>
                         </div>
 
                 </Collapse>
@@ -587,13 +724,13 @@ const ApllicantPuropseForm=(props)=>{
                         </thead>
                         <tbody>
                             <tr >
-                                <td ><input type="text" class="visibility-hidden"/></td>
-                                <td ><input type="text" class="visibility-hidden"/></td>
-                                <td ><input type="number" class="visibility-hidden"/></td>
-                                <td class="text-center"><input type="number" class="visibility-hidden"/></td>
-                                <td class="text-center"><input type="number" class="visibility-hidden"/></td>
-                                <td class="text-center"><input type="number" class="visibility-hidden"/></td>
-                                <td class="text-center"><input type="number" class="visibility-hidden"/></td>
+                                <td ><input type="text" className="form-control"/></td>
+                                <td ><input type="text" className="form-control"/></td>
+                                <td ><input type="number" className="form-control"/></td>
+                                <td class="text-center"><input type="number" className="form-control"/></td>
+                                <td class="text-center"><input type="number" className="form-control"/></td>
+                                <td class="text-center"><input type="number" className="form-control"/></td>
+                                <td class="text-center"><input type="number" className="form-control"/></td>
                                 <td class="text-center"> <input type="radio" value="Yes" id="Yes"
                                     onChange={handleChange} name="Yes" />
                                     <label for="Yes">Yes</label>
@@ -601,9 +738,9 @@ const ApllicantPuropseForm=(props)=>{
                                     <input type="radio" value="No" id="No"
                                     onChange={handleChange} name="Yes"/>
                                     <label for="No">No</label></td>
-                                    <td ><input type="text" class="visibility-hidden"/></td>
-                                <td class="text-center"><input type="date" class="visibility-hidden"/></td>
-                                <td class="text-center"><input type="date" class="visibility-hidden"/></td>
+                                    <td ><input type="text" className="form-control"/></td>
+                                <td class="text-center"><input type="date" className="form-control"/></td>
+                                <td class="text-center"><input type="date" className="form-control"/></td>
                                 <td class="text-center"> <input type="radio" value="Yes" id="Yes"
                                     onChange={handleChange} name="Yes" />
                                     <label for="Yes">Yes</label>
@@ -611,14 +748,35 @@ const ApllicantPuropseForm=(props)=>{
                                     <input type="radio" value="No" id="No"
                                     onChange={handleChange} name="Yes"/>
                                     <label for="No">No</label></td>
-                                    <td ><input type="text" class="visibility-hidden"/></td>
-                                    <td ><input type="text" class="visibility-hidden"/></td>
-                                    <td ><input type="text" class="visibility-hidden"/></td>
+                                    <td ><input type="text" className="form-control"/></td>
+                                    <td ><input type="text" className="form-control"/></td>
+                                    <td ><input type="text" className="form-control"/></td>
                                 
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                 {/* <div className="col-md-12 mb-3">
+                                        <h4 class="text-black">5. Documents required in Migration:- <span
+                                                class="text-danger"><b>*</b></span></h4>
+                                        <div class="rounded border shadow-sm p-2 mb-3"> 
+                                            <p><b>1. Approved Layout of Plan/ Site plan for(GH)Showing Area(s)/Proposed
+                                                    migration</b> &nbsp;&nbsp;&nbsp;
+
+                                                <button class="btn btn-info d-none"><i class="fa fa-eye"></i></button>
+                                                <button class="btn btn-info"><i class="fa fa-upload"></i></button>
+                                            </p>
+                                            <p><b>2. Proposed Layout of Plan /site plan for area applied for
+                                                    migration.</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <button class="btn btn-info d-none"><i class="fa fa-eye"></i></button>
+                                                <button class="btn btn-info"><i class="fa fa-upload"></i></button>
+                                            </p>
+                                            <p><b>3. Revised Land Schedule </b>&nbsp;&nbsp;&nbsp;
+                                                <button class="btn btn-info d-none"><i class="fa fa-eye"></i></button>
+                                                <button class="btn btn-info"><i class="fa fa-upload"></i></button>
+                                            </p> 
+                    </div>
+                    </div> */}
                                 
              
              

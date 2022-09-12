@@ -10,6 +10,106 @@ import { Card, Row, Col} from "react-bootstrap";
 
 
 const AppliedDetailForm =(props)=> {
+  const[form,setForm]=useState([]);
+  const [dgps,setDgps]=useState('');
+  const [resplotno,setResPlotno]=useState('');
+  const[reslengthmtr,setResLengthmtr]=useState('');
+  const[reswidthmtr,setResWidthmtr]=useState('');
+  const[resareasq,setResAreasq]=useState('');
+  const [complotno,setComPlotno]=useState('');
+  const[comlengthmtr,setComLengthmtr]=useState('');
+  const[comwidthmtr,setComWidthmtr]=useState('');
+  const[comareasq,setComAreasq]=useState('');
+  const [siteplotno,setSitePlotno]=useState('');
+  const[sitelengthmtr,setSiteLengthmtr]=useState('');
+  const[sitewidthmtr,setSiteWidthmtr]=useState('');
+  const[siteareasq,setSiteAreasq]=useState('');
+  const [parkplotno,setParkPlotno]=useState('');
+  const[parklengthmtr,setParkLengthmtr]=useState('');
+  const[parkwidthmtr,setParkWidthmtr]=useState('');
+  const[parkareasq,setParkAreasq]=useState('');
+  const [publicplotno,setPublicPlotno]=useState('');
+  const[publiclengthmtr,setPublicLengthmtr]=useState('');
+  const[publicwidthmtr,setPublicWidthmtr]=useState('');
+  const[publicareasq,setPublicAreasq]=useState('');
+  const[irPlotDimen,setIrPlotDimen]=useState('');
+  const[irPlotArea,setIrPlotArea]=useState('');
+  const[irSizeDimen,setIrSizeDimen]=useState('');
+  const[irSizeArea,setIrSizeArea]=useState('');
+  const[pocketDimen,setPocketDimen]=useState('');
+  const[pocketArea,setPocketArea]=useState('');
+  const[surrenderDimen,setSurrenderDimen]=useState('');
+  const[surrenderArea,setSurrenderArea]=useState('');
+  const[npnlNo,setNpnlNo]=useState('');
+  const[npnlArea,setNpnlArea]=useState('');
+  const[ewsNo,setEwsNo]=useState('');
+  const[ewsArea,setEwsArea]=useState('');
+  const[frozenNo,setFrozenNo]=useState('');
+  const[frozenArea,setFrozenArea]=useState('');
+  const[organizeNo,setorganizeNo]=useState('');
+  const[organizeArea,setorganizeArea]=useState('');
+  const[colonyNo,setColonyNo]=useState('');
+  const[colonyArea,setColonyArea]=useState('');
+  const[fiftyNo,setFiftyNo]=useState('');
+  const[fiftyArea,setFiftyArea]=useState('');
+  const[twoNo,setTwoNo]=useState('');
+  const[twoArea,setTwoArea]=useState('');
+  const[resiNo,setResiNo]=useState('');
+  const[resiArea,setResiArea]=useState('');
+  const[commerNo,setCommerNo]=useState('');
+  const[commerArea,setCommerArea]=useState('');
+  const[labourNo,setLabourNo]=useState('');
+  const[labourArea,setLabourArea]=useState('');
+  const[permissible,setPermissible]=useState('');
+  const[perPlot,setPerPlot]=useState('');
+  const[perLength,setPerLength]=useState('');
+  const[perWidth,setPerWidth]=useState('');
+  const[perArea,setPerArea]=useState('');
+  const[commPlotted,setCommPlotted]=useState('');
+  const[far,setFar]=useState('');
+  const [scono,setScono]=useState('');
+  const[scolengthmtr,setScoLengthmtr]=useState('');
+  const[scowidthmtr,setScoWidthmtr]=useState('');
+  const[scoareasq,setScoAreasq]=useState('');
+  const [boothplotno,setBoothPlotno]=useState('');
+  const[boothlengthmtr,setBoothLengthmtr]=useState('');
+  const[boothwidthmtr,setBoothWidthmtr]=useState('');
+  const[boothareasq,setBoothAreasq]=useState('');
+  const[ewsnpnlPlot,setEwsNpnlPlot]=useState('');
+  const[areaewsnpnlPlot,setAreaEwsNpnlPlot]=useState('');
+  const[collectorRate,setCollectorRate]=useState('');
+  const[areaCollectorRate,setAreaCollectorRate]=useState('');
+  const[anyotherroad,setAnyOtherRoad]=useState('');
+  const[widthanyotherroad,setWidthAnyOtherRoad]=useState('');
+  const[licValid,setLicValid]=useState('');
+  const[licvalidity,setLicvalidity]=useState('');
+  const[appliedrenewal,setAplliedRenewal]=useState('');
+  const[scrutinyFee,setscrutinyFee]=useState('');
+  const[transactionScrutiny,setTransactionscrutiny]=useState('');
+  const[reasonRevision,setReasonRevision]=useState('');
+  const[uploadapprovedLayout,setUploadApprovedLayout]=useState('');
+  const[proposedLayout,setProposedLayout]=useState('');
+  const[undertakingChange,setUndertakingChange]=useState('');
+  const[phasingSite,setPhasingsite]=useState('');
+  const[reraUpload,setReraUpload]=useState('');
+  const[newspaperpublic,setNewspaperPublic]=useState('');
+  const[dateNews,setDateNews]=useState('');
+  const[namenewspaper,setNameNewspaper]=useState('');
+  const[intimatedAllotes,setIntimatedAllotes]=useState('');
+  const[attachintimate,setAttachIntimate]=useState('');
+  const[hostedapprovedWebsite,setHostedApprovedwebsite]=useState('');
+  const[objectionUpload,setObjectionUpload]=useState('');
+  const[replySubmittedUpload,setReplySubmittedUpload]=useState('');
+  const[bookingPlotUpload,setBookingPlotUpload]=useState('');
+  const[anyFeature,setAnyFeature]=useState('');
+  const[sitenczdevelop,setSiteNczDevelop]=useState('');
+  const[sitenczregional,setSiteNczRegional]=useState('');
+  const[nczTruthingReport,setNczTruthingReport]=useState('');
+  const[dlscRecommend,setDlscRecommend]=useState('');
+  const[exemption,setExemption]=useState('')
+
+
+
     const { register, handleSubmit, formState: { errors } } = useForm([{XLongitude:'',YLatitude:''}]);
     const formSubmit = (data) => {
         console.log("data", data);
@@ -18,6 +118,110 @@ const AppliedDetailForm =(props)=> {
     const AppliedDetailFormSubmitHandler=(e)=>{
         e.preventDefault();
         SetAppliedDetailFormSubmitted(true);
+        let forms={
+               dgps:dgps,
+               resplotno:resplotno,
+               reslengthmtr:reslengthmtr,
+               reswidthmtr:reswidthmtr,
+               resareasq:resareasq,
+               complotno:complotno,
+               comlengthmtr:comlengthmtr,
+               comwidthmtr:comwidthmtr,
+               comareasq:comareasq,
+               siteplotno:siteplotno,
+               sitelengthmtr:sitelengthmtr,
+               sitewidthmtr:sitewidthmtr,
+               siteareasq:siteareasq,
+               parkplotno:parkplotno,
+               parklengthmtr:parklengthmtr,
+               parkwidthmtr:parkwidthmtr,
+               parkareasq:parkareasq,
+               publicplotno:publicplotno,
+               publiclengthmtr:publiclengthmtr,
+               publicwidthmtr:publicwidthmtr,
+               publicareasq:publicareasq,
+               irPlotDimen:irPlotDimen,
+               irPlotArea:irPlotArea,
+               irSizeDimen:irSizeDimen,
+               irSizeArea:irSizeArea,
+               pocketDimen:pocketDimen,
+               pocketArea:pocketArea,
+               surrenderDimen:surrenderDimen,
+               surrenderArea:surrenderArea,
+               npnlNo:npnlNo,
+               npnlArea:npnlArea,
+               ewsNo:ewsNo,
+               ewsArea:ewsArea,
+               frozenNo:frozenNo,
+               frozenArea:frozenArea,
+               organizeNo:organizeNo,
+               organizeArea:organizeArea,
+               colonyNo:colonyNo,
+               colonyArea:colonyArea,
+               fiftyNo:fiftyNo,
+               fiftyArea:fiftyArea,
+               twoNo:twoNo,
+               twoArea:twoArea,
+               resiNo:resiNo,
+               resiArea:resiArea,
+               commerNo:commerNo,
+               commerArea:commerArea,
+               labourNo:labourNo,
+               labourArea:labourArea,
+               permissible:permissible,
+               perPlot:perPlot,
+               perLength:perLength,
+               perWidth:perWidth,
+               perArea:perArea,
+               commPlotted:commPlotted,
+               far:far,
+               scono:scono,
+               scolengthmtr:scolengthmtr,
+               scowidthmtr:scowidthmtr,
+               scoareasq:scoareasq,
+               boothplotno:boothplotno,
+               boothlengthmtr:boothlengthmtr,
+               boothwidthmtr:boothwidthmtr,
+               boothareasq:boothareasq,
+               ewsnpnlPlot:ewsnpnlPlot,
+               areaewsnpnlPlot:areaewsnpnlPlot,
+               collectorRate:collectorRate,
+               areaCollectorRate:areaCollectorRate,
+               anyotherroad:anyotherroad,
+               widthanyotherroad:widthanyotherroad,
+               licValid:licValid,
+               licvalidity:licvalidity,
+               appliedrenewal:appliedrenewal,
+               scrutinyFee:scrutinyFee,
+               transactionScrutiny:transactionScrutiny,
+               reasonRevision:reasonRevision,
+               uploadapprovedLayout:uploadapprovedLayout,
+               proposedLayout:proposedLayout,
+               undertakingChange:undertakingChange,
+               phasingSite:phasingSite,
+               reraUpload:reraUpload,
+               newspaperpublic:newspaperpublic,
+               dateNews:dateNews,
+               namenewspaper:namenewspaper,
+               intimatedAllotes:intimatedAllotes,
+               attachintimate:attachintimate,
+               hostedapprovedWebsite:hostedapprovedWebsite,
+               objectionUpload:objectionUpload,
+               replySubmittedUpload:replySubmittedUpload,
+               bookingPlotUpload:bookingPlotUpload,
+               anyFeature:anyFeature,
+               sitenczdevelop:sitenczdevelop,
+               sitenczregional:sitenczregional,
+               nczTruthingReport:nczTruthingReport,
+               dlscRecommend:dlscRecommend,
+               exemption:exemption
+
+        } 
+         console.log("FRMDATA",forms);
+        localStorage.setItem('step4',JSON.stringify(forms))
+        form.push(forms)
+        let frmData = JSON.parse(localStorage.getItem('step4') || "[]")
+    
     };
     useEffect(()=>{
         if (AppliedDetailFormSubmitted) {
@@ -116,7 +320,8 @@ const handleshow12=e=>{
                            
                                     <div className="col col-4">
                                         <label for="pitentialZone" className="font-weight-bold">Number of DGPS point</label>
-                                        <input type="number" className="form-control"/>
+                                        <input type="number" className="form-control"
+                                        onChange={(e)=>setDgps(e.target.value)} value={dgps} />
                                     </div>
                                     <div className="px-2">
                                         <div className="text-black">(i)Add point 1 as Point 1: &nbsp;
