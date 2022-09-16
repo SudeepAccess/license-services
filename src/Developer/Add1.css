@@ -1,84 +1,97 @@
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
-
-  .form-inline {  
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-  }
-
-  .form-inline label {
-    margin: 5px 10px 5px 0;
-  }
-
-  .form-inline input {
-    vertical-align: middle;
-    margin: 5px 10px 5px 0;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-  }
-
-  .button-section {
-    margin: 3%;
-  }
-  .button {
-    padding: 10px 20px;
-    background-color: dodgerblue;
-    border: 1px solid #ddd;
-    color: white;
-    cursor: pointer;
-  }
-
-  .button:hover {
-    background-color: royalblue;
-  }
-
-  .remove {
-    background-color: rgb(192, 53, 53);
-  }
-  .remove:hover {
-    background-color: rgb(187, 43, 43);
-  }
-  .card-hd{
-    margin-left: 2%;
-   
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
-.card{
-    padding: 3%;
-    margin-top: 5px;
-    margin-bottom: 2%;
-    margin-left: 2%;
-    margin-right: 2%;
-    box-shadow: 3px 1px 3px 1px #95b8cf;
-   
+
+* {
+  box-sizing: border-box;
 }
-  .card-button{
-    width: 300px;
-    height: 100px;
-    /* border: 2px solid rgb(207, 199, 199); */
-    border-left: 3px solid #0572bb;
-    padding: 2rem 1.5rem;
-    box-shadow: 1px 1px 1px 1px rgba(8, 80, 224, 0.12);
-    margin-bottom: 1.5rem;
-    box-sizing: border-box 2px;
-    font-style: #0572bb;
-    border-radius: 2px 2px 2px 2px ;
-   
-    
-  }
-  .hl{
-    border: 1px solid rgb(216, 216, 216);
-    margin-top: 2%;
-    margin-bottom: 2%;
-  }
-  .card-hd{
-    text-align: center;
-    
-    
-    
-  }
-  .card-hd a{
-    text-decoration: none;
-    color: #0572bb;
-  }
+
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.button-section {
+  margin: 3%;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: royalblue;
+}
+
+.remove {
+  background-color: rgb(192, 53, 53);
+}
+
+.remove:hover {
+  background-color: rgb(187, 43, 43);
+}
+
+.card-hd {
+  margin-left: 2%;
+
+}
+
+.card {
+  padding: 3%;
+  margin-top: 0px;
+  margin-bottom: 2%;
+  margin-left: 2%;
+  margin-right: 2%;
+  box-shadow: 3px 1px 3px 1px #95b8cf;
+
+}
+
+.card-button {
+  width: 300px;
+  height: 100px;
+  /* border: 2px solid rgb(207, 199, 199); */
+  border-left: 3px solid #0572bb;
+  padding: 2rem 1.5rem;
+  box-shadow: 1px 1px 1px 1px rgba(8, 80, 224, 0.12);
+  margin-bottom: 1.5rem;
+  box-sizing: border-box 2px;
+  font-style: #0572bb;
+  border-radius: 2px 2px 2px 2px;
+
+
+}
+
+.hl {
+  border: 1px solid rgb(216, 216, 216);
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.card-hd {
+  text-align: center;
+
+
+
+}
+
+.card-hd a {
+  text-decoration: none;
+  color: #0572bb;
+}
