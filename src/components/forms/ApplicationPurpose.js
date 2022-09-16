@@ -4,13 +4,19 @@ import { Card, Row, Col} from "react-bootstrap";
 import PurposeAddform from "./PurposeFormAddmore";
 import ParentLicenceAddform from "./PurposeFormAddParentLicence";
 import { useForm } from "react-hook-form";
+import Typography from '@material-ui/core/Typography'
+import Modal from 'react-bootstrap/Modal';
+import Box from '@material-ui/core//Box';
+import { TableRow, TableHead, TableContainer, TableCell, TableBody, Table, Paper } from '@material-ui/core';
+import { blue, grey } from "@material-ui/core/colors";
+import TextField from '@mui/material/TextField';
 
 
 
 const ApllicantPuropseForm=(props)=>{
     const[form,setForm]=useState([]);
     const [purpose,setPurpose]=useState('');
-    const [district,setDistrict]=useState('');
+    const [district2,setDistrict2]=useState('');
     const[revenueName,setRevenueName]=useState('');
     const[khewat,setKhewat]=useState('');
     const[mustil,setMustil]=useState('');
@@ -18,7 +24,7 @@ const ApllicantPuropseForm=(props)=>{
     const[sector,setSector]=useState('');
     const[kanal,setKanal]=useState('');
     const[marla,setMarla]=useState('');
-    const[village,setVillage]=useState('');
+    const[village2,setVillage2]=useState('');
     const[Khasra,setKhasra]=useState('');
     const[khatoni,setKhatoni]=useState('');
     const [Rectangle,setRectangle]=useState('');
@@ -50,12 +56,36 @@ const ApllicantPuropseForm=(props)=>{
             SetDisplayEnterdetails("block");
         }
     }
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 900,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      };
+      const styles={
+        borderBottom: '0.5px solid',
+        borderRight: 0,
+       
+        borderTop: 0,
+        borderLeft: 0,
+        bgcolor: 'background.paper',
+      }
+    
+      const [show, setShow] = useState(false);
+
+      const handleClose = () => setShow(false);
+      const handleShow = () => setShow(true);
     const PurposeFormSubmitHandler=(e)=>{
         e.preventDefault();
         SetPurposeformSubmitted(true);
         let forms={
-            pupose:purpose,
-            district:district,
+            purpose:purpose,
+            district2:district2,
             revenueName:revenueName,
             khewat:khewat,
             mustil:mustil,
@@ -63,27 +93,31 @@ const ApllicantPuropseForm=(props)=>{
             sector:sector,
             kanal:kanal,
             marla:marla,
-            village:village,
+            village2:village2,
             Khasra:Khasra,
             khatoni:khatoni,
+        //   "data": {"Rectangle":"","kanalBigha":"","marlaBiswa":"","sarsai":"","colKhasra":"","developerLlp":"","registeringdate":"","validitydate":"","colirrevocialble":"","authSignature":"","nameAuthSign":"","registerAuthority":"","totalAppliedArea":""},
+        }
+    
+
       
  
           
-            Rectangle:Rectangle,
-            kanalBigha:kanalBigha,
-            marlaBiswa:marlaBiswa,
-            sarsai:sarsai,
-            colKhasra:colKhasra,
-            developerLlp:developerLlp,
-            registeringdate:registeringdate,
-            validitydate:validitydate,
-            colirrevocialble:colirrevocialble,
-            authSignature:authSignature,
-            nameAuthSign:nameAuthSign,
-            registerAuthority:registerAuthority,
-            totalAppliedArea:totalAppliedArea
+            // Rectangle:Rectangle,
+            // kanalBigha:kanalBigha,
+            // marlaBiswa:marlaBiswa,
+            // sarsai:sarsai,
+            // colKhasra:colKhasra,
+            // developerLlp:developerLlp,
+            // registeringdate:registeringdate,
+            // validitydate:validitydate,
+            // colirrevocialble:colirrevocialble,
+            // authSignature:authSignature,
+            // nameAuthSign:nameAuthSign,
+            // registerAuthority:registerAuthority,
+            // totalAppliedArea:totalAppliedArea
             
-        }
+       
          // console.log("FRMDATA",forms);
          localStorage.setItem('step2',JSON.stringify(forms))
          // form.push(forms)
@@ -165,16 +199,16 @@ const ApllicantPuropseForm=(props)=>{
         const getshow=e.target.value;
         setShowhide(getshow);
     };
-    
+   
     return(
         <Form onSubmit={PurposeFormSubmitHandler}>
             <Form.Group className="justify-content-center" controlId="formBasicEmail">
                 <Row className="ml-auto" style={{marginBottom:5}}>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Puropse Of License <span style={{color:"red"}}>*</span></Form.Label>
+                            <Form.Label><b>Puropse Of License</b> <span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" placeholder="Puropse"  required onChange={(e)=>setPurpose(e.target.value)} value={purpose} >
+                        <Form.Select type="text" defaultValue="Select" placeholder="Puropse"  onChange={(e)=>setPurpose(e.target.value)} value={purpose} >
                         <option>Plotted Commercial</option>
                                                         <option>Group Housing Commercial</option>
                                                         <option>AGH </option>
@@ -191,30 +225,32 @@ const ApllicantPuropseForm=(props)=>{
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>District <span style={{color:"red"}}>*</span></Form.Label>
+                            <Form.Label><b>State </b><span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" placeholder="District"  required onChange={(e)=>setDistrict(e.target.value)} value={district}>
+                         <Form.Control type="text" defaultValue="Haryana" disabled  >
+                            
+                        </Form.Control>
+                    </Col>
+                    <Col md={4} xxl lg="4">
+                        <div>
+                            <Form.Label><b>District</b> <span style={{color:"red"}}>*</span></Form.Label>
+                        </div>
+                        <Form.Select type="text" defaultValue="Select" placeholder="District"  onChange={(e)=>setDistrict2(e.target.value)} value={district2}>
                             <option value="1">District 1</option>
                             <option value="2">District 2</option>
                             <option value="3">District 3</option>
                             <option value="3">District 4</option>
                         </Form.Select>
                     </Col>
-                    <Col md={4} xxl lg="4">
-                        <div>
-                            <Form.Label>State <span style={{color:"red"}}>*</span></Form.Label>
-                        </div>
-                         <Form.Control type="text" defaultValue="Haryana" disabled  >
-                            
-                        </Form.Control>
-                    </Col>
+                
                 </Row>
-                <Row className="ml-auto" style={{marginBottom:5}}>
+              
+                {/* <Row className="ml-auto" style={{marginBottom:5}}>
                     <Col md={4} xxl lg="4">
                         <div>
                             <Form.Label>Name of Revenue estate</Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select"  required onChange={(e)=>setRevenueName(e.target.value)} value={revenueName} >
+                        <Form.Select type="text" defaultValue="Select" onChange={(e)=>setRevenueName(e.target.value)} value={revenueName} >
                         <option>revenuestate 1</option>
                                                         <option>revenuestate 2</option>
                                                         <option>revenuestate 3</option>
@@ -226,7 +262,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Khewat <span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="text"  required minLength={1} maxLength={10} pattern="[0-9]*"
+                        <Form.Control type="text"  minLength={1} maxLength={10} pattern="[0-9]*"
                         onChange={(e)=>setKhewat(e.target.value)} value={khewat} onChange1={handleKhewatChange} >
                         {errors.khewat && <p></p>} 
                         </Form.Control>
@@ -235,7 +271,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Mustil /Killa No.<span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" placeholder="Tehshil"  required onChange={(e)=>setMustil(e.target.value)} value={mustil} >
+                        <Form.Select type="text" defaultValue="Select" placeholder="Tehshil"   onChange={(e)=>setMustil(e.target.value)} value={mustil} >
                            
                         <option>mustil 1</option>
                                                         <option>mustil 2</option>
@@ -250,7 +286,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Killa<span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="text"  required  
+                        <Form.Control type="text"  
                         onChange={(e)=>setKilla(e.target.value)} value={killa} >
                            
                         </Form.Control>
@@ -259,7 +295,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Sector</Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" placeholder="Developer"  required onChange={(e)=>setSector(e.target.value)} value={sector} >
+                        <Form.Select type="text" defaultValue="Select" placeholder="Developer"  onChange={(e)=>setSector(e.target.value)} value={sector} >
                             <option value="1">12</option>
                             <option value="2">14</option>
                             <option value="3">15</option>
@@ -270,7 +306,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Area in Kanal<span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="text"  required minLength={1} maxLength={10}  pattern="[0-9]*"
+                        <Form.Control type="text"   minLength={1} maxLength={10}  pattern="[0-9]*"
                         onChange={(e)=>setKanal(e.target.value)} value={kanal} onChange1={handleKanalChange} >
                         {errors.kanal && <p></p>} 
                            
@@ -282,7 +318,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Area in Marla<span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="text"  required minLength={1} maxLength={10}  pattern="[0-9]*"
+                        <Form.Control type="text" minLength={1} maxLength={10}  pattern="[0-9]*"
                         onChange={(e)=>setMarla(e.target.value)} value={marla} onChange1={handleMarlaChange} >
                         {errors.marla && <p></p>} 
                            
@@ -301,7 +337,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Village<span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" placeholder="Tehshil" required onChange={(e)=>setVillage(e.target.value)} value={village} >
+                        <Form.Select type="text" defaultValue="Select" placeholder="Tehshil"  onChange={(e)=>setVillage2(e.target.value)} value={village2} >
                            
                         <option>village 1</option>
                                                         <option>village 2</option>
@@ -314,7 +350,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Khasra No. / Khewat<span style={{color:"red"}}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="text"  required minLength={1} maxLength={20}  pattern="[0-9]*"
+                        <Form.Control type="text"  minLength={1} maxLength={20}  pattern="[0-9]*"
                         onChange={(e)=>setKhasra(e.target.value)} value={Khasra} onChange1={handleKhasraChange} >
                         {errors.Khasra && <p></p>} 
                            
@@ -324,7 +360,7 @@ const ApllicantPuropseForm=(props)=>{
                         <div>
                             <Form.Label>Khatoni No</Form.Label>
                         </div>
-                        <Form.Control type="text" required minLength={1} maxLength={20}  pattern="[0-9]*"
+                        <Form.Control type="text"  minLength={1} maxLength={20}  pattern="[0-9]*"
                         onChange={(e)=>setKhatoni(e.target.value)} value={khatoni} onChange1={handleKhatoniChange} >
                         {errors.khatoni && <p></p>} 
                            
@@ -332,7 +368,7 @@ const ApllicantPuropseForm=(props)=>{
                         </Form.Control>
                     </Col>
                    
-                </Row>
+                </Row> */}
                
 
                 {/* <div className="ml-auto" style={{marginTop:20}}>
@@ -486,225 +522,535 @@ const ApllicantPuropseForm=(props)=>{
                                         </div> */}
                 <div className="ml-auto" style={{marginTop:20}}>
                     <h2 style={{fontSize:24}}>2. Details of applied land:</h2>
-                    <p>(i) Khasra-wise information to be provided in the following format:</p>
+                    <p><b>(i) Khasra-wise information to be provided in the following format:</b></p>
                 </div>
                 <div className="ml-auto">
-                <Button  onClick={() => setOpen(!open)} aria-controls="example-collapse-text"aria-expanded={open} >
+                <Button variant="primary" onClick={handleShow}>
                                      Enter Details
                 </Button>
-                <Collapse in={open}>
-                         <div className="card shadow">
-                            <div className="card-body">
-                                <div className="row">
-                                        <div className="col col-3">
-                                            <div className="form-group">
-                                                <label htmlFor="rectangle">Rectangle No.:</label>
-                                                <input
-                                                    type="text" className="form-control" required minLength={1} maxLength={20}  pattern="[0-9]*"
-                                                    onChange={(e)=>setRectangle(e.target.value)} value={Rectangle}   onChange1={handlerectangleChange} />
-                                                    {errors.Rectangle && <p></p>} 
-                                              
-                                               
-                                            </div>
-                                        </div>
-                                        <div className="col col-3">
-                                            <div className="form-group">
-                                                <label htmlFor="bigha">Kanal/ Bigha:</label>
-                                                <input
-                                                    type="text" className="form-control" required minLength={1} maxLength={20}  pattern="[0-9]*"
-                                                    onChange1={handlerectangleChange} />
-                                                    {errors.Rectangle && <p></p>} 
-                                              
-                                              
-                                            </div>
-                                        </div>
-                                        <div className="col col-3">
-                                            <div className="form-group">
-                                                <label htmlFor="biswa">Marla/ Biswa:</label>
-                                                <input
-                                                    type="number" className="form-control"
-                                                   
-                                                />
-                                               
-                                            </div>
-                                        </div>
-                                        <div className="col col-3">
-                                            <div className="form-group">
-                                                <label htmlFor="sarsai">Sarsai/ Biswansi:</label>
-                                                <input
-                                                    type="number" className="form-control"
-                                                   
-                                                />
-                                                
-                                            </div>
-                                        </div>
-                                </div>
-                                <div className="row">
-                                        <div className="col col-3">
-                                            <div className="form-group" >
-                                                <label htmlFor="colAgree">Whether a collaboration agreement entered for the Khasra? (Yes/No):</label>
-                                                <input type="radio" value="Yes" id="Yes"
-                                                onChange={handleChange} name="Yes" onClick={handleshow}/>
-                                                <label for="Yes">Yes</label>
+                <div >
+                <Modal  {...props}
+      size="xl"
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+       
+        <Modal.Header  closeButton>
+        
+        </Modal.Header>
+       
+        <Modal.Body>
+     
+                       <Row className="ml-auto mb-3" >
+                         <Col md={4} xxl lg="4">
+                            <div>
+                                <Form.Label><b>Tehsil</b></Form.Label>
+                            </div>
+                            <Form.Select type="text" defaultValue="Select"  >
+                            <option>Tehsil 1</option>
+                                                            <option>Tehsil 2</option>
+                                                            <option>Tehsil 3</option>
+                                                            <option>Tehsil 4</option>
+                                                            <option>Tehsil 5</option>
+                            </Form.Select>
+                        </Col>
+                        <Col md={4} xxl lg="4">
+                            <div>
+                                <Form.Label><b>Name of Revenue estate</b></Form.Label>
+                            </div>
+                            <Form.Select type="text" defaultValue="Select" onChange={(e)=>setRevenueName(e.target.value)} value={revenueName} >
+                            <option>revenuestate 1</option>
+                                                            <option>revenuestate 2</option>
+                                                            <option>revenuestate 3</option>
+                                                            <option>revenuestate 4</option>
+                                                            <option>revenuestate 5</option>
+                            </Form.Select>
+                        </Col>
+                        <Col md={4} xxl lg="4">
+                            <div>
+                                <Form.Label><b>Rectangle No./Mustil</b><span style={{color:"red"}}>*</span></Form.Label>
+                            </div>
+                            <Form.Select type="text" defaultValue="Select" placeholder="Tehshil"   onChange={(e)=>setMustil(e.target.value)} value={mustil} >
+                            
+                            <option>mustil 1</option>
+                                                            <option>mustil 2</option>
+                                                            <option>mustil 3</option>
+                                                            <option>mustil 4</option>
+                                                            <option>mustil 5</option>
+                            </Form.Select>
+                        </Col>
+                        
+                        {/* <Col md={4} xxl lg="3">
+                            <div>
+                                <Form.Label><b>Khewat</b> <span style={{color:"red"}}>*</span></Form.Label>
+                            </div>
+                            <Form.Control type="text"  minLength={1} maxLength={10} pattern="[0-9]*"
+                            onChange={(e)=>setKhewat(e.target.value)} value={khewat} onChange1={handleKhewatChange} >
+                            {errors.khewat && <p></p>} 
+                            </Form.Control>
+                        </Col> */}
+                        </Row><br></br>
+                        <table className="table table-bordered" style={{backgroundColor:"rgb(251 251 253))"}}>
+                            <thead>
+                               
+                                    <tr>
+                                        <th>Killa</th>
+                                        <th>Khewat</th>
+                                        <th>Area in Kanal</th>
+                                        <th>Area in Marla</th>
+                                    </tr>
+                                
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>  <TextField id="standard-basic"  variant="standard" /></td>
+                                    <td>  <TextField id="standard-basic"  variant="standard" /></td>
+                                    <td>  <TextField id="standard-basic"  variant="standard" /></td>
+                                    <td>  <TextField id="standard-basic"  variant="standard" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {/* <TableContainer component={Paper}>
+      <Table className="table-bordered"  style={{width:"92",marginLeft:"20",backgroundColor:"rgb(247 247 249)"}} >
+        <TableHead>
+          <TableRow>
+            <TableCell><b>Killa</b></TableCell>
+            <TableCell ><b>Khewat</b></TableCell>
+            <TableCell ><b>Area in Kanal</b></TableCell>
+            <TableCell ><b>Area in Marla</b></TableCell>
+           
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            <TableRow>
+                <TableCell>
+                <TextField id="standard-basic"  variant="standard" />
+                </TableCell>
+                <TableCell>
+                <TextField id="standard-basic"  variant="standard" />
+                </TableCell>
+                <TableCell>
+                <TextField id="standard-basic"  variant="standard" />
+                </TableCell>
+                <TableCell>
+                <TextField id="standard-basic"  variant="standard" />
+                </TableCell>
+            </TableRow>
+            {/* <TableRow>
+                <TableCell >
+                            <div className="px-2">
+                                 <p className="mb-2" onChange={(e)=>setResPlotno(e.target.value)} value={resplotno}><b>Residential
+                                                            </b></p>
+                                                            <div className="row">
+                                                                <div className="col col-3">
+                                                                <input type="radio" value="Yes" id="Yes"
+                                                                    onChange={handleChange} name="Yes" />
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="gen">Gen</label>
+                                                            </div>
+                                                            <div className="col col-3">
+                                                                <input type="radio" value="Yes" id="Yes"
+                                                                    onChange={handleChange} name="Yes" />
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="npnl">NPNL</label>
+                                                            </div>
+                                                            
+                                                            <div className="col col-3">
+                                                                <input type="radio" value="Yes" id="Yes"
+                                                                    onChange={handleChange} name="Yes" />
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="gen">EWS</label>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow> */}
+            {/* <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" onChange={(e)=>setComPlotno(e.target.value)} value={complotno}><b>Commercial
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" onChange={(e)=>setSitePlotno(e.target.value)} value={siteplotno}><b>Community Sites
 
-                                                <input type="radio" value="No" id="No"
-                                                onChange={handleChange} name="Yes" checked={showhide==='No'}onClick={handleshow}/>
-                                                <label for="No">No</label>
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" onChange={(e)=>setParkPlotno(e.target.value)} value={parkplotno}><b>Parks
+
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" onChange={(e)=>setPublicPlotno(e.target.value)} value={publicplotno}><b>Public Utilities
+                                                            </b></p>
+                                                              
+                                                           <div className="row">
+                                                                <div className="col col-3">
+                                                                <input type="radio" value="Yes" id="Yes"
+                                                                    onChange={handleChange} name="Yes" />
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="gen">STP</label>
+                                                            </div>
+                                                            <div className="col col-3">
+                                                                <input type="radio" value="Yes" id="Yes"
+                                                                    onChange={handleChange} name="Yes" />
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="gen">ETP</label>
+                                                            </div>
+                                                            
+                                                            <div className="col col-3">
+                                                                <input type="radio" value="Yes" id="Yes"
+                                                                    onChange={handleChange} name="Yes" />
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="gen">WTP</label>
+                                                            </div>
+                                                            </div>
+                                                            <div className="row">
+                                                                <div className="col col-3">
+                                                                <input type="radio" value="Yes" id="Yes"
+                                                                    onChange={handleChange} name="Yes" />
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="gen">UGT</label>
+                                                            </div>
+                                                            <div className="col col-3">
+                                                                <input type="radio" value="Yes" id="Yes"
+                                                                    onChange={handleChange} name="Yes" />
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="gen">Milk Booth</label>
+                                                            </div>
+                                                            
+                                                            <div className="col col-3">
+                                                                <input type="radio" value="Yes" id="Yes"
+                                                                    onChange={handleChange} name="Yes" />
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="gen">GSS</label>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow> */}
+        {/* </TableBody>
+      </Table>
+                                     </TableContainer> */} 
+                                     <br></br>
+                        {/* <Row className="ml-auto mb-3" >
+                
+                        <Col md={4} xxl lg="3">
+                            <div>
+                                <Form.Label><b>Killa</b><span style={{color:"red"}}>*</span></Form.Label>
+                            </div>
+                            <Form.Control type="text"  
+                            onChange={(e)=>setKilla(e.target.value)} value={killa} >
+                            
+                            </Form.Control>
+                        </Col>
+                        <Col md={4} xxl lg="3">
+                            <div>
+                                <Form.Label><b>Sector</b></Form.Label>
+                            </div>
+                            <Form.Select type="text" defaultValue="Select" placeholder="Developer"  onChange={(e)=>setSector(e.target.value)} value={sector} >
+                                <option value="1">12</option>
+                                <option value="2">14</option>
+                                <option value="3">15</option>
+                                <option value="3">16</option>
+                            </Form.Select>
+                        </Col>
+                        <Col md={4} xxl lg="3">
+                                <div>
+                                    <Form.Label><b>Name of Land Owner</b></Form.Label>
+                                </div>
+                                <Form.Control type="text" disabled >
+                                
+                                </Form.Control>
+                            </Col>
+                            <Col md={4} xxl lg="3">
+                                <div>
+                                    <Form.Label><b>Area in Kanal</b><span style={{color:"red"}}>*</span></Form.Label>
+                                </div>
+                                <Form.Control type="text" minLength={1} maxLength={10}  pattern="[0-9]*"
+                            >
+                                {errors.marla && <p></p>} 
+                                
+                                
+                                </Form.Control>
+                            </Col>
+                        </Row>
+                        <Row className="ml-auto mb-3" >
+                       
+                            <Col md={4} xxl lg="3">
+                                <div>
+                                    <Form.Label><b>Area in Marla</b><span style={{color:"red"}}>*</span></Form.Label>
+                                </div>
+                                <Form.Control type="text" minLength={1} maxLength={10}  pattern="[0-9]*"
+                                onChange={(e)=>setMarla(e.target.value)} value={marla} onChange1={handleMarlaChange} >
+                                {errors.marla && <p></p>} 
+                                
+                                
+                                </Form.Control>
+                            </Col>
+                            <Col md={4} xxl lg="3">
+                            <div>
+                                <Form.Label><b>Area in Sarsai</b><span style={{color:"red"}}>*</span></Form.Label>
+                            </div>
+                            <Form.Control type="text" minLength={1} maxLength={10}  pattern="[0-9]*"
+                        >
+                            {errors.marla && <p></p>} 
+                            
+                            
+                            </Form.Control>
+                        </Col>
+                        <Col md={4} xxl lg="3">
+                            <div>
+                                <Form.Label><b>Area in Bigha</b><span style={{color:"red"}}>*</span></Form.Label>
+                            </div>
+                            <Form.Control type="text" minLength={1} maxLength={10}  pattern="[0-9]*"
+                        >
+                            {errors.marla && <p></p>} 
+                            
+                            
+                            </Form.Control>
+                        </Col>
+                        <Col md={4} xxl lg="3">
+                            <div>
+                                <Form.Label><b>Area in Biswa</b><span style={{color:"red"}}>*</span></Form.Label>
+                            </div>
+                            <Form.Control type="text" minLength={1} maxLength={10}  pattern="[0-9]*"
+                        >
+                            {errors.marla && <p></p>} 
+                            
+                            
+                            </Form.Control>
+                        </Col>
+                        
+                        
+                        </Row>
+                      
+                        <Row className="ml-auto mb-3" >
+                        <Col md={4} xxl lg="3">
+                            <div>
+                                <Form.Label><b>Area in Biswansi</b><span style={{color:"red"}}>*</span></Form.Label>
+                            </div>
+                            <Form.Control type="text" minLength={1} maxLength={10}  pattern="[0-9]*"
+                        >
+                            {errors.marla && <p></p>} 
+                            
+                            
+                            </Form.Control>
+                        </Col>
+                        <Col md={4} xxl lg="3">
+                            <div>
+                                <Form.Label><b>Area (in sqr mtr.)</b><span style={{color:"red"}}>*</span></Form.Label>
+                            </div>
+                            <Form.Control type="text" minLength={1} maxLength={10}  pattern="[0-9]*"
+                        >
+                            {errors.marla && <p></p>} 
+                            
+                            
+                            </Form.Control>
+                        </Col>
+                        <Col md={4} xxl lg="3">
+                            <div>
+                                <Form.Label><b>Khasra No. / Khewat</b><span style={{color:"red"}}>*</span></Form.Label>
+                            </div>
+                            <Form.Control type="text"  minLength={1} maxLength={20}  pattern="[0-9]*"
+                            onChange={(e)=>setKhasra(e.target.value)} value={Khasra} onChange1={handleKhasraChange} >
+                            {errors.Khasra && <p></p>} 
+                            
+                            </Form.Control>
+                        </Col>
+                        <Col md={4} xxl lg="3">
+                            <div>
+                                <Form.Label><b>Khatoni No</b></Form.Label>
+                            </div>
+                            <Form.Control type="text"  minLength={1} maxLength={20}  pattern="[0-9]*"
+                            onChange={(e)=>setKhatoni(e.target.value)} value={khatoni} onChange1={handleKhatoniChange} >
+                            {errors.khatoni && <p></p>} 
+                            
+                            
+                            </Form.Control>
+                        </Col>
+                        </Row> */}
+                        <Row className="ml-auto mb-3" >
+                      
+                        <Col md={4} xxl lg="6">
+                            <div>
+                                <Form.Label><b>Whether collaboration agreement entered for the Khasra? (Yes/No)</b>&nbsp;&nbsp;&nbsp;
+                                </Form.Label>
+                            </div>
+                        </Col>
+                        <Col md={4} xxl lg="6">
+                            <input type="radio" value="Yes" id="Yes"
+                                        onChange={handleChange} name="Yes" />
+                                        <label for="Yes">Yes</label>&nbsp;&nbsp;
+
+                                        <input type="radio" value="No" id="No"
+                                        onChange={handleChange} name="Yes"/>
+                                        <label for="No">No</label>
+                        </Col>
+                        </Row>
+                        <Row className="ml-auto mb-3" >
+                        <Col md={4} xxl lg="6">
+                            <div>
+                            <label ><b>Name of the developer company / Firm/ LLP etc. with whom collaboration agreement entered</b> </label>
+                           
+                            </div>
+                            </Col>
+                            <Col md={4} xxl lg="6">
+                            <input type="text" className="form-control" / >
+                         
+                            </Col>
+                        </Row>
+                        <Row className="ml-auto mb-3" >
+                        <Col md={4} xxl lg="6">
+                                <Form.Label><b>Date of registering collaboration agreement</b></Form.Label>
+                        </Col>
+                        <Col md={4} xxl lg="6">
+                            <input type="date" className="form-control" 
+                            />
+                        </Col>
+                        </Row>
+                        <Row className="ml-auto mb-3" >
+                        <Col md={4} xxl lg="6">
+                        <Form.Label><b>Date of validity of collaboration agreement</b></Form.Label>
+                                </Col>
+                        <Col md={4} xxl lg="6">
+                        <input type="date" className="form-control"/>
+                        </Col>
+                        </Row>
+                        <Row className="ml-auto mb-3" >
+                        <Col md={4} xxl lg="6">
+                        
+                                <Form.Label><b>Whether collaboration agreement irrevocable (Yes/No)</b></Form.Label>
+                                </Col>
+                                <Col md={4} xxl lg="6">
+                            <input type="radio" value="Yes" id="Yes1"
+                                        onChange={handleChange} name="Yes" />
+                                        <label for="Yes">Yes</label>&nbsp;&nbsp;
+
+                                        <input type="radio" value="No" id="No1"
+                                        onChange={handleChange} name="Yes"/>
+                                        <label for="No">No</label>
+                        </Col>
+                        </Row>
+                        <Row className="ml-auto mb-3" >
+                        <Col md={4} xxl lg="6">
+                           
+                                <Form.Label><b>Name of authorized signatory on behalf of land owner(s)</b></Form.Label>
+                                </Col>
+                                <Col md={4} xxl lg="6">
+                          
+                            <input type="text" className="form-control"
+                            />
+                            
+                        </Col></Row>
+                        <Row className="ml-auto mb-3" >
+                        <Col md={4} xxl lg="6">
+                          
+                                <Form.Label><b>Name of authorized signatory on behalf of developer to sign Collaboration agreement</b></Form.Label>
+                          </Col>
+                          <Col md={4} xxl lg="6">
+                            <input type="text" className="form-control"
+                           / >
+                           
+                        </Col>
+                        </Row>
+                        <Row className="ml-auto mb-3" >
+                        <Col md={4} xxl lg="6">
+                           
+                                <Form.Label><b>Registring Authority</b></Form.Label>
+                                </Col>
+                                <Col md={4} xxl lg="6">
+                           
+                          
+                            <input type="text"  className="form-control"
+                            />
+                         
+                        </Col>
+                        </Row>
+                    
+               
+          </Modal.Body>
+          <Modal.Footer >
          
-                                            </div>
-                                           
-                                        </div>
-                                        {
-                                            showhide==="Yes" && (
-                                                <div className="row " >
-                                                        <div className="col col-4">
-                                                            <label for="parentLicense" className="font-weight-bold">(i) Purpose of Collaboration </label>
-                                                            
-                                                            <select className="form-control" >
-                                                                <option></option>
-                                                                <option>Select 1</option>
-                                                                <option>Select 2</option>
-
-                                                            </select>
-                                                        </div>
-                                                        <div className="col col-4">
-                                                            <label for="areaParentLicense" className="font-weight-bold">(ii) Collaboration Aggrement Number</label>
-
-                                                            <input type="number" className="form-control" />
-
-
-                                                        </div>
-                                                       
-                                                    </div> 
-
-                                            )
-                                        }
-                                        <div className="col col-3">
-                                            <div className="form-group">
-                                                <label htmlFor="developerfirm">Name of the developer company / Firm/ LLP etc. with whom collaboration agreement entered:</label>
-                                                <input
-                                                    type="number"className="form-control"
-                                                   
-                                                />
-                                              
-                                            </div>
-                                        </div>
-                                        <div className="col col-3">
-                                            <div className="form-group">
-                                                <label htmlFor="dateregistering">Date of registering collaboration agreement:</label>
-                                                <input
-                                                    type="date"className="form-control"
-                                                   
-                                                />
-                                               
-                                            </div>
-                                        </div>
-                                        <div className="col col-3">
-                                            <div className="form-group">
-                                                <label htmlFor="datevalidity">Date of the validity of collaboration agreement
-    :</label>
-                                                <input
-                                                    type="date"className="form-control"
-                                                   
-                                                />
-                                              
-                                            </div>
-                                        </div>
-                                </div>
-                                <div className="row">
-                                        <div className="col col-3">
-                                            <div className="form-group">
-                                                <label htmlFor="colAgreeirrevo">Whether collaboration agreement irrevocable (Yes/No):</label>
-                                                <input type="radio" value="Yes" id="Yes"
-                                                onChange={handleChange} name="Yes" checked={true}/>
-                                                <label for="Yes">Yes</label>
-
-                                                <input type="radio" value="No" id="No"
-                                                onChange={handleChange} name="Yes"/>
-                                                <label for="No">No</label>
-
-                                                
-                                                            
-                                              
-                                            </div>
-                                        </div>
-                                        <div className="col col-3">
-                                            <div className="form-group">
-                                                <label htmlFor="authosign">Name of authorized signatory on behalf of the land owner(s)
-    :</label>
-                                                <input
-                                                    type="text"className="form-control"
-                                                   
-                                                />
-                                               
-                                            </div>
-                                        </div>
-                                        <div className="col col-3">
-                                            <div className="form-group">
-                                                <label htmlFor="devsign">Name of authorized signatory on behalf of the developer to sign Collaboration Agreement
-    :</label>
-                                                <input
-                                                    type="text"className="form-control"
-                                                   
-                                                />
-                                              
-                                            </div>
-                                        </div>
-                                        <div className="col col-3">
-                                                        <div className="form-group">
-                                                            <label htmlFor="registerauthor">Registering Authority
-
-                                                                :</label>
-                                                            <select className="form-control" id="registerauthor"
-                                                                name="registerauthor">
-                                                                <option>Select Registering Authority</option>
-                                                                <option>Registering Authority 1</option>
-                                                                <option>Registering Authority 2</option>
-                                                            </select>
-                                                           
-                                                        </div>
-                                        </div>
-                                </div>
-                                <div className="row">
-                                       
-                                        <div className="col col-3">
-                                            <div className="form-group">
-                                                <label htmlFor="totalapplied">Total Applied Area
-
-    :</label>
-                                                <input
-                                                    type="text"className="form-control"
-                                                   
-                                                />
-                                               
-                                            </div>
-                                        </div>
-                                       
-                                </div>
-
-                             </div>
-                             <Button style={{ alignSelf: "right", marginTop: 20, marginLeft: 960}} variant="primary" type="submit">
-                Submit
-            </Button>
-                        </div>
-
-                </Collapse>
+          <Button variant="primary">Submit</Button>
+        </Modal.Footer>
+        
+      </Modal>
+      </div>
                 </div>
                 <div className="applt" style={{width:"1037px",overflow:"auto"}}>
                     <table className="table table-bordered  col-12 overflow-auto">
                         <thead>
                             <tr>
                                 
-                                
-                                <th>Name of  Land owner
-                                    </th>
-                                
+                                <th>Tehsil</th>
                                 <th>Name of Revenue estate</th>
-                                <th>Rectangle No.</th>
-                                <th>Khasra No.</th>
-                                <th>Kanal/ Bigha</th>
-                                <th>Marla/ Biswa</th>
-                                <th>Sarsai/ Biswansi</th>
+                                <th>Rectangle/Mustil No.</th>
+                                <th>Killa</th>
+                                <th>Name of  Land owner</th>
+                                <th>Consolidation Type</th>
+                                <th>Kanal</th>
+                                <th>Marla</th>
+                                <th>Sarsai</th>
+                                <th>Bigha</th>
+                                <th>Biswa</th>
+                                <th>Biswansi</th>
+                                <th>Area(in sqr. mtr)</th>
                                 <th>Whether collaboration agreement entered for the Khasra? (Yes/No)
                                 </th>
                                 
@@ -724,16 +1070,28 @@ const ApllicantPuropseForm=(props)=>{
                         </thead>
                         <tbody>
                             <tr >
+                                <td ><input type="text" className="form-control" /></td>
                                 <td ><input type="text" className="form-control"/></td>
                                 <td ><input type="text" className="form-control"/></td>
-                                <td ><input type="number" className="form-control"/></td>
-                                <td class="text-center"><input type="number" className="form-control"/></td>
-                                <td class="text-center"><input type="number" className="form-control"/></td>
-                                <td class="text-center"><input type="number" className="form-control"/></td>
-                                <td class="text-center"><input type="number" className="form-control"/></td>
+                                <td class="text-center"><input type="text" className="form-control"/></td>
+                                <td class="text-center"><input type="text" className="form-control"/></td>
+                                <td class="text-center">  <Form.Select type="select" defaultValue="Select"  >
+                           
+                                                                <option>Consolidated</option>
+                                                                <option>Non Consolidated</option>
+                                                          
+                                                          
+                           </Form.Select></td>
+                                <td class="text-center"><input type="text" className="form-control"/></td>
+                                <td class="text-center"><input type="text" className="form-control"/></td>
+                                <td class="text-center"><input type="text" className="form-control"/></td>
+                                <td class="text-center"><input type="text" className="form-control"/></td>
+                                <td class="text-center"><input type="text" className="form-control"/></td>
+                                <td class="text-center"><input type="text" className="form-control"/></td>
+                                <td class="text-center"><input type="text" className="form-control"/></td>
                                 <td class="text-center"> <input type="radio" value="Yes" id="Yes"
                                     onChange={handleChange} name="Yes" />
-                                    <label for="Yes">Yes</label>
+                                    <label for="Yes">Yes</label> &nbsp;&nbsp;
 
                                     <input type="radio" value="No" id="No"
                                     onChange={handleChange} name="Yes"/>
@@ -743,7 +1101,7 @@ const ApllicantPuropseForm=(props)=>{
                                 <td class="text-center"><input type="date" className="form-control"/></td>
                                 <td class="text-center"> <input type="radio" value="Yes" id="Yes"
                                     onChange={handleChange} name="Yes" />
-                                    <label for="Yes">Yes</label>
+                                    <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                     <input type="radio" value="No" id="No"
                                     onChange={handleChange} name="Yes"/>
@@ -1115,7 +1473,7 @@ const ApllicantPuropseForm=(props)=>{
             <Button style={{alignSelf:"center", marginTop:20}} variant="primary" type="submit">
                 Save as Draft
             </Button>
-            <Button style={{alignSelf:"center", marginTop:20,marginLeft:867}} variant="primary" type="submit">
+            <Button style={{alignSelf:"center", marginTop:-48,marginLeft:958}} variant="primary" type="submit">
                Continue
             </Button>
         </Form>

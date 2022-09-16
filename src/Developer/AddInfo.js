@@ -60,10 +60,20 @@ const AddInfoForm=(e)=>{
   function handleKeyPress() {
         console.log( "You pressed a key." )
     }
+    var myHeaders = new Headers();
+myHeaders.append("accept", "application/json");
+myHeaders.append("X-APISETU-APIKEY", "PDSHazinoV47E18bhNuBVCSEm90pYjEF");
+myHeaders.append("X-APISETU-CLIENTID", "in.gov.tcpharyana");
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
     function callApi() {
-      fetch(`https://jsonplaceholder.typicode.com/users`, { method: 'POST' })
-        .then(data => data.json()) // Parsing the data into a JavaScript object
-        .then(json => alert(JSON.stringify(json))) // Displaying the stringified data in an alert popup
+      fetch("https://apisetu.gov.in/mca/v1/companies/U72200CH1998PTC022006", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
     }
 
   return (

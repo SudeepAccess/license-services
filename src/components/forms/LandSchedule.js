@@ -8,7 +8,6 @@ const LandScheduleForm=(props)=>{
 
     const[form,setForm]=useState([]);
     const [licenseApplied,setLicenseApplied]=useState('');
-    const [licenseNo,setLicenseNo]=useState('');
     const[migrationLic,setMigrationLic]=useState('');
     const[potential,setPotential]=useState('');
     const[siteLoc,setSiteLoc]=useState('');
@@ -31,6 +30,7 @@ const LandScheduleForm=(props)=>{
     const[compactBlock,setCompactBlock]=useState('');
     const[sandwiched,setsandwiched]=useState('');
     const[acquistion,setAcquistion]=useState('');
+    const[exclusion,setExclusion]=useState('');
     const[compensation,setCompensation]=useState('');
     const[section4,setSection4]=useState('');
     const[section6,setSection6]=useState('');
@@ -53,7 +53,7 @@ const LandScheduleForm=(props)=>{
     const[land,setLand]=useState('');
     const[landRemark,setLandRemark]=useState('');
     const[layoutPlan,setLayoutPlan]=useState('');
-    const[rowWidth,setRowWidth]=useState('');
+   
 
     const [LandFormSubmitted,SetLandFormSubmitted] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -69,52 +69,54 @@ const LandScheduleForm=(props)=>{
         SetLandFormSubmitted(true);
         let forms={
             licenseApplied:licenseApplied,
-            licenseNo:licenseNo,
             migrationLic:migrationLic,
-            potential:potential,
-            siteLoc:siteLoc,
-            approach:approach,
-            specify:specify,
-            existingCase:existingCase,
-            typeLand:typeLand,
-            thirdParty:thirdParty,
-            rehan:rehan,
-            patta:patta,
-            gair:gair,
-            any:any,
-            litigation:litigation,
-            court:court,
-            appliedLand:appliedLand,
-            revenuerasta:revenuerasta,
-            widthrevenuerasta:widthrevenuerasta,
-            watercourse:watercourse,
-            widthRev:widthRev,
-            compactBlock:compactBlock,
-            sandwiched:sandwiched,
-            acquistion:acquistion,
-            compensation:compensation,
-            section4:section4,
-            section6:section6,
-            statusRelease:statusRelease,
-            award:award,
-            dateRelease:dateRelease,
-            site:site,
-            approachable:approachable,
-            vacant:vacant,
-            construction:construction,
-            typeCons:typeCons,
-            ht:ht,
-            htRemark:htRemark,
-            gas:gas,
-            gasRemark:gasRemark,
-            nallah:nallah,
-            nallahRemark:nallahRemark,
-            road:road,
-            roadWidth:roadWidth,
-            land:land,
-            landRemark:landRemark,
-            layoutPlan:layoutPlan,
-            rowWidth:rowWidth,
+            "step3Data1" :
+                    {"potential":"",
+                    "siteLoc":"",
+                    "approach":"",
+                    "specify":"",
+                    "existingCase":"",
+                    "typeLand":"",
+                    "thirdParty":""},
+            "step3Data2":{
+                    "rehan":"",
+                    "patta":"",
+                    "gair":"",
+                    "any":"",
+                    "litigation":"",
+                    "court":"",
+                    "appliedLand":"",
+                    "revenuerasta":"",
+                  
+                    "watercourse":"",
+                   
+                    "compactBlock":"",
+                    "sandwiched":"",
+                    "acquistion":"",
+                    "exclusion":"",
+                    "compensation":"",
+                    "section4":"",
+                    "section6":"",
+                    "statusRelease":"",
+                    "award":"",
+                    "dateRelease":"",
+                    "site":"",
+                    "approachable":"",
+                    "vacant":"",
+                    "construction":"",
+                   
+                    "ht":"",
+                    
+                    "gas":"",
+                    
+                    "nallah":"",
+                   
+                    "road":"",
+                    
+                    "land":"",
+                    
+                    "layoutPlan":"",
+                    }
         }
         console.log("FRMDATA",forms);
         localStorage.setItem('step3',JSON.stringify(forms))
@@ -198,10 +200,10 @@ const LandScheduleForm=(props)=>{
                             <div className="row">
                             <div className="col col-6 ">
                               
-                                        <h6 onChange={(e)=>setLicenseApplied(e.target.value)} value={licenseApplied} >(i)Whether licence applied for additional area ?</h6>
+                                        <h6 onChange={(e)=>setLicenseApplied(e.target.value)} value={licenseApplied} ><b>(i)Whether licence applied for additional area ?</b></h6>
                                         <input type="radio" value="Yes" id="Yes"  
                                                 onChange1={handleChange} name="Yes" onClick={handleshow} />
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange1={handleChange} name="Yes" onClick={handleshow}/>
@@ -221,10 +223,10 @@ const LandScheduleForm=(props)=>{
                             
                              <div className="col col-6 ">
                               
-                                        <h6>(ii)Whether licence applied under Migration policy?</h6>
-                                        <input type="radio" value="Yes" id="Yes"
+                                        <h6 onChange={(e)=>setMigrationLic(e.target.value)} value={migrationLic}><b>(ii)Whether licence applied under Migration policy?</b></h6>
+                                        <input type="radio" value="Yes"  id="Yes"
                                                 onChange1={handleChange} name="Yes" />
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange1={handleChange} name="Yes"/>
@@ -236,9 +238,9 @@ const LandScheduleForm=(props)=>{
                                 <div className="row">
                                     <div className="col col-3">
                                         <div className="form-group">
-                                            <label htmlFor="potential">Potential Zone:</label>
+                                            <label htmlFor="potential"><b>Potential Zone:</b></label>
                                             <select className="form-control" id="potential"
-                                                name="potential"
+                                                name="potential" onChange={(e)=>setPotential(e.target.value)} value={potential}
                                             >
                                                 <option value="" >
                                                 </option>
@@ -253,9 +255,9 @@ const LandScheduleForm=(props)=>{
                                     </div>
                                     <div className="col col-3">
                                         <div className="form-group">
-                                            <label htmlFor="locPurpose">Site Location Purpose:</label>
+                                            <label htmlFor="locPurpose"><b>Site Location Purpose:</b></label>
                                             <select className="form-control" id="locPurpose"
-                                                name="locPurpose"
+                                                name="locPurpose" onChange={(e)=>setSiteLoc(e.target.value)} value={siteLoc}
                                             >
                                                 <option value="" >
                                                 </option>
@@ -270,9 +272,9 @@ const LandScheduleForm=(props)=>{
                                     </div>
                                     <div className="col col-3">
                                         <div className="form-group">
-                                            <label htmlFor="approach">Approach Type (type of Policy):</label>
+                                            <label htmlFor="approach"><b>Approach Type (type of Policy):</b></label>
                                             <select className="form-control" id="approach"
-                                                name="approach"
+                                                name="approach" onChange={(e)=>setapproach(e.target.value)} value={approach}
                                             >
                                                 <option value="" >
                                                 </option>
@@ -287,7 +289,7 @@ const LandScheduleForm=(props)=>{
                                     </div>
                                     <div className="col col-3">
                                         <div className="form-group ">
-                                            <label htmlFor="roadwidth">Approach Road Width: </label>
+                                            <label htmlFor="roadwidth"><b>Approach Road Width:</b> </label>
                                             <input
                                                 type="number"
                                                 name="roadwidth"
@@ -313,14 +315,14 @@ const LandScheduleForm=(props)=>{
                                         </div>
                                     </div>
                                   
-                                </div>
+                                </div><br></br>
                                 <div className="row">
                                 <div className="col col-3">
                                         <div className="form-group ">
-                                            <label htmlFor="specify">Specify Others:</label>
+                                            <label htmlFor="specify"><b>Specify Others:</b></label>
                                             <input
                                                 type="number"
-                                                name="specify"
+                                                name="specify" onChange={(e)=>setSpecify(e.target.value)} value={specify}
                                                 className={`form-control ${errors.specify ? "is-invalid" : ""
                                                     } `}
                                              
@@ -333,9 +335,9 @@ const LandScheduleForm=(props)=>{
                                     </div> 
                                     <div className="col col-3">
                                         <div className="form-group ">
-                                            <label htmlFor="existingcase">Existing Case No.: </label>
+                                            <label htmlFor="existingcase"><b>Existing Case No.: </b></label>
                                             <select className="form-control" id="existingcase"
-                                                name="existingcase"
+                                                name="existingcase" onChange={(e)=>setExistingCase(e.target.value)} value={existingCase}
                                             >
                                                 <option value="" >
                                                 </option>
@@ -350,9 +352,9 @@ const LandScheduleForm=(props)=>{
                                     </div>
                                     <div className="col col-3">
                                         <div className="form-group ">
-                                            <label htmlFor="typeland">Type of land : </label>
+                                            <label htmlFor="typeland"><b>Type of land :</b> </label>
                                             <select className="form-control" id="typeland"
-                                                name="typeland">
+                                                name="typeland" onChange={(e)=>setTypeLand(e.target.value)} value={typeLand}>
                                            
                                                 <option value="" >chahi/nehri
                                                 </option>
@@ -368,11 +370,11 @@ const LandScheduleForm=(props)=>{
                                     <div className="col col-3 ">
                               
                              
-                              <label htmlFor="typeland">Third-party right created : </label>
+                              <label htmlFor="typeland" onChange={(e)=>setThirdParty(e.target.value)} value={thirdParty}><b>Third-party right created :</b> </label>
                               <div>
                               <input type="radio" value="Yes" id="Yes"
                                       onChange1={handleChange} name="Yes"  />
-                                      <label for="Yes">Yes</label>
+                                      <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                       <input type="radio" value="No" id="No"
                                       onChange1={handleChange} name="Yes"/>
@@ -384,16 +386,16 @@ const LandScheduleForm=(props)=>{
                            
                             
                    <hr/>
-                   <h5 className="text-black">2. Applied Area details</h5>
+                   <h5 className="text-black"><b>2. Applied Area details</b></h5>
                    <p>Note: The term “Collaboration agreement" shall include all Development agreements/ Joint Venture agreements/ Joint Development agreements/ Memorandum of Understanding etc. and similar agreements registered with competent authority.</p>
-                  <h6>(i) Any encumbrance with respect to following :</h6>
+                  <h6><b>(i) Any encumbrance with respect to following :</b></h6><br></br>
                   <div className="row">
                   <div className="col col-3 ">
                               
-                              <h6>(a)Rehan / Mortgage </h6>
+                              <h6 onChange={(e)=>setRehan(e.target.value)} value={rehan}><b>(a)Rehan / Mortgage</b> </h6>
                               <input type="radio" value="Yes" id="Yes"
                                       onChange1={handleChange} name="Yes"  />
-                                      <label for="Yes">Yes</label>
+                                      <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                       <input type="radio" value="No" id="No"
                                       onChange1={handleChange} name="Yes"/>
@@ -401,10 +403,10 @@ const LandScheduleForm=(props)=>{
                    </div>
                    <div className="col col-3 ">
                               
-                              <h6>(b)Patta/Lease </h6>
+                              <h6 onChange={(e)=>setPatta(e.target.value)} value={patta}><b>(b)Patta/Lease</b> </h6>
                               <input type="radio" value="Yes" id="Yes"
                                       onChange1={handleChange} name="Yes"  />
-                                      <label for="Yes">Yes</label>
+                                      <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                       <input type="radio" value="No" id="No"
                                       onChange1={handleChange} name="Yes"/>
@@ -412,10 +414,10 @@ const LandScheduleForm=(props)=>{
                    </div>
                    <div className="col col-3 ">
                               
-                              <h6>(c)GairMarusi  </h6>
+                              <h6 onChange={(e)=>setGair(e.target.value)} value={gair}><b>(c)GairMarusi</b>  </h6>
                               <input type="radio" value="Yes" id="Yes"
                                       onChange1={handleChange} name="Yes"  />
-                                      <label for="Yes">Yes</label>
+                                      <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                       <input type="radio" value="No" id="No"
                                       onChange1={handleChange} name="Yes"/>
@@ -423,10 +425,10 @@ const LandScheduleForm=(props)=>{
                    </div>
                    <div className="col col-3 ">
                               
-                              <h6>(d)Any other, please specify  </h6>
+                              <h6 onChange={(e)=>setAny(e.target.value)} value={any}><b>(d)Any other, please specify</b>  </h6>
                               <input type="radio" value="Yes" id="Yes"
                                       onChange1={handleChange} name="Yes"  />
-                                      <label for="Yes">Yes</label>
+                                      <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                       <input type="radio" value="No" id="No"
                                       onChange1={handleChange} name="Yes"/>
@@ -435,14 +437,14 @@ const LandScheduleForm=(props)=>{
                                   
                     </div>
                     <hr/>
-                    <h6>(ii) Existing litigation, if any, concerning applied land including co-sharers   and collaborator :</h6>
+                    <h6 onChange={(e)=>setLitigation(e.target.value)} value={litigation}><b>(ii) Existing litigation, if any, concerning applied land including co-sharers   and collaborator :</b></h6>
                   <div className="row">
                   <div className="col col-3 ">
                               
                            
                               <input type="radio" value="Yes" id="Yes"
                                       onChange1={handleChange} name="Yes"  />
-                                      <label for="Yes">Yes</label>
+                                      <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                       <input type="radio" value="No" id="No"
                                       onChange1={handleChange} name="Yes"/>
@@ -450,14 +452,14 @@ const LandScheduleForm=(props)=>{
                    </div>
                    </div>
                    <hr/>
-                    <h6>(iii) Court orders, if any, affecting applied land :</h6>
+                    <h6 onChange={(e)=>setCourt(e.target.value)} value={court}><b>(iii) Court orders, if any, affecting applied land :</b></h6>
                   <div className="row">
                   <div className="col col-3 ">
                               
                            
                               <input type="radio" value="Yes" id="Yes"
                                       onChange1={handleChange} name="Yes"  />
-                                      <label for="Yes">Yes</label>
+                                      <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                       <input type="radio" value="No" id="No"
                                       onChange1={handleChange} name="Yes"/>
@@ -465,14 +467,14 @@ const LandScheduleForm=(props)=>{
                    </div>
                    </div>
                    <hr/>
-                    <h6>(iv) Any insolvency/liquidation proceedings against the land owner(s)/ collaborating developed :</h6>
+                    <h6 ><b>(iv) Any insolvency/liquidation proceedings against the land owner(s)/ collaborating developed :</b></h6>
                   <div className="row">
                   <div className="col col-3 ">
                               
                            
                               <input type="radio" value="Yes" id="Yes"
                                       onChange1={handleChange} name="Yes"  />
-                                      <label for="Yes">Yes</label>
+                                      <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                       <input type="radio" value="No" id="No"
                                       onChange1={handleChange} name="Yes"/>
@@ -480,14 +482,14 @@ const LandScheduleForm=(props)=>{
                    </div>
                    </div>
                    <hr/>
-                   <h5 className="text-black">3.Shajra Plan</h5>
+                   <h5 className="text-black"><b>3.Shajra Plan</b></h5>
                    <div className="row">
                         <div className="col col-3 ">
                                     
-                                    <h6>(a)As per applied land (Yes/No) </h6>
+                                    <h6 onChange={(e)=>setAppliedLand(e.target.value)} value={appliedLand}><b>(a)As per applied land (Yes/No)</b> </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes"  />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes"/>
@@ -495,10 +497,10 @@ const LandScheduleForm=(props)=>{
                         </div>
                         <div className="col col-3 ">
                                     
-                                    <h6>(b)If any revenue rasta abuts to the applied site (Yes/No) </h6>
+                                    <h6 onChange={(e)=>setRevenuerasta(e.target.value)} value={revenuerasta}><b>(b)If any revenue rasta abuts to the applied site (Yes/No)</b> </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes"onClick={handleshow1}  />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes" onClick={handleshow1}/>
@@ -518,10 +520,10 @@ const LandScheduleForm=(props)=>{
                         </div>
                         <div className="col col-3 ">
                                     
-                                    <h6>(c)Any watercourse abuts/passes through the applied site (Yes/No) </h6>
+                                    <h6 onChange={(e)=>setWatercourse(e.target.value)} value={watercourse}><b>(c)Any watercourse abuts/passes through the applied site (Yes/No)</b> </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes" onClick={handleshow2} />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes" onClick={handleshow2}/>
@@ -541,23 +543,23 @@ const LandScheduleForm=(props)=>{
                         </div>
                         <div className="col col-3 ">
                                     
-                                    <h6>(d)Whether in Compact Block (Yes/No)  </h6>
+                                    <h6 onChange={(e)=>setCompactBlock(e.target.value)} value={compactBlock}><b>(d)Whether in Compact Block (Yes/No)</b>  </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes"  />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes"/>
                                             <label for="No">No</label>
                         </div>
-                   </div>
+                   </div><br></br>
                    <div className="row">
                         <div className="col col-3 ">
                                     
-                                    <h6>(e)If any other owners' land is sandwiched within applied land (Yes/No) </h6>
+                                    <h6 onChange={(e)=>setsandwiched(e.target.value)} value={sandwiched}><b>(e)If any other owners' land is sandwiched within applied land (Yes/No)</b> </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes"  />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes"/>
@@ -565,10 +567,10 @@ const LandScheduleForm=(props)=>{
                         </div>
                         <div className="col col-3 ">
                                     
-                                    <h6>(f)Acquisition status (Yes/No) </h6>
+                                    <h6 onChange={(e)=>setAcquistion(e.target.value)} value={acquistion}><b>(f)Acquisition status (Yes/No)</b> </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes" onClick={handleshow3} />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes" onClick={handleshow3}/>
@@ -588,10 +590,10 @@ const LandScheduleForm=(props)=>{
                         </div>
                         <div className="col col-3 ">
                                     
-                                    <h6>(g)Whether details/orders of release/exclusion of land uploaded </h6>
+                                    <h6 onChange={(e)=>setExclusion(e.target.value)} value={exclusion}><b>(g)Whether details/orders of release/exclusion of land uploaded</b> </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes"  />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes"/>
@@ -599,10 +601,10 @@ const LandScheduleForm=(props)=>{
                         </div>
                         <div className="col col-3 ">
                                     
-                                    <h6>(h) Whether land compensation received</h6>
+                                    <h6 onChange={(e)=>setCompensation(e.target.value)} value={compensation}><b>(h) Whether land compensation received</b></h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes"  />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes"/>
@@ -613,10 +615,10 @@ const LandScheduleForm=(props)=>{
                     <div className="row">
                         <div className="col col-3">
                                         <div className="form-group ">
-                                            <label htmlFor="sectionfour">Date of section 4 notification: </label>
+                                            <label htmlFor="sectionfour"><b>Date of section 4 notification:</b> </label>
                                             <input
                                                 type="date"
-                                                name="sectionfour"
+                                                name="sectionfour" onChange={(e)=>setSection4(e.target.value)} value={section4}
                                                 className={`form-control ${errors.sectionfour ? "is-invalid" : ""
                                                     } `}
                                              
@@ -633,10 +635,10 @@ const LandScheduleForm=(props)=>{
                          </div>
                          <div className="col col-3">
                                         <div className="form-group ">
-                                            <label htmlFor="sectionsix">Date of section 6 notification: </label>
+                                            <label htmlFor="sectionsix"><b>Date of section 6 notification: </b></label>
                                             <input
                                                 type="date"
-                                                name="sectionsix"
+                                                name="sectionsix" onChange={(e)=>setSection6(e.target.value)} value={section6}
                                                 className={`form-control ${errors.sectionsix ? "is-invalid" : ""
                                                     } `}
                                              
@@ -653,9 +655,9 @@ const LandScheduleForm=(props)=>{
                          </div>
                          <div className="col col-3">
                                         <div className="form-group">
-                                            <label htmlFor="releasestatus">Status of release:</label>
+                                            <label htmlFor="releasestatus"><b>Status of release:</b></label>
                                             <select className="form-control" id="releasestatus"
-                                                name="releasestatus"
+                                                name="releasestatus" onChange={(e)=>setStatusRelease(e.target.value)} value={statusRelease}
                                             >
                                                 <option value="" >
                                                 </option>
@@ -670,10 +672,10 @@ const LandScheduleForm=(props)=>{
                          </div>
                          <div className="col col-3">
                                         <div className="form-group ">
-                                            <label htmlFor="awarddate">Date of Award: </label>
+                                            <label htmlFor="awarddate"><b>Date of Award: </b></label>
                                             <input
                                                 type="date"
-                                                name="awarddate"
+                                                name="awarddate" onChange={(e)=>setAward(e.target.value)} value={award}
                                                 className={`form-control ${errors.awarddate ? "is-invalid" : ""
                                                     } `}
                                              
@@ -688,14 +690,14 @@ const LandScheduleForm=(props)=>{
                                             </div>
                                         </div>
                          </div>    
-                    </div>
+                    </div><br></br>
                     <div className="row">
                          <div className="col col-3">
                                         <div className="form-group ">
-                                            <label htmlFor="releasedate">Date of Release: </label>
+                                            <label htmlFor="releasedate"><b>Date of Release:</b> </label>
                                             <input
                                                 type="date"
-                                                name="releasedate"
+                                                name="releasedate" onChange={(e)=>setDateRelease(e.target.value)} value={dateRelease}
                                                 className={`form-control ${errors.releasedate ? "is-invalid" : ""
                                                     } `}
                                              
@@ -712,10 +714,10 @@ const LandScheduleForm=(props)=>{
                          </div>
                          <div className="col col-3">
                                         <div className="form-group ">
-                                            <label htmlFor="sitedetails">Site Details: </label>
+                                            <label htmlFor="sitedetails"><b>Site Details: </b></label>
                                             <input
                                                 type="number"
-                                                name="sitedetails"
+                                                name="sitedetails" onChange={(e)=>setSite(e.target.value)} value={site}
                                                 className={`form-control ${errors.sitedetails ? "is-invalid" : ""
                                                     } `}
                                              
@@ -735,11 +737,11 @@ const LandScheduleForm=(props)=>{
                      <div className="row">
                         <div className="col col-12 ">
                                     
-                                    <h6>whether the applied site is approachable from the proposed 18/24 m internal sectoral plan road/sector dividing road. (yes/no)
+                                    <h6 onChange={(e)=>setApproachable(e.target.value)} value={approachable}><b>whether the applied site is approachable from the proposed 18/24 m internal sectoral plan road/sector dividing road. (yes/no)</b>
  </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes"  />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes"/>
@@ -747,14 +749,14 @@ const LandScheduleForm=(props)=>{
                         </div>
                      </div>
                     <hr/>
-                    <h5 className="text-black">4.Site condition</h5>
+                    <h5 className="text-black"><b>4.Site condition</b></h5>
                     <div className="row">
                         <div className="col col-3">
                                     
-                                    <h6>(a)vacant: (Yes/No) </h6>
+                                    <h6 onChange={(e)=>setVacant(e.target.value)} value={vacant}><b>(a)vacant: (Yes/No)</b> </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes"  />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes"/>
@@ -762,11 +764,11 @@ const LandScheduleForm=(props)=>{
                         </div>
                         <div className="col col-3">
                                     
-                                    <h6>(b)Construction: (Yes/No)
+                                    <h6 onChange={(e)=>setConstruction(e.target.value)} value={construction}><b>(b)Construction: (Yes/No)</b>
  </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes"  onClick={handleshow4} />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes"  onClick={handleshow4}/>
@@ -786,11 +788,11 @@ const LandScheduleForm=(props)=>{
                         </div>
                         <div className="col col-3">
                                     
-                                    <h6>(c)HT line:(Yes/No)
+                                    <h6 onChange={(e)=>setHt(e.target.value)} value={ht}><b>(c)HT line:(Yes/No)</b>
  </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes" onClick={handleshow5}  />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes" onClick={handleshow5}/>
@@ -810,11 +812,11 @@ const LandScheduleForm=(props)=>{
                         </div>
                         <div className="col col-3">
                                     
-                                    <h6>(d) IOC Gas Pipeline:(Yes/No)
+                                    <h6 onChange={(e)=>setGas(e.target.value)} value={gas}><b>(d) IOC Gas Pipeline:(Yes/No)</b>
  </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes"onClick={handleshow6}  />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes"onClick={handleshow6}/>
@@ -832,14 +834,14 @@ const LandScheduleForm=(props)=>{
                                             )
                                         }
                         </div>
-                     </div>
-                     <div className="row">
+                     </div><br></br>
+                     <div className="row ">
                         <div className="col col-3">
                                     
-                                    <h6>(e)Nallah:(Yes/No) </h6>
+                                    <h6 onChange={(e)=>setNallah(e.target.value)} value={nallah}><b>(e)Nallah:(Yes/No)</b> </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes" onClick={handleshow7} />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes" onClick={handleshow7}/>
@@ -859,11 +861,11 @@ const LandScheduleForm=(props)=>{
                         </div>
                         <div className="col col-3">
                                     
-                                    <h6>(f)Any revenue rasta/road:(Yes/No)
+                                    <h6 onChange={(e)=>setRoad(e.target.value)} value={road}><b>(f)Any revenue rasta/road:(Yes/No)</b>
  </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes"onClick={handleshow8}  />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes"onClick={handleshow8}/>
@@ -883,11 +885,11 @@ const LandScheduleForm=(props)=>{
                         </div>
                         <div className="col col-3">
                                     
-                                    <h6>(g)Any marginal land:(Yes/No)
+                                    <h6 onChange={(e)=>setLand(e.target.value)} value={land}><b>(g)Any marginal land:(Yes/No)</b>
 </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes" onClick={handleshow9} />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes"onClick={handleshow9}/>
@@ -907,12 +909,12 @@ const LandScheduleForm=(props)=>{
                         </div>
                         <div className="col col-3">
                                     
-                                    <h6>(h) Whether any utility line passing through the site is incorporated/adjusted in the layout plan (Yes/No)
+                                    <h6 onChange={(e)=>setLayoutPlan(e.target.value)} value={layoutPlan}><b>(h) Whether any utility line passing through the site is incorporated/adjusted in the layout plan (Yes/No)</b>
 
  </h6>
                                     <input type="radio" value="Yes" id="Yes"
                                             onChange1={handleChange} name="Yes" onClick={handleshow0} />
-                                            <label for="Yes">Yes</label>
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                             <input type="radio" value="No" id="No"
                                             onChange1={handleChange} name="Yes" onClick={handleshow0}/>
@@ -935,7 +937,7 @@ const LandScheduleForm=(props)=>{
                      <Button style={{alignSelf:"center", marginTop:20, marginright:867}} variant="primary" type="submit">
                 Save as Draft
             </Button>
-            <Button style={{alignSelf:"center", marginTop:20,marginLeft:867}} variant="primary" type="submit">
+            <Button style={{alignSelf:"center", marginTop:-42,marginLeft:980}} variant="primary" type="submit">
                Continue
             </Button>
 
