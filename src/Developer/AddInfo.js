@@ -96,22 +96,6 @@ function AddInfo() {
       console.log(error.message);
 
     }
-
-    var myHeaders = new Headers();
-myHeaders.append("accept", "application/json");
-myHeaders.append("X-APISETU-APIKEY", "PDSHazinoV47E18bhNuBVCSEm90pYjEF");
-myHeaders.append("X-APISETU-CLIENTID", "in.gov.tcpharyana");
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-    function callApi() {
-      fetch("https://apisetu.gov.in/mca/v1/companies/U72200CH1998PTC022006", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
-
 }
 
 useEffect(()=>{
@@ -138,7 +122,6 @@ useEffect(()=>{
       Designition: Designition,
       Percetage: Percetage,
       UploadPDF: UploadPDF,
-
     }
 
     localStorage.setItem("step1", JSON.stringify(forms));
