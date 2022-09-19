@@ -8,11 +8,21 @@ import Home from '../src/Developer/Home';
 import UploadDocuments from '../src/Developer/UploadDocuments';
 import AuthorizedUsers from '../src/Developer/AuthorizedUsers';
 import Reports from '../src/Developer/Reports';
+<<<<<<< Updated upstream
 // import DeveloperCapacity from '../src/Developer/DeveloperCapacity';
 // import DeveloperCard from '../src/Developer/DeveloperCard';
 // import CapacityDocuments from '../src/Developer/CapacityDocuments ' ;
 // import Ext from '../src/Developer/ext';
 // import UnderTable from '../src/Developer/underTable2';
+=======
+import DeveloperCapacity from '../src/Developer/DeveloperCapacity';
+import DeveloperCard from '../src/Developer/DeveloperCard';
+import CapacityDocuments from '../src/Developer/CapacityDocuments ' ;
+import Ext from '../src/Developer/ext';
+import Patwari from '../src/patwari';
+import UnderTable from '../src/Developer/underTable2';
+import ScrutityDashScreen from './Screens/DashboardScreen/ScrutinyFormScreen/Scrutinyform';
+>>>>>>> Stashed changes
 import {Routes, Route } from "react-router-dom";
 
 function App() {
@@ -20,6 +30,7 @@ function App() {
     
       <Routes>
         <Route path="/dashboard" element={<DashboardScreen />} />
+        <Route path="/dashboard-scrutiny" element={<ScrutityDashScreen />} />
         <Route path="/" element={<DashboardScreen />} />
         <Route path="/addinfo" element={<AddInfo />} />
         <Route path="/home" element={<Home />} />
