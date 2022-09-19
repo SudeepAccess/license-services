@@ -50,7 +50,7 @@ const Navbarcomp=(props)=>{
     )
    }else{
     return(
-        <Navbar bg="primary" expand="lg" variant="dark" style={{backgroundImage:"#0084C6"}}>
+        <Navbar bg="#0572bb" expand="lg" variant="dark" style={{backgroundImage:"#0084C6"}}>
             <Container>
                 <Navbar.Brand className="justify-content-center" href="/">
                         <img width={100} height={40} src={Logo} ></img>

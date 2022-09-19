@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box; 
+    
+
+
+    
+   
+  }
+   
+  /* Style App.js wrapper */
+  .App {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    padding-left: 0px;
+    /* align-items: center;
+    justify-content: center; */
+    overflow: hidden;
+    margin-top: 5px;
+    margin-bottom:0px;
+  }
+   
+  /* Tab Container */
+  .Tabs {
+    width: 80%;
+    height: auto;
+    min-height: 400px;
+    /* background: #053742; */
+    margin: 0.5rem auto 1.5rem;
+    /* padding: 1rem 1rem; */
+    color: #0d5f74;
+    background: #032a3f;
+    border-radius: 2rem;
+    background-color: #0572bb ;
+    @media (max-width: 769px) {
+      /* padding: 2rem 0; */
+    }
+   
+  }
+   
+  /* Tab Navigation */
+  ul.nav {
+      width: 100%;
+      margin: 0 auto 0rem;
+      background-color: #fff;
+      /* display:left !important;
+      align-items: left !important; */
+      
+      /* border: 1px solid #39A2DB; */
+      /* border: #0572bb 5px solid; */
+      /* border-radius: 1rem; */
+      padding-left: 0px;
+      margin-bottom: 0.1px;
+    
+    @media (max-width: 768px) {
+      width: 90%;
+      
+    }
+  }
+   
+  /* ul.nav li {
+    width: 15%;
+    padding: 1rem;
+    list-style: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.7s;
+  } */
+   
+  ul.nav li:first-child {
+    /* border-bottom-left-radius: 2rem;
+    border-top-left-radius: 2rem; */
+  
+
+  }
+   
+  ul.nav li:last-child {
+    /* border-bottom-right-radius: 2rem;
+    border-top-right-radius: 2rem; */
+ 
+  }
+   
+  ul.nav li:hover {
+    background: rgba(23, 94, 199, 0.15);
+    /* background-color: #0572bb ; */
+  }
+   
+  ul.nav li.active {
+    /* background: #032a3f; */
+    display: block;
+    /* background: #3b7ddd; */
+    border-bottom-color: #3b7ddd;
+    /* color: #fff; */
+    text-align: center;
+    background-color: #0572bb ;
+  }
+   
+  /* Tab Content Styles */
+  .TabContent {
+    font-size: 1rem;
+    text-align: center;
+    /* background-color: #0572bb; */
+
+  
+  }
+  /* .Tabs{
+    background: rgb(37, 94, 158);
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-left: 2%;
+    margin-right: 2%;
+    border: #0572bb 3px solid;
+  } */
+  .tabs{
+    /* border: #fff 10px solid; */
+    display: inline;
+    align-items: left;
+    box-shadow: rgb(150, 146, 146) 10px solid;
+    
+
+  }
+  .Tab{
+    background-color: #0572bb;
+    padding-right: 10% !important;
+  }
+ /* .nav-link{
+  background-color: #0572bb;
+ } */
+   
+  

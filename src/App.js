@@ -12,9 +12,13 @@ import DeveloperCapacity from '../src/Developer/DeveloperCapacity';
 import DeveloperCard from '../src/Developer/DeveloperCard';
 import CapacityDocuments from '../src/Developer/CapacityDocuments ' ;
 import Ext from '../src/Developer/ext';
+
 import Patwari from '../src/patwari';
+
+
 import UnderTable from '../src/Developer/underTable2';
 import {Routes, Route } from "react-router-dom";
+import Tab from "../src/Developer/ui/Tab";
 
 function App() {
   return (
@@ -32,7 +36,10 @@ function App() {
         <Route path="/developercard" element={<DeveloperCard/>} />
         <Route path="/ext" element={<Ext/>} />
         <Route path="/underTable" element={<UnderTable/>} />
-        <Route path="/patwari" element={<Patwari/>} />
+
+
+        <Route path="/tab" element={<Tab/>} />
+
       </Routes>
     
     
