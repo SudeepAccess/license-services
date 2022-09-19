@@ -245,8 +245,8 @@ useEffect(()=>{
 
                         <input
                           type="text"
-                          value={Incorporation}
-                          placeholder={Incorporation}
+                          value={companyName}
+                          placeholder={companyName}
                           className="form-control"
                         // placeholder=""
                         // {...register("name", {
@@ -273,7 +273,7 @@ useEffect(()=>{
                       <div className="form-group">
                         <label htmlFor="name">Date of Incorporation</label>
                         <input
-                          type="date"
+                          type="text"
                           value={Incorporation}
                           placeholder={Incorporation}
                           className="form-control"
@@ -502,11 +502,9 @@ useEffect(()=>{
                     <button
                       type="button"
                       style={{
-                        float: "left",
-                        backgroundColor: "#0b3629",
                         color: "white",
                       }}
-                      className="btn mt-3"
+                      className="btn btn-primary mt-3"
                       // onClick={() => setNoOfRows(noofRows + 1)}
                       onClick={() => setmodal(true)}
                     >
@@ -528,92 +526,92 @@ useEffect(()=>{
                             <div className="popupcard">
                               {/* <h5 className="card-h">Add/Remove Authorized Users</h5> */}
                               {/* <div className="table-bd">
-          <Table className="table table-bordered">
-            <thead>
-              <tr>
-                <th>Add More</th>
-                
-                
-                <th> Licence No / year and date of grant of licence </th>
-                <th>Name of developer *</th>
-                <th>Purpose of colony </th>
-                <th>Sector and development plan </th>
-                <th>Validity of licence including renewals if any</th>
-                <th>Remove</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[...Array(noofRows)].map((elementInArray, input) => {
-                return (
-                  <tr>
-                    <td>
-                      <button
-                        type="button"
-                        style={{ float: "left" }}
-                        className="btn btn-primary"
-                        onClick={() => setNoOfRows(noofRows + 1)}
-                      >
-                        <AddIcon />
-                      </button>
-                    </td>
-                   
-                    <td>
-                      <input
-                        type="text"
-                        name="name[]"
-                        placeholder=""
-                        class="form-control"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="mobile[]"
-                        placeholder=""
-                        class="form-control"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="email"
-                        name="email[]"
-                        placeholder=""
-                        class="form-control"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="file"
-                        name="upload"
-                        placeholder=""
-                        class="form-control"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="file"
-                        name="upload"
-                        placeholder=""
-                        class="form-control"
-                      />
-                    </td>
+                                  <Table className="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th>Add More</th>
+                                        
+                                        
+                                        <th> Licence No / year and date of grant of licence </th>
+                                        <th>Name of developer *</th>
+                                        <th>Purpose of colony </th>
+                                        <th>Sector and development plan </th>
+                                        <th>Validity of licence including renewals if any</th>
+                                        <th>Remove</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {[...Array(noofRows)].map((elementInArray, input) => {
+                                        return (
+                                          <tr>
+                                            <td>
+                                              <button
+                                                type="button"
+                                                style={{ float: "left" }}
+                                                className="btn btn-primary"
+                                                onClick={() => setNoOfRows(noofRows + 1)}
+                                              >
+                                                <AddIcon />
+                                              </button>
+                                            </td>
+                                          
+                                            <td>
+                                              <input
+                                                type="text"
+                                                name="name[]"
+                                                placeholder=""
+                                                class="form-control"
+                                              />
+                                            </td>
+                                            <td>
+                                              <input
+                                                type="text"
+                                                name="mobile[]"
+                                                placeholder=""
+                                                class="form-control"
+                                              />
+                                            </td>
+                                            <td>
+                                              <input
+                                                type="email"
+                                                name="email[]"
+                                                placeholder=""
+                                                class="form-control"
+                                              />
+                                            </td>
+                                            <td>
+                                              <input
+                                                type="file"
+                                                name="upload"
+                                                placeholder=""
+                                                class="form-control"
+                                              />
+                                            </td>
+                                            <td>
+                                              <input
+                                                type="file"
+                                                name="upload"
+                                                placeholder=""
+                                                class="form-control"
+                                              />
+                                            </td>
 
-                    <td>
-                      <button
-                        type="button"
-                        style={{ float: "right" }}
-                        className="btn btn-danger"
-                        onClick={() => setNoOfRows(noofRows - 1)}
-                      >
-                        <DeleteIcon />
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-        </div> */}
+                                            <td>
+                                              <button
+                                                type="button"
+                                                style={{ float: "right" }}
+                                                className="btn btn-danger"
+                                                onClick={() => setNoOfRows(noofRows - 1)}
+                                              >
+                                                <DeleteIcon />
+                                              </button>
+                                            </td>
+                                          </tr>
+                                        );
+                                      })}
+                                    </tbody>
+                                  </Table>
+                                </div> */}
 
                               <form className="text1">
                                 <Row>
@@ -770,7 +768,7 @@ useEffect(()=>{
                       Add More
                     </button> */}
                   <div>
-                    <button
+                    {/* <button
                       type="button"
                       style={{
                         float: "left",
@@ -778,186 +776,21 @@ useEffect(()=>{
                         color: "white",
                       }}
                       className="btn mt-3"
-                      // onClick={() => setNoOfRows(noofRows + 1)}
                       onClick={() => setmodal(true)}
                     >
                       Add More
-                    </button>
+                    </button> */}
 
-                    <div>
-                      <Modal
-                        size="lg"
-                        isOpen={modal}
-                        toggle={() => setmodal(!modal)}
-                      >
-                        <ModalHeader
-                          toggle={() => setmodal(!modal)}
-                        ></ModalHeader>
-
-                        <ModalBody>
-                          <div className="card2">
-                            <div className="popupcard">
-                              {/* <h5 className="card-h">Add/Remove Authorized Users</h5> */}
-                              {/* <div className="table-bd">
-          <Table className="table table-bordered">
-            <thead>
-              <tr>
-                <th>Add More</th>
-                
-                
-                <th> Licence No / year and date of grant of licence </th>
-                <th>Name of developer *</th>
-                <th>Purpose of colony </th>
-                <th>Sector and development plan </th>
-                <th>Validity of licence including renewals if any</th>
-                <th>Remove</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[...Array(noofRows)].map((elementInArray, input) => {
-                return (
-                  <tr>
-                    <td>
-                      <button
-                        type="button"
-                        style={{ float: "left" }}
-                        className="btn btn-primary"
-                        onClick={() => setNoOfRows(noofRows + 1)}
-                      >
-                        <AddIcon />
-                      </button>
-                    </td>
-                   
-                    <td>
-                      <input
-                        type="text"
-                        name="name[]"
-                        placeholder=""
-                        class="form-control"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="mobile[]"
-                        placeholder=""
-                        class="form-control"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="email"
-                        name="email[]"
-                        placeholder=""
-                        class="form-control"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="file"
-                        name="upload"
-                        placeholder=""
-                        class="form-control"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="file"
-                        name="upload"
-                        placeholder=""
-                        class="form-control"
-                      />
-                    </td>
-
-                    <td>
-                      <button
-                        type="button"
-                        style={{ float: "right" }}
-                        className="btn btn-danger"
-                        onClick={() => setNoOfRows(noofRows - 1)}
-                      >
-                        <DeleteIcon />
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-        </div> */}
-
-                              <form className="text1">
-                                <Row>
-                                  <Col md={3} xxl lg="4">
-                                    <label htmlFor="name" className="text">	DIN Number</label>
-                                    <input
-                                      type="text"
-                                      name="name[]"
-                                      placeholder=""
-                                      class="form-control"
-                                    />
-                                  </Col>
-                                  <Col md={3} xxl lg="4">
-                                    <label htmlFor="name" className="text">Name</label>
-                                    <input
-                                      type="text"
-                                      name="name[]"
-                                      placeholder=""
-                                      class="form-control"
-                                    />
-                                  </Col>
-
-                                  <Col md={3} xxl lg="4">
-                                    <label htmlFor="name" className="text">PAN Number</label>
-                                    <input
-                                      type="Alphanumberic"
-                                      name="name[]"
-                                      placeholder=""
-                                      class="form-control"
-                                    />
-                                  </Col>
-                                  {/* </Row><Row> */}
-                                  <Col md={3} xxl lg="4">
-                                    <label htmlFor="name" className="text">Upload PDF</label>
-                                    <input
-                                      type="file"
-                                      name="name[]"
-                                      placeholder=""
-                                      class="form-control"
-                                    />
-                                  </Col>
-
-                                </Row>
-                              </form>
-
-                            </div>
-                            <div className="submit-btn">
-                              <div className="form-group col-md6 mt-6">
-                                <button
-                                  type="button"
-                                  style={{ float: "right" }}
-                                  className="btn btn-success"
-                                >
-                                  Submit
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </ModalBody>
-                        <ModalFooter
-                          toggle={() => setmodal(!modal)}
-                        ></ModalFooter>
-                      </Modal>
-                    </div>
+                    
                   </div>
-                  <button
+                  {/* <button
                     type="button"
                     style={{ float: "right" }}
                     className="btn btn-danger"
                     onClick={() => setAoOfRows(aoofRows - 1)}
                   >
                     Remove
-                  </button>
+                  </button> */}
                 </div>
               </div>
               <div className="form-group col-md2 mt-4">
