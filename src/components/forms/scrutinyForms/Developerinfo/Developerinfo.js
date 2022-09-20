@@ -6,6 +6,7 @@ import {AiFillCheckCircle, AiFillCloseCircle} from "react-icons/ai";
 
 const Developerinfo=(props)=>{
     const [uncheckedValue,setUncheckedVlue]=useState([]);
+    console.log(uncheckedValue);
     return(
         <Form>
             {/* <div className="justify-content-center" 
@@ -29,14 +30,14 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>Name of the land owner:</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_Land_Owner_true" 
+                        <Form.Check value="Name of the land owner:" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group21" inline></Form.Check>
                         <Form.Check 
                             onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                            value="P_Land_Owner_false" 
+                            value="Name of the land owner:" 
                             type="radio" id = "default-radio" 
                             label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
                             name="group21" inline></Form.Check>
@@ -46,12 +47,12 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>Status(individual/ company/ etc)</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_Status_true" type="radio" 
+                        <Form.Check value="Status(individual/ company/ etc)" type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group22" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Status_false" type="radio" 
+                                    value="Status(individual/ company/ etc)" type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
                                     name="group22" inline></Form.Check>
@@ -61,12 +62,12 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>LC-I signed by</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_LC-I_signed_by_true" type="radio" 
+                        <Form.Check value="LC-I signed by" type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group23" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_LC-I_signed_by_false"
+                                    value="LC-I signed by"
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -77,13 +78,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>Nature of authorization</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_nature_of_authorization_true" 
+                        <Form.Check value="Nature of authorization" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group24" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_nature_of_authorization_false" 
+                                    value="Nature of authorization" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -96,13 +97,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>Land schedule</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_Land_schedule_true" 
+                        <Form.Check value="Land schedule" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group25" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Land_schedule_false" 
+                                    value="Land schedule" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -113,13 +114,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>Copy of Mutation</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check  value="P_Copy_of_Mutation_true" 
+                        <Form.Check  value="Copy of Mutation" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group26" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Copy_of_Mutation_false" 
+                                    value="Copy of Mutation" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -130,13 +131,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>Copy of Jamabandi</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_Copy_of_Jamabandi_true" 
+                        <Form.Check value="Copy of Jamabandi" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group27" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Copy_of_Jamabandi_false" 
+                                    value="Copy of Jamabandi" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -147,13 +148,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>Details of lease / patta, if any</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_Details_of_lease_true" 
+                        <Form.Check value="Details of lease / patta, if any" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group28" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Purpose_Village_false" 
+                                    value="Details of lease / patta, if any" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -166,13 +167,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>Copy of Sajra Plan</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_Copy_of_Sajra_Plan_true" 
+                        <Form.Check value="Copy of Sajra Plan" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group29" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Land_schedule_false" 
+                                    value="Copy of Sajra Plan" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -183,13 +184,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>Another Copy of Sajra Plan</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check  value="P_Copy_of_Sajra_Plan2_true" 
+                        <Form.Check  value="Another Copy of Sajra Plan" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group30" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Copy_of_Sajra_Plan2_false" 
+                                    value="Another Copy of Sajra Plan" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -203,13 +204,13 @@ const Developerinfo=(props)=>{
                             <div>
                                 <Form.Label>Name of Developer</Form.Label><span style={{color:"red"}}>*</span>
                             </div>
-                            <Form.Check value="P_Name_of_Developer_true" 
+                            <Form.Check value="Name of Developer" 
                                         type="radio" 
                                         id = "default-radio" 
                                         label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                         name="group31" inline></Form.Check>
                             <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                        value="P_Name_of_Developer_false" 
+                                        value="Name of Developer" 
                                         type="radio" 
                                         id = "default-radio" 
                                         label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -222,13 +223,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>(i) Status(individual/ company/ firm/ LLP etc.)</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_Developer_Status_true" 
+                        <Form.Check value="Status(individual/ company/ firm/ LLP etc.)" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group32" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Developer_Status_false" 
+                                    value="Status(individual/ company/ firm/ LLP etc.)" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -239,13 +240,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>(ii) Permanent address in case of individual/ registered office address in case other than individual </Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_Developer_Permanent_address_true" 
+                        <Form.Check value="Permanent address in case of individual/ registered office address in case other than individual" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group33" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Developer_Permanent_address_false" 
+                                    value="Permanent address in case of individual/ registered office address in case other than individual" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -256,13 +257,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>(iii) Address for the purpose of communication</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_Developer_Permanent_address_true" 
+                        <Form.Check value="Address for the purpose of communication" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group34" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Developer_Permanent_address_false" 
+                                    value="Address for the purpose of communication" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -275,13 +276,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>(iv) Name of authorized person to sign the application</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_Developer_Name_of_authorized_person_true" 
+                        <Form.Check value="Name of authorized person to sign the application" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group35" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Developer_Name_of_authorized_person_false" 
+                                    value="Name of authorized person to sign the application" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -292,13 +293,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>(v) Mobile No. for communication</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_Developer_Mobile_No_true" 
+                        <Form.Check value="Mobile No. for communication" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group36" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Developer_Mobile_No_false" 
+                                    value="Mobile No. for communication" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -309,13 +310,13 @@ const Developerinfo=(props)=>{
                         <div>
                             <Form.Label>(vi) Email ID for communication</Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check value="P_Developer_Email_ID_true" 
+                        <Form.Check value="Email ID for communication" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group37" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="P_Developer_Email_ID_false" 
+                                    value="Email ID for communication" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
