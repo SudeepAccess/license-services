@@ -126,44 +126,44 @@ const FeesChargesForm=(props)=> {
                             <div className="row">
                             <div className="col col-3">
                               
-                                        <h6>(i)Fees/Charges details Total area</h6>
+                                        <h6><b>(i)Fees/Charges details Total area</b></h6>
                                         <input type="text" className="form-control"required  minLength={1} maxLength={20} pattern="[0-9]*"
                                          onChange={(e)=>setFeeDetail(e.target.value)} value={feeDetail} onChange1={handleFeesChange} />
                                          {errors.feeDetail && <p>Please check the First Name</p>}
                              </div>
                              <div className="col col-3">
                               
-                                        <h6>(ii)Licence Fees (25%)</h6>
+                                        <h6><b>(ii)Licence Fees (25%)</b></h6>
                                         <input type="text" className="form-control" required  minLength={1} maxLength={20} pattern="[0-9]*"
                                          onChange={(e)=>setLicenseFee(e.target.value)} value={licenseFee} onChange1={handleLicFeesChange} />
                                          {errors.licenseFee && <p>Please check the First Name</p>}
                              </div>
                              <div className="col col-3">
                               
-                              <h6>(iii)Scrutiny Fees</h6>
+                              <h6><b>(iii)Scrutiny Fees</b></h6>
                               <input type="text" className="form-control" required  minLength={1} maxLength={20} pattern="[0-9]*"
                                onChange={(e)=>setScrutinyFee(e.target.value)} value={ScrutinyFee} onChange1={handleScrutinyFeesChange} />
                                {errors.ScrutinyFee && <p></p>}
                    </div>
                    <div className="col col-3">
                               
-                              <h6>(iv)Total Fees (License fee 25% + Scrutiny Fees)</h6>
+                              <h6><b>(iv)Total Fees (License fee 25% + Scrutiny Fees)</b></h6>
                               <input type="text" className="form-control" required  minLength={1} maxLength={20} pattern="[0-9]*"
                                onChange={(e)=>setTotalFee(e.target.value)} value={totalFee}onChange1={handleTotalFeesChange} />
                                {errors.totalFee && <p></p>}
                    </div>
-                             </div>
+                             </div><br></br>
                              <div className="row">
                             <div className="col col-3">
                               
-                                        <h6>(v)Remark (If any)</h6>
+                                        <h6><b>(v)Remark (If any)</b></h6>
                                         <input type="number" className="form-control" minLength={2} maxLength={100}
                                          onChange={(e)=>setRemark(e.target.value)} value={remark} onChange1={handleRemarkChange} />
                                          {errors.remark && <p></p>}
                              </div>
                              <div className="col col-3">
                               
-                                        <h6 >(vi)Select Aggregator</h6>
+                                        <h6 ><b>(vi)Select Aggregator</b></h6>
                                         <select className="form-control" id="developer"
                                                         name="developer"  onChange={(e)=>setAggregator(e.target.value)} value={aggregator}
                                                         onChange1={handleAggregatorChange} >
@@ -180,11 +180,11 @@ const FeesChargesForm=(props)=> {
                               
                               <h6  required onChange={(e)=>setPreviousLic(e.target.value)} value={previousLic}
                                  onChange1={handlePrevLicChange } >
-                                 {errors.previousLic && <p></p>}(vii)Do you want to adjust the fee from any previous license (Yes/No)</h6>
+                                 {errors.previousLic && <p></p>}<b>(vii)Do you want to adjust the fee from any previous license (Yes/No)</b></h6>
                               <input type="radio" value="Yes" id="Yes"
                                                 onChange1={handleChange} name="Yes" onClick={handleshow0}
                                               />
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"onClick={handleshow0}/>
@@ -204,7 +204,7 @@ const FeesChargesForm=(props)=> {
                    </div>
                    <div className="col col-3">
                               
-                              <h6>(viii)Amount (previous)</h6>
+                              <h6><b>(viii)Amount (previous)</b></h6>
                               <input type="number" className="form-control"  required  minLength={1} maxLength={20} pattern="[0-9]*"
                                onChange={(e)=>setAmount(e.target.value)} value={amount}
                                onChange1={handleAmountChange  } />
@@ -212,7 +212,7 @@ const FeesChargesForm=(props)=> {
                    </div>
                              </div>
                              <hr/>
-                             <h5 className="text-black">1.Undertakings:-</h5>
+                             <h5 className="text-black"><b>1.Undertakings:-</b></h5>
                              <div className="px-2">
                                     <p className="text-black">The following is undertaken: </p>
                                     <ul className="Undertakings">
@@ -412,7 +412,7 @@ const FeesChargesForm=(props)=> {
                              <Button style={{alignSelf:"center", marginTop:20, marginright:867}} variant="primary" type="submit">
                 Save 
             </Button>
-            <Button style={{alignSelf:"center", marginTop:20,marginLeft:867}} variant="primary" type="submit">
+            <Button style={{alignSelf:"center", marginTop:20,marginLeft:922}} variant="primary" type="submit">
                Submit
             </Button>
                        

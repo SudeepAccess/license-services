@@ -6,13 +6,12 @@ import { Button, Form } from "react-bootstrap";
 import { Card, Row, Col } from "react-bootstrap";
 import axios from 'axios';
 import { useForm } from "react-hook-form";
-
-
-
+// const baseURL = "http://10.1.1.18:8094/egov-mdms-service/v1/_search?tenant_id=hr";
+// const URL_MDMS = process.env.REACT_APP_MDMS
 const ApllicantForm = (props) => {
 
-    const url ='localhost:8094/egov-mdms-service/v1/_search';
-    const [form, setForm] = useState([]);
+    const [post, setPost] = useState([]);
+    // const [form, setForm] = useState([]);
     const [developer, setDeveloper] = useState('');
     const [name, setName] = useState('');
     const [mobile, setMobile] = useState('');
@@ -20,19 +19,16 @@ const ApllicantForm = (props) => {
     const [email, setEmail] = useState('');
     const [pan, setPan] = useState('');
     const [address, setAddress] = useState('');
-    const [village, setVillage] = useState('');
+    const [village1, setvillage1] = useState('');
     const [pincode, setPincode] = useState('');
     const [tehsil, setTehsil] = useState('');
     const [district, setDistrict] = useState('');
     const [state, setState] = useState('');
     const [nameOwner, setnameOwner] = useState('');
-
-
-
     const [FormSubmitted, SetFormSubmitted] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false)
+    const [isSubmit, setIsSubmit] = useState(false);
 
     const handleNameChange = event => {
         setName(event.target.value);
@@ -64,15 +60,11 @@ const ApllicantForm = (props) => {
         setnameOwner(event.target.value);
     };
 
+    const[employeeName,employeedata]=useState([]);
+
     const ApplicantFormSubmitHandler = async(e) => {
         e.preventDefault();
-        try{
-            const resp = await axios.post(url,{district:district,state:state,village:village});
-            console.log(resp.data)
-        }catch (error){
-             console.log(error.response)
-        }
-
+     
 
         SetFormSubmitted(true);
 
@@ -84,7 +76,7 @@ const ApllicantForm = (props) => {
             email: email,
             pan: pan,
             address: address,
-            village: village,
+            village1: village1,
             pincode: pincode,
             tehsil: tehsil,
             district: district,
@@ -97,21 +89,126 @@ const ApllicantForm = (props) => {
         // form.push(forms)
         let frmData = JSON.parse(localStorage.getItem('step1') || "[]")
     };
+    // function callApi() {
+    //     fetch("http://10.1.1.18:8094/egov-mdms-service/v1/_search")
+    //     .then(response => response.text())
+    //     .then(result => console.log(result))
+    //     .catch(error => console.log('error', error));
+    //   }
+    const HandleGetMCNdata=async(tenentId)=>{
+        try{
+            const abc =  
+            {
+              "RequestInfo": {
+                  "apiId": "Rainmaker",
+                  "ver": "v1",
+                  "ts": 0,
+                  "action": "_search",
+                  "did": "",
+                  "key": "",
+                  "msgId": "090909",
+                  "requesterId": "",
+                  "authToken": ""
+              },
+              "MdmsCriteria": {
+                  "tenantId": "hr",
+                  "moduleDetails": [
+                      {
+                          "moduleName": "common-masters",
+                          "masterDetails": [
+                              {
+                                  "name": "Department"
+                              },
+                              {
+                                  "name": "Designation"
+                              },
+                              {
+                                  "name": "StateInfo"
+                              },
+                              {
+                                  "name": "wfSlaConfig"
+                              }
+                          ]
+                      },
+                      {
+                          "moduleName": "tenant",
+                          "masterDetails": [
+                              {
+                                  "name": "tenants"
+                              },
+                              {
+                                  "name": "citymodule"
+                              }
+                          ]
+                      },
+                      {
+                          "moduleName": "DIGIT-UI",
+                          "masterDetails": [
+                              {
+                                  "name": "ApiCachingSettings"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          }
+          
+            // const Resp = await axios.post(URL_MDMS+"/egov-mdms-service/v1/_search",
+       const Resp =  await axios.post("/egov-mdms-service/v1/_search",
+            abc,
+            {headers:{
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-origin':"*",
+            }})
+            .then((Resp)=>{
+                console.log("ghr",Resp)
+            })
+          
+        }
+    catch(error){
+      console.log(error.message);
+    }
+}
+
+useEffect(()=>{
+  HandleGetMCNdata();
+},[])
+    
     useEffect(() => {
         if (FormSubmitted) {
             props.ApplicantFormSubmit(true);
         }
+       
+
     }, [FormSubmitted])
+    // useEffect(() => {
+    //     axios.get(`${baseURL}/1`).then((response) => {
+    //       setPost(response.data);
+    //     });
+    //   }, []);
+
+    //   function createPost() {
+    //     axios
+    //       .post(baseURL, {
+    //         Description: "Hello World!",
+    //         body: "This is a new post."
+    //       })
+    //       .then((response) => {
+    //         setPost(response.data);
+    //       });
+    //   }
+    
+    //   if (!post) return "No post!"
 
     return (
         <Form onSubmit={ApplicantFormSubmitHandler} autoComplete="off">
             <Form.Group className="justify-content-center" controlId="formBasicEmail">
                 <Row className="ml-auto" style={{ marginBottom: 5 }}>
-                    <Col md={4} xxl lg="4">
+               <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Developer <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Developer</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" required onChange={(e) => setDeveloper(e.target.value)} value={developer} >
+                        <Form.Select type="text" defaultValue="Select"  onChange={(e) => setDeveloper(e.target.value)} value={developer} >
                             <option value="K.Mishra">K.Mishra</option>
                             <option value="Developer 1">Developer 1</option>
                             <option value="Developer 2">Developer 2</option>
@@ -119,18 +216,18 @@ const ApllicantForm = (props) => {
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <label>Authorized Person Name <span style={{ color: "red" }}>*</span></label>
+                            <Form.Label><b>Authorized Person Name </b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="text" className="form-control" required pattern="[A-Za-z]*" name="authorizedPerson" minLength={10} maxLength={99}
+                        <Form.Control type="text" className="form-control"  pattern="[A-Za-z]*" name="authorizedPerson" minLength={10} maxLength={99}
 
-                            onChange={(e) => setName(e.target.value)} onChange1={handleNameChange} value={name} />
+                            onChange={(e) => setName(e.target.value)}  onChange1={handleNameChange} value={name} />
                         {errors.name && <p>Please check the First Name</p>}
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Authorized Mobile No1 <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Authorized Mobile No1</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="text" className="form-control" required pattern="[0-9]*" name="authorizedmobile" maxLength={10}
+                        <Form.Control type="text" className="form-control"  pattern="[0-9]*" name="authorizedmobile" maxLength={10}
 
                             onChange={(e) => setMobile(e.target.value)} onChange1={handleMobileChange} value={mobile} />
                         {errors.mobile && <p>Please check the First Name</p>}
@@ -138,47 +235,59 @@ const ApllicantForm = (props) => {
 
                     </Col>
 
-                </Row>
+                </Row><br></br>
                 <Row className="ml-auto" style={{ marginBottom: 5 }}>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Authorized Mobile No 2 <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Authorized Mobile No 2 </b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="number" placeholder="Authorized Mobile No 2" onChange={(e) => setMobile2(e.target.value)} value={mobile2} />
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Email ID <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Email ID</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="text" required name="authorizedEmail" maxLength={25} pattern="[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]*"
+                        <Form.Control type="text" name="authorizedEmail" maxLength={25} pattern="[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]*"
                             onChange={(e) => setEmail(e.target.value)} value={email} onChange1={handleEmailChange} />
                         {errors.email && <p>Please check the First Name</p>}
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>PAN No <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>PAN No </b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="text" required name="authorizedPan" maxLength={10} pattern="[a-z]+[0-9]+[0-9]*"
+                        <Form.Control type="text"  name="authorizedPan" maxLength={10} pattern="[a-z]+[0-9]+[0-9]*"
                             onChange={(e) => setPan(e.target.value)} value={pan} onChange1={handlePanChange} />
                         {errors.pan && <p>Please check the First Name</p>}
                     </Col>
 
 
-                </Row>
+                </Row><br></br>
                 <Row className="ml-auto" style={{ marginBottom: 5 }}>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Address 1 <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Address 1</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="text" placeholder="Address 1" required name="authorizedAddress" minLength={4} maxLength={30} pattern="[A-Za-z]+[0-9]*"
+                        <Form.Control type="text" placeholder="Address 1"  name="authorizedAddress" minLength={4} maxLength={30} pattern="[A-Za-z]+[0-9]*"
                             onChange={(e) => setAddress(e.target.value)} value={address} onChange1={handleAddressChange} />
                         {errors.address && <p>Please check the First Name</p>}
                     </Col>
                     <Col md={4} xxl lg="4">
-                        <div>
-                            <Form.Label>Village/City <span style={{ color: "red" }}>*</span></Form.Label>
+                 
+                            {/* <Form.Label><b>Village/City </b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" placeholder="Village/City" required onChange={(e) => setVillage(e.target.value)} value={village}>
+                        <input type="text" className="form-control"list="data1"/>
+                        <datalist id="data1">
+                            {
+                                employeeName.map(result=>
+                                    {
+                                        <option>{result.employee_name}</option>
+                                    })
+                            }
+                        </datalist> */}
+                        <div>
+                            <Form.Label><b>Village/City </b><span style={{ color: "red" }}>*</span></Form.Label>
+                        </div>
+                        <Form.Select type="text" defaultValue="Select" placeholder="Village/City"  onChange={(e) => setvillage1(e.target.value)} value={village1}>
                             <option value="1">Ballabgarh</option>
                             <option value="2">Village</option>
                             <option value="3">City</option>
@@ -186,18 +295,18 @@ const ApllicantForm = (props) => {
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Pincode <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Pincode</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="text" placeholder="Pincode" required pattern="[0-9]*" name="authorizedPinCode" maxLength={6}
+                        <Form.Control type="text" placeholder="Pincode"pattern="[0-9]*" name="authorizedPinCode" maxLength={6}
                             onChange={(e) => setPincode(e.target.value)} value={pincode} onChange1={handlePinChange} />
                         {errors.pincode && <p>Please check the First Name</p>}
                     </Col>
 
-                </Row>
+                </Row><br></br>
                 <Row className="ml-auto" style={{ marginBottom: 5 }}>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Tehshil <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Tehshil </b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Select type="text" defaultValue="Select" placeholder="Tehshil" required onChange={(e) => setTehsil(e.target.value)} value={tehsil} >
                             <option value="1">Tehshil 1</option>
@@ -208,7 +317,7 @@ const ApllicantForm = (props) => {
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>District <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>District</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Select type="text" defaultValue="Select" placeholder="Tehshil" required onChange={(e) => setDistrict(e.target.value)} value={district} >
                             <option value="1">District 1</option>
@@ -219,7 +328,7 @@ const ApllicantForm = (props) => {
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>State <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>State</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Select type="text" defaultValue="Select" placeholder="Tehshil" required onChange={(e) => setState(e.target.value)} value={state}  >
                             <option value="1">State 1</option>
@@ -228,61 +337,61 @@ const ApllicantForm = (props) => {
                             <option value="3">State 4</option>
                         </Form.Select>
                     </Col>
-                </Row>
+                </Row><br></br>
                 <Row className="ml-auto" style={{ marginBottom: 5 }}>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Status (individual/ company/ firm/ LLP etc.)<span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Status (Individual/ Company/ Firm/ LLP etc.)</b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text" disabled readOnly />
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>LC-I signed by <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>LC-I signed by </b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text" disabled readOnly />
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>If LC-I is not signed by self (in case of an individual) nature of authorization (GPA/SPA)<span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>If LC-I is not signed by self (in case of an individual) nature of authorization (GPA/SPA)</b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text" disabled readOnly />
                     </Col>
 
-                </Row>
+                </Row><br></br>
                 <Row className="ml-auto" style={{ marginBottom: 5 }}>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Permanent address in case of individual/ registered office address in case other than individual<span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Permanent address in case of individual/ registered office address in case other than individual</b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text" disabled readOnly />
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Address for communication <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Address for communication</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text" disabled readOnly />
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Name of the authorized person to sign the application<span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Name of the authorized person to sign the application</b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text" disabled readOnly />
                     </Col>
 
-                </Row>
+                </Row><br></br>
                 <Row className="ml-auto" style={{ marginBottom: 5 }}>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Email ID for communication<span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Email ID for communication</b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text" disabled readOnly />
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label>Name of individual Land owner/ land-owning company/ firm/ LLP etc. <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Name of individual Land owner/ land-owning company/ firm/ LLP etc.</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="text" required pattern="[A-Za-z]*" minLength={4}
+                        <Form.Control type="text"  pattern="[A-Za-z]*" minLength={4}
                             onChange={(e) => setnameOwner(e.target.value)} value={nameOwner} onChange1={handleNameOwnerChange} />
                         {errors.nameOwner && <p></p>}
                     </Col>
@@ -294,7 +403,7 @@ const ApllicantForm = (props) => {
             <Button style={{ alignSelf: "center", marginTop: 20 }} variant="primary" type="submit">
                 Save as Draft
             </Button>
-            <Button style={{ alignSelf: "center", marginTop: 20, marginLeft: 867 }} variant="primary" type="submit">
+            <Button style={{ alignSelf: "center", marginTop: -45, marginLeft: 979 }} variant="primary" type="submit">
                 Continue
             </Button>
         </Form>

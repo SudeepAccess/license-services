@@ -120,101 +120,117 @@ const AppliedDetailForm =(props)=> {
         SetAppliedDetailFormSubmitted(true);
         let forms={
                dgps:dgps,
-               resplotno:resplotno,
-               reslengthmtr:reslengthmtr,
-               reswidthmtr:reswidthmtr,
-               resareasq:resareasq,
-               complotno:complotno,
-               comlengthmtr:comlengthmtr,
-               comwidthmtr:comwidthmtr,
-               comareasq:comareasq,
-               siteplotno:siteplotno,
-               sitelengthmtr:sitelengthmtr,
-               sitewidthmtr:sitewidthmtr,
-               siteareasq:siteareasq,
-               parkplotno:parkplotno,
-               parklengthmtr:parklengthmtr,
-               parkwidthmtr:parkwidthmtr,
-               parkareasq:parkareasq,
-               publicplotno:publicplotno,
-               publiclengthmtr:publiclengthmtr,
-               publicwidthmtr:publicwidthmtr,
-               publicareasq:publicareasq,
-               irPlotDimen:irPlotDimen,
-               irPlotArea:irPlotArea,
-               irSizeDimen:irSizeDimen,
-               irSizeArea:irSizeArea,
-               pocketDimen:pocketDimen,
-               pocketArea:pocketArea,
-               surrenderDimen:surrenderDimen,
-               surrenderArea:surrenderArea,
-               npnlNo:npnlNo,
-               npnlArea:npnlArea,
-               ewsNo:ewsNo,
-               ewsArea:ewsArea,
-               frozenNo:frozenNo,
-               frozenArea:frozenArea,
-               organizeNo:organizeNo,
-               organizeArea:organizeArea,
-               colonyNo:colonyNo,
-               colonyArea:colonyArea,
-               fiftyNo:fiftyNo,
-               fiftyArea:fiftyArea,
-               twoNo:twoNo,
-               twoArea:twoArea,
-               resiNo:resiNo,
-               resiArea:resiArea,
-               commerNo:commerNo,
-               commerArea:commerArea,
-               labourNo:labourNo,
-               labourArea:labourArea,
-               permissible:permissible,
-               perPlot:perPlot,
-               perLength:perLength,
-               perWidth:perWidth,
-               perArea:perArea,
-               commPlotted:commPlotted,
-               far:far,
-               scono:scono,
-               scolengthmtr:scolengthmtr,
-               scowidthmtr:scowidthmtr,
-               scoareasq:scoareasq,
-               boothplotno:boothplotno,
-               boothlengthmtr:boothlengthmtr,
-               boothwidthmtr:boothwidthmtr,
-               boothareasq:boothareasq,
-               ewsnpnlPlot:ewsnpnlPlot,
-               areaewsnpnlPlot:areaewsnpnlPlot,
-               collectorRate:collectorRate,
-               areaCollectorRate:areaCollectorRate,
-               anyotherroad:anyotherroad,
-               widthanyotherroad:widthanyotherroad,
-               licValid:licValid,
-               licvalidity:licvalidity,
-               appliedrenewal:appliedrenewal,
-               scrutinyFee:scrutinyFee,
-               transactionScrutiny:transactionScrutiny,
-               reasonRevision:reasonRevision,
-               uploadapprovedLayout:uploadapprovedLayout,
-               proposedLayout:proposedLayout,
-               undertakingChange:undertakingChange,
-               phasingSite:phasingSite,
-               reraUpload:reraUpload,
-               newspaperpublic:newspaperpublic,
-               dateNews:dateNews,
-               namenewspaper:namenewspaper,
-               intimatedAllotes:intimatedAllotes,
-               attachintimate:attachintimate,
-               hostedapprovedWebsite:hostedapprovedWebsite,
-               objectionUpload:objectionUpload,
-               replySubmittedUpload:replySubmittedUpload,
-               bookingPlotUpload:bookingPlotUpload,
-               anyFeature:anyFeature,
-               sitenczdevelop:sitenczdevelop,
-               sitenczregional:sitenczregional,
-               nczTruthingReport:nczTruthingReport,
-               dlscRecommend:dlscRecommend,
-               exemption:exemption
+               "step4Data1":
+                      {
+                      resplotno:resplotno,
+                      reslengthmtr:reslengthmtr,
+                      reswidthmtr:reswidthmtr,
+                      resareasq:resareasq,
+                      complotno:complotno,
+                      comlengthmtr:comlengthmtr,
+                      comwidthmtr:comwidthmtr,
+                      comareasq:comareasq,
+                      siteplotno:siteplotno,
+                      sitelengthmtr:sitelengthmtr,
+                      sitewidthmtr:sitewidthmtr,
+                      siteareasq:siteareasq,
+                      parkplotno:parkplotno,
+                      parklengthmtr:parklengthmtr,
+                      parkwidthmtr:parkwidthmtr,
+                      parkareasq:parkareasq,
+                      publicplotno:publicplotno,
+                      publiclengthmtr:publiclengthmtr,
+                      publicwidthmtr:publicwidthmtr,
+                      publicareasq:publicareasq,},
+                 "step4Data2":
+                      {
+                        irPlotDimen:irPlotDimen,
+                        irPlotArea:irPlotArea,
+                        irSizeDimen:irSizeDimen,
+                        irSizeArea:irSizeArea,
+                        pocketDimen:pocketDimen,
+                        pocketArea:pocketArea,
+                        surrenderDimen:surrenderDimen,
+                        surrenderArea:surrenderArea,},
+                 "step4Data3":
+                          {
+                        npnlNo:npnlNo,
+                        npnlArea:npnlArea,
+                        ewsNo:ewsNo,
+                        ewsArea:ewsArea,},
+                 "step4Data4":
+                          {
+                        frozenNo:frozenNo,
+                        frozenArea:frozenArea,
+                        organizeNo:organizeNo,
+                        organizeArea:organizeArea,},
+                  "step4Data5":
+                            {
+                        colonyNo:colonyNo,
+                        colonyArea:colonyArea,
+                        fiftyNo:fiftyNo,
+                        fiftyArea:fiftyArea,
+                        twoNo:twoNo,
+                        twoArea:twoArea,
+                        resiNo:resiNo,
+                        resiArea:resiArea,
+                        commerNo:commerNo,
+                        commerArea:commerArea,
+                        labourNo:labourNo,
+                        labourArea:labourArea,},
+                  "step4Data6":
+                          {
+                      permissible:permissible,
+                      perPlot:perPlot,
+                      perLength:perLength,
+                      perWidth:perWidth,
+                      perArea:perArea,
+                      commPlotted:commPlotted,
+                      far:far,},
+               "step4Data7":
+                        {
+                        scono:scono,
+                        scolengthmtr:scolengthmtr,
+                        scowidthmtr:scowidthmtr,
+                        scoareasq:scoareasq,
+                        boothplotno:boothplotno,
+                        boothlengthmtr:boothlengthmtr,
+                        boothwidthmtr:boothwidthmtr,
+                        boothareasq:boothareasq,},
+               "step4Data8":
+                          {
+                          ewsnpnlPlot:ewsnpnlPlot,
+                          areaewsnpnlPlot:areaewsnpnlPlot,
+                          collectorRate:collectorRate,
+                          areaCollectorRate:areaCollectorRate,
+                          anyotherroad:anyotherroad,
+                          widthanyotherroad:widthanyotherroad,
+                          licValid:licValid,
+                          licvalidity:licvalidity,
+                          appliedrenewal:appliedrenewal,
+                          scrutinyFee:scrutinyFee,
+                          transactionScrutiny:transactionScrutiny,
+                          reasonRevision:reasonRevision,
+                          uploadapprovedLayout:uploadapprovedLayout,
+                          proposedLayout:proposedLayout,
+                          undertakingChange:undertakingChange,
+                          phasingSite:phasingSite,
+                          reraUpload:reraUpload,
+                          newspaperpublic:newspaperpublic,
+                          dateNews:dateNews,
+                          namenewspaper:namenewspaper,
+                          intimatedAllotes:intimatedAllotes,
+                          attachintimate:attachintimate,
+                          hostedapprovedWebsite:hostedapprovedWebsite,
+                          objectionUpload:objectionUpload,
+                          replySubmittedUpload:replySubmittedUpload,
+                          bookingPlotUpload:bookingPlotUpload,
+                          anyFeature:anyFeature,
+                          sitenczdevelop:sitenczdevelop,
+                          sitenczregional:sitenczregional,
+                          nczTruthingReport:nczTruthingReport,
+                          dlscRecommend:dlscRecommend,
+                          exemption:exemption},
 
         } 
          console.log("FRMDATA",forms);
@@ -316,10 +332,10 @@ const handleshow12=e=>{
                 <Row className="ml-auto" style={{marginBottom:5}}>
                 <Col col-12>
                    
-                            <h5 className="text-black">1. DGPS point</h5>
+                            <h5 className="text-black" onChange={(e)=>setDgps(e.target.value)} value={dgps}>1. DGPS point</h5>
                            
                                     <div className="col col-4">
-                                        <label for="pitentialZone" className="font-weight-bold">Number of DGPS point</label>
+                                        <label for="pitentialZone" className="font-weight-bold"><b>Number of DGPS point</b></label>
                                         <input type="number" className="form-control"
                                         onChange={(e)=>setDgps(e.target.value)} value={dgps} />
                                     </div>
@@ -397,23 +413,23 @@ const handleshow12=e=>{
                                     </div>
 
                                     <hr/>
-                                    <h5 className="text-black">2.Details of Plots</h5>
+                                    <h5 className="text-black"><b>2.Details of Plots</b></h5>
                                     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
         <TableHead>
           <TableRow>
-            <TableCell>Type of plots</TableCell>
-            <TableCell >Plot No.</TableCell>
-            <TableCell >Length in mtr</TableCell>
-            <TableCell >Width in mtr</TableCell>
-            <TableCell >Area in sqmtr</TableCell>
+            <TableCell><b>Type of plots</b></TableCell>
+            <TableCell ><b>Plot No.</b></TableCell>
+            <TableCell ><b>Length in mtr</b></TableCell>
+            <TableCell ><b>Width in mtr</b></TableCell>
+            <TableCell ><b>Area in sqmtr</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
             <TableRow>
                 <TableCell >
                             <div className="px-2">
-                                 <p className="mb-2"><b>Residential
+                                 <p className="mb-2" onChange={(e)=>setResPlotno(e.target.value)} value={resplotno}><b>Residential
                                                             </b></p>
                                                             <div className="row">
                                                                 <div className="col col-3">
@@ -450,7 +466,7 @@ const handleshow12=e=>{
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Commercial
+                                                            <p className="mb-2" onChange={(e)=>setComPlotno(e.target.value)} value={complotno}><b>Commercial
                                                             </b></p>
                                                         </div>
                 </TableCell>
@@ -466,7 +482,7 @@ const handleshow12=e=>{
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Community Sites
+                                                            <p className="mb-2" onChange={(e)=>setSitePlotno(e.target.value)} value={siteplotno}><b>Community Sites
 
                                                             </b></p>
                                                         </div>
@@ -483,7 +499,7 @@ const handleshow12=e=>{
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Parks
+                                                            <p className="mb-2" onChange={(e)=>setParkPlotno(e.target.value)} value={parkplotno}><b>Parks
 
                                                             </b></p>
                                                         </div>
@@ -500,7 +516,7 @@ const handleshow12=e=>{
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Public Utilities
+                                                            <p className="mb-2" onChange={(e)=>setPublicPlotno(e.target.value)} value={publicplotno}><b>Public Utilities
                                                             </b></p>
                                                               
                                                            <div className="row">
@@ -560,21 +576,21 @@ const handleshow12=e=>{
       </Table>
                                      </TableContainer>
                                    
-                                    <h5 className="text-black">Irregular Plots</h5>
+                                    <h5 className="text-black"><b>Irregular Plots</b></h5>
                                     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive ">
         <TableHead>
           <TableRow>
-          <TableCell>Details of Plot</TableCell>
-            <TableCell>Dimensions in mtr</TableCell>
-            <TableCell >Area manually entered</TableCell>
+          <TableCell><b>Details of Plot</b></TableCell>
+            <TableCell><b>Dimensions in mtr</b></TableCell>
+            <TableCell ><b>Area manually entered</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Irregular Plots
+                                                            <p className="mb-2" onChange={(e)=>setIrPlotDimen(e.target.value)} value={irPlotDimen}><b>Irregular Plots
                                                             </b></p>
                                                         </div>
                 </TableCell>
@@ -584,7 +600,7 @@ const handleshow12=e=>{
               <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Irregular size SCOs
+                                                            <p className="mb-2" onChange={(e)=>setIrSizeDimen(e.target.value)} value={irSizeDimen}><b>Irregular size SCOs
                                                             </b></p>
                                                         </div>
                 </TableCell>
@@ -594,7 +610,7 @@ const handleshow12=e=>{
               <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Whether any pocket proposed to be transferred less than 1 acre? (Yes/No)
+                                                            <p className="mb-2"onChange={(e)=>setPocketDimen(e.target.value)} value={pocketDimen}><b>Whether any pocket proposed to be transferred less than 1 acre? (Yes/No)
                                                             </b></p>
                                                             <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes"  />
@@ -611,7 +627,7 @@ const handleshow12=e=>{
               <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Whether the surrendered area is having a minimum of 18 mtr independent access
+                                                            <p className="mb-2" onChange={(e)=>setSurrenderDimen(e.target.value)} value={surrenderDimen}><b>Whether the surrendered area is having a minimum of 18 mtr independent access
  (Yes/No)
                                                             </b></p>
                                                             <input type="radio" value="Yes" id="Yes"
@@ -629,22 +645,22 @@ const handleshow12=e=>{
         </TableBody>
       </Table>
                                      </TableContainer>
-                                    <h5 className="text-black">3.Depending on Purpose</h5>
-                                    <h6 className="text-black">Residential Plotted :-</h6>
+                                    <h5 className="text-black"><b>3.Depending on Purpose</b></h5>
+                                    <h6 className="text-black"><b>Residential Plotted :-</b></h6>
                                     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
         <TableHead>
           <TableRow>
-            <TableCell>Detail of plots</TableCell>
-            <TableCell >No.</TableCell>
-            <TableCell >Area</TableCell>
+            <TableCell><b>Detail of plots</b></TableCell>
+            <TableCell ><b>No.</b></TableCell>
+            <TableCell ><b>Area</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>NPNL
+                                                            <p className="mb-2"onChange={(e)=>setNpnlNo(e.target.value)} value={npnlNo}><b>NPNL
                                                             </b></p>
                                                         </div>
                 </TableCell>
@@ -656,7 +672,7 @@ const handleshow12=e=>{
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>EWS
+                                                            <p className="mb-2" onChange={(e)=>setEwsNo(e.target.value)} value={ewsNo}><b>EWS
 
                                                             </b></p>
                                                         </div>
@@ -670,21 +686,21 @@ const handleshow12=e=>{
       </Table>
                                      </TableContainer>
                                      <hr/>
-                                     <h5 className="text-black">3.Deen Dayal Jan Awas Yojna (DDJAY):-</h5>
+                                     <h5 className="text-black"><b>3.Deen Dayal Jan Awas Yojna (DDJAY):-</b></h5>
                                     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
         <TableHead>
           <TableRow>
-            <TableCell>Detail of plots</TableCell>
-            <TableCell >No.</TableCell>
-            <TableCell >Area</TableCell>
+            <TableCell><b>Detail of plots</b></TableCell>
+            <TableCell ><b>No.</b></TableCell>
+            <TableCell ><b>Area</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Details of frozen plots (50%) 
+                                                            <p className="mb-2" onChange={(e)=>setFrozenNo(e.target.value)} value={frozenNo}><b>Details of frozen plots (50%) 
                                                             </b></p>
                                                         </div>
                 </TableCell>
@@ -696,7 +712,7 @@ const handleshow12=e=>{
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b> Whether one organizes open space/pocket of min area 0.3 acre proposed in the layout plan (Yes/No) </b></p>
+                                                            <p className="mb-2" onChange={(e)=>setorganizeNo(e.target.value)} value={organizeNo}><b> Whether one organizes open space/pocket of min area 0.3 acre proposed in the layout plan (Yes/No) </b></p>
                                                             <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes"  />
                                                 <label for="Yes">Yes</label>
@@ -714,21 +730,21 @@ const handleshow12=e=>{
         </TableBody>
       </Table>
                                      </TableContainer>
-                                     <h5 className="text-black">Industrial Plotted Colony </h5>
+                                     <h5 className="text-black"><b>Industrial Plotted Colony </b></h5>
                                     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
         <TableHead>
           <TableRow>
-            <TableCell>Detail of plots</TableCell>
-            <TableCell >No.</TableCell>
-            <TableCell >Area in Acres</TableCell>
+            <TableCell><b>Detail of plots</b></TableCell>
+            <TableCell ><b>No.</b></TableCell>
+            <TableCell ><b>Area in Acres</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Area of the colony, Up to 50 acres
+                                                            <p className="mb-2"onChange={(e)=>setColonyNo(e.target.value)} value={colonyNo}><b>Area of the colony, Up to 50 acres
                                                             </b></p>
                                                         </div>
                 </TableCell>
@@ -740,7 +756,7 @@ const handleshow12=e=>{
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>More than 50 to 200 acres </b></p>
+                                                            <p className="mb-2" onChange={(e)=>setFiftyNo(e.target.value)} value={fiftyNo}><b>More than 50 to 200 acres </b></p>
                                                            
                                                         </div>
                 </TableCell>
@@ -752,7 +768,7 @@ const handleshow12=e=>{
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>More than 200 acres </b></p>
+                                                            <p className="mb-2" onChange={(e)=>setTwoNo(e.target.value)} value={twoNo}><b>More than 200 acres </b></p>
                                                            
                                                         </div>
                 </TableCell>
@@ -764,7 +780,7 @@ const handleshow12=e=>{
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Proposed plots under residential component DDJAY  </b></p>
+                                                            <p className="mb-2"onChange={(e)=>setResiNo(e.target.value)} value={resiNo}><b>Proposed plots under residential component DDJAY  </b></p>
                                                            
                                                         </div>
                 </TableCell>
@@ -776,7 +792,7 @@ const handleshow12=e=>{
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Proposed plots under community facilities in DDJAY Area  </b></p>
+                                                            <p className="mb-2"onChange={(e)=>setCommerNo(e.target.value)} value={commerNo}><b>Proposed plots under community facilities in DDJAY Area  </b></p>
                                                            
                                                         </div>
                 </TableCell>
@@ -788,7 +804,7 @@ const handleshow12=e=>{
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Details of plots for Labour dormitories from affordable Industries Housing component  </b></p>
+                                                            <p className="mb-2" onChange={(e)=>setLabourNo(e.target.value)} value={labourNo}><b>Details of plots for Labour dormitories from affordable Industries Housing component  </b></p>
                                                            
                                                         </div>
                 </TableCell>
@@ -804,7 +820,7 @@ const handleshow12=e=>{
                                      <div className="row">
                                         <div className="col col-12">
                                             <div className="form-group" >
-                                                <h6>4.Whether you want to avail permissible commercial components 
+                                                <h6 onChange={(e)=>setPermissible(e.target.value)} value={permissible}><b>4.Whether you want to avail permissible commercial components </b>
 (Yes/No):</h6>
                                                 <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" onClick={handleshow}/>
@@ -860,9 +876,9 @@ const handleshow12=e=>{
                                      <div className="row">
                                         <div className="col col-12">
                                             <div className="form-group" >
-                                                <h6>5.Total FAR has been availed (radio 150% or 175%)
+                                                <h6 onChange={(e)=>setFar(e.target.value)} value={far}><b>5.Total FAR has been availed (radio 150% or 175%)
 
-(Yes/No):</h6><input type="radio" value="Yes" id="Yes"
+(Yes/No):</b></h6><input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" checked={true}/>
                                                 <label for="Yes">Yes</label>
 
@@ -875,23 +891,23 @@ const handleshow12=e=>{
                                         </div>
                                      </div>
                                      <hr/>
-                                     <h5 className="text-black">6.Number of Plots/SCOs (saleable area) :-</h5>
+                                     <h5 className="text-black"><b>6.Number of Plots/SCOs (saleable area) :-</b></h5>
                                     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
         <TableHead>
           <TableRow>
-            <TableCell>Types of plots</TableCell>
-            <TableCell >Plot No.</TableCell>
-            <TableCell >Length in mtr</TableCell>
-            <TableCell >Width in mtr</TableCell>
-            <TableCell >Area in sqm</TableCell>
+            <TableCell><b>Types of plots</b></TableCell>
+            <TableCell ><b>Plot No.</b></TableCell>
+            <TableCell ><b>Length in mtr</b></TableCell>
+            <TableCell ><b>Width in mtr</b></TableCell>
+            <TableCell ><b>Area in sqm</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>SCOs
+                                                            <p className="mb-2"onChange={(e)=>setScono(e.target.value)} value={scono}><b>SCOs
                                                             </b></p>
                                                         </div>
                 </TableCell>
@@ -909,7 +925,7 @@ const handleshow12=e=>{
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Booths
+                                                            <p className="mb-2" onChange={(e)=>setBoothPlotno(e.target.value)} value={boothplotno}><b>Booths
 
                                                             </b></p>
                                                         </div>
@@ -962,9 +978,9 @@ const handleshow12=e=>{
                                      <div className="row">
                                         <div className="col col-12">
                                             <div className="form-group" >
-                                                <h6>7.Whether you want to surrender the 10% area of license colony to Govt. the instead of providing 10% under EWS and NPNL plots 
+                                                <h6 onChange={(e)=>setEwsNpnlPlot(e.target.value)} value={ewsnpnlPlot}><b>7.Whether you want to surrender the 10% area of license colony to Govt. the instead of providing 10% under EWS and NPNL plots 
 
-(Yes/No):</h6>
+(Yes/No):</b></h6>
 <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" onClick={handleshow0}/>
                                                 <label for="Yes">Yes</label>
@@ -994,10 +1010,10 @@ const handleshow12=e=>{
                                      <div className="row">
                                         <div className="col col-12">
                                             <div className="form-group" >
-                                                <h6>8.Whether you want to deposit an amount @ of 3 times of collector rate instead of the surrender 10% land to Govt.  
+                                                <h6 onChange={(e)=>setCollectorRate(e.target.value)} value={collectorRate}><b>8.Whether you want to deposit an amount @ of 3 times of collector rate instead of the surrender 10% land to Govt.  
 
 
-(Yes/No):</h6>
+(Yes/No):</b></h6>
 <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" onClick={handleshow1}/>
                                                 <label for="Yes">Yes</label>
@@ -1027,11 +1043,11 @@ const handleshow12=e=>{
                                      <div className="row">
                                         <div className="col col-12">
                                             <div className="form-group" >
-                                                <h6>9.Any other Road
+                                                <h6 onChange={(e)=>setAnyOtherRoad(e.target.value)} value={anyotherroad}><b>9.Any other Road
 
 
 
-(Yes/No):</h6>
+(Yes/No):</b></h6>
 <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" onClick={handleshow2}/>
                                                 <label for="Yes">Yes</label>
@@ -1058,14 +1074,14 @@ const handleshow12=e=>{
                                        
                                      </div>
                                      <hr/>
-                                     <h5 className="text-black">10.Revision of Layout plan (For in principle approval) :-</h5>
+                                     <h5 className="text-black"><b>10.Revision of Layout plan (For in principle approval) :-</b></h5>
                                      <div className="row">
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(a)Whether the license is valid (Yes /No):</h6>
+                                                <h6 onChange={(e)=>setLicValid(e.target.value)} value={licValid}><b>(a)Whether the license is valid (Yes /No):</b></h6>
                                                  <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" onClick={handleshow3}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"onClick={handleshow3}/>
@@ -1102,10 +1118,10 @@ const handleshow12=e=>{
                                         </div>
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(b)Scrutiny fees deposited as per policy dated 11.03.2021 (Yes /No):</h6>
+                                                <h6 onChange={(e)=>setscrutinyFee(e.target.value)} value={scrutinyFee}><b>(b)Scrutiny fees deposited as per policy dated 11.03.2021 (Yes /No):</b></h6>
                                                  <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes"onClick={handleshow4} />
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"onClick={handleshow4}/>
@@ -1125,40 +1141,40 @@ const handleshow12=e=>{
                                         </div>
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(c)Mention the reasons for revision in the layout plan (in case of revision):</h6>
+                                                <h6 onChange={(e)=>setReasonRevision(e.target.value)} value={reasonRevision}><b>(c)Mention the reasons for revision in the layout plan (in case of revision):</b></h6>
                                                  <input type="text" className="form-control"/>
                                             </div>
                                         </div>
                                        
-                                     </div>
+                                     </div><br></br>
                                      <div className="row">
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(d)Upload the copy of the earlier approved layout plan (in case of revision):</h6>
+                                                <h6 onChange={(e)=>setUploadApprovedLayout(e.target.value)} value={uploadapprovedLayout}><b>(d)Upload the copy of the earlier approved layout plan (in case of revision):</b></h6>
                                                  <input type="file" className="form-control"/>
                                             </div>
                                         </div>
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(e)Copy of proposed layout plan indicating the changes from approved layout plan (in case of revision):</h6>
+                                                <h6 onChange={(e)=>setProposedLayout(e.target.value)} value={proposedLayout}><b>(e)Copy of proposed layout plan indicating the changes from approved layout plan (in case of revision):</b></h6>
                                                  <input type="file" className="form-control"/>
                                             </div>
                                         </div>
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(f)Undertaking that no change has been made in the phasing (If applicable) (upload document)s:</h6>
+                                                <h6 onChange={(e)=>setUndertakingChange(e.target.value)} value={undertakingChange}><b>(f)Undertaking that no change has been made in the phasing (If applicable) (upload document)s:</b></h6>
                                                  <input type="file" className="form-control"/>
                                             </div>
                                         </div>
                                        
-                                     </div>
+                                     </div><br></br>
                                      <div className="row">
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(g)Phasing as disclosed with layout plan/site plan (If applicable)(Yes /No):</h6>
+                                                <h6 onChange={(e)=>setPhasingsite(e.target.value)} value={phasingSite}><b>(g)Phasing as disclosed with layout plan/site plan (If applicable)(Yes /No):</b></h6>
                                                  <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" checked={true}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"/>
@@ -1167,20 +1183,20 @@ const handleshow12=e=>{
                                         </div>
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(h)Consent of RERA if there is any change in the phasing (If applicable) (in case of revision):</h6>
+                                                <h6 onChange={(e)=>setReraUpload(e.target.value)} value={reraUpload}><b>(h)Consent of RERA if there is any change in the phasing (If applicable) (in case of revision):</b></h6>
                                                  <input type="file" className="form-control"/>
                                             </div>
                                         </div>
                                      </div>
                                      <hr/>
-                                     <h5 className="text-black">11.Revision of Layout plan (For final approval) :-</h5>
+                                     <h5 className="text-black"><b>11.Revision of Layout plan (For final approval) :-</b></h5>
                                      <div className="row">
                                         <div className="col col-12">
                                             <div className="form-group" >
-                                                <h6>(a)Whether the advertisement is given in 3 local newspapers (1 Hindi+ 2English) having a wider publication in the area(Yes/No)</h6>
+                                                <h6 onChange={(e)=>setNewspaperPublic(e.target.value)} value={newspaperpublic}><b>(a)Whether the advertisement is given in 3 local newspapers (1 Hindi+ 2English) having a wider publication in the area(Yes/No)</b></h6>
                                                  <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" onClick={handleshow5}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"onClick={handleshow5}/>
@@ -1203,14 +1219,14 @@ const handleshow12=e=>{
                                         } 
                                             </div>
                                         </div>
-                                      </div>
+                                      </div><br></br>
                                       <div className="row">
                                         <div className="col col-12">
                                             <div className="form-group" >
-                                                <h6>(b)Whether intimated each of the allottees through registered post regarding the proposed changes in the layout plan (Yes/No)</h6>
+                                                <h6 onChange={(e)=>setIntimatedAllotes(e.target.value)} value={intimatedAllotes}><b>(b)Whether intimated each of the allottees through registered post regarding the proposed changes in the layout plan (Yes/No)</b></h6>
                                                  <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" onClick={handleshow6}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"onClick={handleshow6}/>
@@ -1229,34 +1245,34 @@ const handleshow12=e=>{
                                         } 
                                             </div>
                                         </div>
-                                      </div>
+                                      </div><br></br>
                                       <div className="row">
                                         <div className="col col-12">
                                             <div className="form-group" >
-                                                <h6>(c)Whether you hosted the existing approved layout plan & in-principle approved layout on the website of your company/organization (Yes/No)</h6>
+                                                <h6 onChange={(e)=>setHostedApprovedwebsite(e.target.value)} value={hostedapprovedWebsite}><b>(c)Whether you hosted the existing approved layout plan & in-principle approved layout on the website of your company/organization (Yes/No)</b></h6>
                                                  <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" checked={true}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"/>
                                                 <label for="No">No</label>
                                             </div>
                                         </div>
-                                      </div>
+                                      </div><br></br>
                                       <div className="row">
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(d)Report any objection from any of the allottees (Upload document):</h6>
+                                                <h6 onChange={(e)=>setObjectionUpload(e.target.value)} value={objectionUpload}><b>(d)Report any objection from any of the allottees (Upload document):</b></h6>
                                                  <input type="file" className="form-control"/>
                                             </div>
                                         </div>
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(e)Whether reply submitted in O/o STP, concerned (Yes/No)(Upload document) :</h6>
+                                                <h6 onChange={(e)=>setReplySubmittedUpload(e.target.value)} value={replySubmittedUpload}><b>(e)Whether reply submitted in O/o STP, concerned (Yes/No)(Upload document):</b></h6>
                                                  <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" checked={true}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"/>
@@ -1265,10 +1281,10 @@ const handleshow12=e=>{
                                         </div>
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(f)Have you given an advertisement for booking/sale of plots as per the in-principle layout plan? (Yes/No) (Upload document):</h6>
+                                                <h6 onChange={(e)=>setBookingPlotUpload(e.target.value)} value={bookingPlotUpload}><b>(f)Have you given an advertisement for booking/sale of plots as per the in-principle layout plan? (Yes/No) (Upload document):</b></h6>
                                                 <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" checked={true}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"/>
@@ -1276,14 +1292,14 @@ const handleshow12=e=>{
                                             </div>
                                         </div>
                                        
-                                     </div>
+                                     </div><br></br>
                                      <div className="row">
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(g)Any other feature:(Yes/No):</h6>
+                                                <h6 onChange={(e)=>setAnyFeature(e.target.value)} value={anyFeature}><b>(g)Any other feature:(Yes/No):</b></h6>
                                                 <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" checked={true}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"/>
@@ -1292,10 +1308,10 @@ const handleshow12=e=>{
                                         </div>
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(h) Whether the sites fall under NCZ as per Development Plan (Yes/No) :</h6>
+                                                <h6 onChange={(e)=>setSiteNczDevelop(e.target.value)} value={sitenczdevelop}><b>(h) Whether the sites fall under NCZ as per Development Plan (Yes/No) :</b></h6>
                                                  <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" onClick={handleshow7}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"onClick={handleshow7}/>
@@ -1316,10 +1332,10 @@ const handleshow12=e=>{
                                         </div>
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(i)Whether the sites fall under NCZ as per Sub Regional Plan NCR 2021(Yes/No):</h6>
+                                                <h6 onChange={(e)=>setSiteNczRegional(e.target.value)} value={setSiteNczRegional}><b>(i)Whether the sites fall under NCZ as per Sub Regional Plan NCR 2021(Yes/No):</b></h6>
                                                 <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes"onClick={handleshow8}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"onClick={handleshow8}/>
@@ -1339,14 +1355,14 @@ const handleshow12=e=>{
                                             </div>
                                         </div>
                                        
-                                     </div>
+                                     </div><br></br>
                                      <div className="row">
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(j)Whether the sites fall under NCZ as per the ground truthing report of DLSC(Yes/No):</h6>
+                                                <h6 onChange={(e)=>setNczTruthingReport(e.target.value)} value={nczTruthingReport}><b>(j)Whether the sites fall under NCZ as per the ground truthing report of DLSC(Yes/No):</b></h6>
                                                 <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" onClick={handleshow9}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"onClick={handleshow9}/>
@@ -1367,10 +1383,10 @@ const handleshow12=e=>{
                                         </div>
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(k) Whether the recommendation of DLSC is approved by SLC (Yes/No) :</h6>
+                                                <h6 onChange={(e)=>setDlscRecommend(e.target.value)} value={dlscRecommend}><b>(k) Whether the recommendation of DLSC is approved by SLC (Yes/No) :</b></h6>
                                                  <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" onClick={handleshow10}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"onClick={handleshow10}/>
@@ -1391,10 +1407,10 @@ const handleshow12=e=>{
                                         </div>
                                         <div className="col col-4">
                                             <div className="form-group" >
-                                                <h6>(l)If exemption from any amenity(s)(Yes/No):</h6>
+                                                <h6 onChange={(e)=>setExemption(e.target.value)} value={exemption}><b>(l)If exemption from any amenity(s)(Yes/No):</b></h6>
                                                 <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes"onClick={handleshow11}/>
-                                                <label for="Yes">Yes</label>
+                                                <label for="Yes">Yes</label>&nbsp;&nbsp;
 
                                                 <input type="radio" value="No" id="No"
                                                 onChange={handleChange} name="Yes"onClick={handleshow11}/>
@@ -1423,7 +1439,7 @@ const handleshow12=e=>{
                                      <Button style={{alignSelf:"center", marginTop:20, marginright:867}} variant="primary" type="submit">
                 Save as Draft
             </Button>
-            <Button style={{alignSelf:"center", marginTop:20,marginLeft:867}} variant="primary" type="submit">
+            <Button style={{alignSelf:"center", marginTop:-51,marginLeft:967}} variant="primary" type="submit">
                Continue
             </Button>
                          

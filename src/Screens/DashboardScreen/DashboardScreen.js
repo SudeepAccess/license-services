@@ -51,7 +51,7 @@ const DashboardScreen=()=>{
             <Dashboardcomp displayDashboardLanding={DashboardLandingDisplay} newLicenceCardClicked={newLicenceCardClicked} sidebarOpen={IsDispalySidebar}></Dashboardcomp>
             <Formcontainer isFormshow={NewLicenceDisplay}></Formcontainer>
             {/* <Home distpalyHomeLandig={HomeLandingDisplay} HomeClicked={HomeClicked} sidebarOpen={IsDispalySidebar}></Home> */}
-            <Home distpalyHomeLandig={HomeLandingDisplay}  ></Home>
+            {/* <Home distpalyHomeLandig={HomeLandingDisplay}  ></Home> */}
         </>
         
     )
