@@ -126,6 +126,12 @@ const Personalinfo=(props)=>{
                     </Col>
                 </Row>
             </Form.Group>
+             <div style={{position:"relative", marginBottom:40}}>
+             <Button onClick={()=>props.passUncheckedList({"data":uncheckedValue})}>
+                 Submit
+             </Button>
+         </div>
+         <hr></hr>
         </Form>
     )
 }

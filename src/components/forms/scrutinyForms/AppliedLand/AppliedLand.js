@@ -3749,7 +3749,7 @@ const AppliedLandinfo=(props)=>{
                 <Row className="ms-auto" style={{marginBottom:20}}>
                 <Col md={4} xxl lg="3">
                         <div>
-                            <h4 style={{fontSize:16}}>H  General Information:-</h4>
+                            <h4 style={{fontSize:16}}></h4>
                             <Form.Label>
                             
                             Whether layout signed by professional Architect and Owner (Yes/No)
@@ -3771,7 +3771,884 @@ const AppliedLandinfo=(props)=>{
                     </Col>
                 </Row>
 
-            {/* this has some other section which are need to be done */}
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}>I  Details of Plots:-</h4>
+                            <h4 style={{fontSize:16}}>Regular size Plots</h4>
+                            <Form.Label>
+                            Residential Gen
+                            
+                            </Form.Label>
+                            <span style={{color:"red"}}>*</span>
+                        </div>
+                        <Form.Check  value="Residential Gen" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group244" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Residential Gen" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group244" inline></Form.Check>    
+                        
+                        
+                    </Col>
+
+                   
+
+                </Row>
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+
+
+                <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Plot No.
+                            
+                            </Form.Label>
+                            <span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Length in mtr
+                            
+                            </Form.Label>
+                            <span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Width in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Area in sqmtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Similar shape/size plots
+                            
+                            </Form.Label>
+                             <span style={{color:"red"}}>*</span> 
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>  
+
+
+                </Row>
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Residential NPNL
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        <Form.Check  value="Residential NPNL" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group245" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Residential NPNL" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group245" inline></Form.Check>    
+                        
+                        
+                    </Col>
+
+                   
+
+                </Row>
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+
+
+                <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Plot No.
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Length in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Width in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Area in sqmtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Similar shape/size plots
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>  
+
+
+                </Row>
+
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Residential EWS
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        <Form.Check  value="Residential EWS" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group246" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Residential EWS" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group246" inline></Form.Check>    
+                        
+                        
+                    </Col>
+
+                   
+
+                </Row>
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+
+
+                <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Plot No.
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Length in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Width in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Area in sqmtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Similar shape/size plots
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>  
+
+
+                </Row>
+
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Commercial SCO
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        <Form.Check  value="Commercial SCO" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group247" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Commercial SCO" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group247" inline></Form.Check>    
+                        
+                        
+                    </Col>
+
+                   
+
+                </Row>
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+
+
+                <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Plot No.
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Length in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Width in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Area in sqmtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Similar shape/size plots
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>  
+
+
+                </Row>
+
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Commercial Both
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        <Form.Check  value="Commercial Both" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group248" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Commercial Both" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group248" inline></Form.Check>    
+                        
+                        
+                    </Col>
+
+                   
+
+                </Row>
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+
+
+                <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Plot No.
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Length in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Width in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Area in sqmtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Similar shape/size plots
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>  
+
+
+                </Row>
+
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Community Sites
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        <Form.Check  value="Community Sites" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group249" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Community Sites" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group249" inline></Form.Check>    
+                        
+                        
+                    </Col>
+
+                   
+
+                </Row>
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+
+
+                <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Plot No.
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Length in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Width in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Area in sqmtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Similar shape/size plots
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>  
+
+
+                </Row>
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Public Utilities
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        <Form.Check  value="Public Utilities" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group251" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Public Utilities" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group251" inline></Form.Check>    
+                        
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                   
+
+                </Row>
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+
+
+                <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Plot No.
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Length in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Width in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Area in sqmtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="2">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Similar shape/size plots
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>  
+
+
+                </Row>
+
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}>Irregular size Plots</h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Irregular size Plots
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        <Form.Check  value="Public Utilities" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group252" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Public Utilities" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group252" inline></Form.Check>    
+                        
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Dimensions in mtr
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                       
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Area manually entered
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                       
+                        <Form.Control style={{maxWidth:200,marginTop:10}}></Form.Control>
+                        
+                    </Col>
+
+                   
+
+                </Row>
+
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}>II  Residential Plotted:-</h4>
+                            <h4 style={{fontSize:16}}>NPNL</h4>
+                            <Form.Label>
+                            Nos.
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Area
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                       
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                   
+
+                   
+
+                </Row>
+
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            
+                            <h4 style={{fontSize:16}}>EWS</h4>
+                            <Form.Label>
+                            Nos.
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                    <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                            <Form.Label>
+                            Area
+                            
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                       
+                        <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+                        
+                    </Col>
+
+                   
+
+                   
+
+                </Row>
+                
+
+                
+
 
                 <Row className="ms-auto" style={{marginBottom:20}}>
                 <Col md={4} xxl lg="3">
@@ -4281,7 +5158,7 @@ const AppliedLandinfo=(props)=>{
                             (iv)Mention the reasons for revision in the layout plan
                             </Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check  value="Mention the reasons for revision in the layout plan" 
+                        {/* <Form.Check  value="Mention the reasons for revision in the layout plan" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
@@ -4291,9 +5168,9 @@ const AppliedLandinfo=(props)=>{
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
-                                    name="group210" inline></Form.Check>
+                                    name="group210" inline></Form.Check> */}
 
-     
+     <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
                         
  
                     </Col>
@@ -4306,7 +5183,7 @@ const AppliedLandinfo=(props)=>{
                             (v)Upload the copy of earlier approved layout plan
                             </Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check  value="Upload the copy of earlier approved layout plan" 
+                        {/* <Form.Check  value="Upload the copy of earlier approved layout plan" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
@@ -4316,9 +5193,9 @@ const AppliedLandinfo=(props)=>{
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
-                                    name="group211" inline></Form.Check>
+                                    name="group211" inline></Form.Check> */}
 
-     
+                         <Form.Control type="file"></Form.Control>
                         
  
                     </Col>
@@ -4331,7 +5208,7 @@ const AppliedLandinfo=(props)=>{
                             (vi)Copy of proposed layout plan indicating the changes from approved layout plan
                             </Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check  value="Copy of proposed layout plan indicating the changes from approved layout plan" 
+                        {/* <Form.Check  value="Copy of proposed layout plan indicating the changes from approved layout plan" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
@@ -4341,9 +5218,9 @@ const AppliedLandinfo=(props)=>{
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
-                                    name="group212" inline></Form.Check>
+                                    name="group212" inline></Form.Check> */}
 
-     
+<Form.Control type="file"></Form.Control>
                         
  
                     </Col>
@@ -4412,7 +5289,7 @@ const AppliedLandinfo=(props)=>{
                             (ix)Undertaking that no change has been made in the phasing
                             </Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check  value="Undertaking that no change has been made in the phasing" 
+                        {/* <Form.Check  value="Undertaking that no change has been made in the phasing" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
@@ -4422,7 +5299,9 @@ const AppliedLandinfo=(props)=>{
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
-                                    name="group215" inline></Form.Check>
+                                    name="group215" inline></Form.Check> */}
+
+            <Form.Control type="file"></Form.Control>
 
      
                         
@@ -4443,7 +5322,7 @@ const AppliedLandinfo=(props)=>{
                             (x)Consent of RERA if there is any change in the phasing
                             </Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check  value="Consent of RERA if there is any change in the phasing" 
+                        {/* <Form.Check  value="Consent of RERA if there is any change in the phasing" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
@@ -4453,7 +5332,7 @@ const AppliedLandinfo=(props)=>{
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
-                                    name="group216" inline></Form.Check>
+                                    name="group216" inline></Form.Check> */}
 
     
 <Form.Control type="file" style={{maxWidth:200,marginTop:10}} ></Form.Control>  
@@ -4630,32 +5509,79 @@ const AppliedLandinfo=(props)=>{
 
                    {/* code left */}
                 <Row className="ms-auto" style={{marginBottom:20}}>
-                <Col md={4} xxl lg="8">
+                <Col md={4} xxl lg="6">
                         <div>
                             <h4 style={{fontSize:16}}>IV. Plans / Project report/ exemptions(To be Integrated with GIS):</h4>
                             <h4 style={{fontSize:16}}>I/We hereby submit the following plans and enclose the relevant documents as Annexures:</h4>
+
+                     </div>
+                           
+                           
+ 
+                </Col>
+
+               
+
+
+                </Row>
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+
+                <Col md={4} xxl lg="6">
+                        <div>
+                           
                            
                             <Form.Label>
                             
-                            (i) Plans
+                            type of Map/ Plan
                             </Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check  value=" Plans" 
+                        <Form.Check  value="type of Map/ Plan" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
-                                    name="group223" inline></Form.Check>
+                                    name="group242" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value=" Plans" 
+                                    value="type of Map/ Plan" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
-                                    name="group223" inline></Form.Check>
+                                    name="group242" inline></Form.Check>
 
-    
+                    <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
+  
+ 
+                </Col>
+
+                <Col md={4} xxl lg="6">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                           
+                            <Form.Label>
+                            
+                            Annexure
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        <Form.Check  value="Annexure" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group243" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Annexure" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group243" inline></Form.Check>
+
+                    <Form.Control style={{maxWidth:200,marginTop:10}} readOnly></Form.Control>
   
  
                     </Col>
+
+
+
                 </Row>
 
                 <Row className="ms-auto" style={{marginBottom:20}}>
@@ -4669,13 +5595,13 @@ const AppliedLandinfo=(props)=>{
                             (ii) Details of Exemption, if any, from providing the amenity/amenities in the proposed colony and an explanatory note with plans marked A,B,C (so on) as to why the said amenity/amenities are not required to be provided in the colony : 
                             </Form.Label><span style={{color:"red"}}>*</span>
                         </div>
-                        <Form.Check  value="(ii) Details of Exemption, if any, from providing the amenity/amenities in the proposed colony and an explanatory note with plans marked A,B,C (so on) as to why the said amenity/amenities are not required to be provided in the colony : *" 
+                        <Form.Check  value="Details of Exemption, if any, from providing the amenity/amenities in the proposed colony and an explanatory note with plans marked A,B,C (so on) as to why the said amenity/amenities are not required to be provided in the colony : *" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
                                     name="group224" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="(ii) Details of Exemption, if any, from providing the amenity/amenities in the proposed colony and an explanatory note with plans marked A,B,C (so on) as to why the said amenity/amenities are not required to be provided in the colony : *" 
+                                    value="Details of Exemption, if any, from providing the amenity/amenities in the proposed colony and an explanatory note with plans marked A,B,C (so on) as to why the said amenity/amenities are not required to be provided in the colony : *" 
                                     type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
@@ -4686,6 +5612,68 @@ const AppliedLandinfo=(props)=>{
  
                     </Col>
                 </Row>
+
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                           
+                            <Form.Label>
+                            
+                            Name of Amenity
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        <Form.Check  value="Name of Amenity" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group253" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Name of Amenity" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group253" inline></Form.Check>
+
+    
+              <Form.Control style={{maxWidth:200,marginTop:10}}></Form.Control>
+
+  
+                    </Col>
+
+                    <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                           
+                            <Form.Label>
+                            
+                            Explanation for exemption
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        <Form.Check  value="Explanation for exemption" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group254" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Explanation for exemption" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group254" inline></Form.Check>
+
+    
+              <Form.Control style={{maxWidth:200,marginTop:10}}></Form.Control>
+
+  
+                    </Col>
+
+                </Row>
+
+
 
 
                 <Row className="ms-auto" style={{marginBottom:20}}>
@@ -4710,6 +5698,9 @@ const AppliedLandinfo=(props)=>{
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
                                     name="group225" inline></Form.Check>
+
+                                    <p>Indemnity bond (on the given Proforma) indemnifying the department against any loss due to false information submitted in the application, concealment of facts, discrepancy with respect to revenue documents, delay in provision of External Development works to be executed by Government agency*</p>
+                                    <Button>View Document</Button>
 
  
                     </Col>
@@ -4741,6 +5732,229 @@ const AppliedLandinfo=(props)=>{
  
                     </Col>
                 </Row>
+
+
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}>Details of fee and charges:*</h4>
+                            <h4 style={{fontSize:16}}>Type of fee</h4>
+                           
+                            <Form.Label>
+                            
+                            Applicable Scrutiny Fees 
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        <Form.Check  value="Applicable Scrutiny Fees" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group234" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Applicable Scrutiny Fees" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group234" inline></Form.Check>
+
+ 
+                    </Col>
+
+                   
+                    <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                           
+                            <Form.Label>
+                            
+                            Amount required
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        {/* <Form.Check  value="Amount required" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group235" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Amount required" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group235" inline></Form.Check> */}
+
+<Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>   
+ 
+                    </Col>
+
+                    <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                           
+                            <Form.Label>
+                            
+                            Amount Deposited
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        {/* <Form.Check  value="Amount Deposited" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group236" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Amount Deposited" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group236" inline></Form.Check> */}
+
+<Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>   
+ 
+                    </Col>
+
+
+                    <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                           
+                            <Form.Label>
+                            
+                            Proof of Payment
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        {/* <Form.Check  value="Proof of Payment" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group237" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Proof of Payment" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group237" inline></Form.Check> */}
+
+                        <Button>Download</Button>
+ 
+                    </Col>
+
+
+
+                </Row>
+
+
+                <Row className="ms-auto" style={{marginBottom:20}}>
+                <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                           
+                            <Form.Label>
+                            
+                            Part Licence Fees @ 25% of applicable licence fee. 
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                     <Form.Check  value="Part Licence Fees @ 25% of applicable licence fee." 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group238" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Part Licence Fees @ 25% of applicable licence fee." 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group238" inline></Form.Check> 
+
+ 
+                    </Col>
+
+<Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                           
+                            <Form.Label>
+                            
+                            Amount required
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        {/* <Form.Check  value="Amount required" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group239" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Amount required" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group239" inline></Form.Check> */}
+
+<Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>   
+ 
+                    </Col>
+
+                    <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                           
+                            <Form.Label>
+                            
+                            Amount Deposited
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        {/* <Form.Check  value="Amount Deposited" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group240" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Amount Deposited" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group240" inline></Form.Check> */}
+
+<Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>   
+ 
+                    </Col>
+
+
+                    <Col md={4} xxl lg="3">
+                        <div>
+                            <h4 style={{fontSize:16}}></h4>
+                            <h4 style={{fontSize:16}}></h4>
+                           
+                            <Form.Label>
+                            
+                            Proof of Payment
+                            </Form.Label><span style={{color:"red"}}>*</span>
+                        </div>
+                        {/* <Form.Check  value="Proof of Payment" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle size={18}></AiFillCheckCircle>} 
+                                    name="group241" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Proof of Payment" 
+                                    type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle size={18}></AiFillCloseCircle>} 
+                                    name="group241" inline></Form.Check> */}
+
+                      <Button>Download</Button> 
+ 
+                    </Col>
+
+                </Row>
+
+
+
 
                 <Row className="ms-auto" style={{marginBottom:20}}>
                 <Col md={4} xxl lg="3">
