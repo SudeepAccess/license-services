@@ -10,7 +10,7 @@ import Box from '@material-ui/core//Box';
 import { TableRow, TableHead, TableContainer, TableCell, TableBody, Table, Paper } from '@material-ui/core';
 import { blue, grey } from "@material-ui/core/colors";
 import TextField from '@mui/material/TextField';
-
+import axios from 'axios';
 
 
 const ApllicantPuropseForm=(props)=>{
@@ -66,20 +66,20 @@ const ApllicantPuropseForm=(props)=>{
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
-      };
-      const styles={
-        borderBottom: '0.5px solid',
-        borderRight: 0,
-       
-        borderTop: 0,
-        borderLeft: 0,
-        bgcolor: 'background.paper',
-      }
+    };
+    const styles={
+    borderBottom: '0.5px solid',
+    borderRight: 0,
     
-      const [show, setShow] = useState(false);
+    borderTop: 0,
+    borderLeft: 0,
+    bgcolor: 'background.paper',
+    }
+    
+    const [show, setShow] = useState(false);
 
-      const handleClose = () => setShow(false);
-      const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     const PurposeFormSubmitHandler=(e)=>{
         e.preventDefault();
         SetPurposeformSubmitted(true);
@@ -123,8 +123,43 @@ const ApllicantPuropseForm=(props)=>{
          // form.push(forms)
          let frData = JSON.parse(localStorage.getItem('step2') || "[]")
      
-     };
-       
+    };
+
+    const DistrictApiCall=async()=>{
+        try{
+            const postDistrict={
+                "RequestInfo": {
+                    "apiId": "Rainmaker",
+                    "ver": "v1",
+                    "ts": 0,
+                    "action": "_search",
+                    "did": "",
+                    "key": "",
+                    "msgId": "090909",
+                    "requesterId": "",
+                    "authToken": ""
+                }
+            }
+            // const Resp = await axios.post(URL_MDMS+"/egov-mdms-service/v1/_search",
+            const Resp =  await axios.post("/egov-mdms-service/v1/_district",
+            postDistrict,
+            {headers:{
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-origin':"*",
+            }})
+            .then((Resp)=>{
+                console.log("DISTRICTLIST",Resp)
+            })
+              
+        }catch(error){
+            console.log(error.message);
+        }
+     }      
+     
+     useEffect(()=>{
+        DistrictApiCall();
+      },[])
+
     useEffect(()=>{
         if (PurposeformSubmitted) {
             props.PurposeForm(true);
