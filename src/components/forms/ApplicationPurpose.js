@@ -17,6 +17,7 @@ const ApllicantPuropseForm=(props)=>{
     const[form,setForm]=useState([]);
     const [purpose,setPurpose]=useState('');
     const [district2,setDistrict2]=useState('');
+    const [tehsil,setTehsil]=useState('');
     const[revenueName,setRevenueName]=useState('');
     const[khewat,setKhewat]=useState('');
     const[mustil,setMustil]=useState('');
@@ -46,6 +47,10 @@ const ApllicantPuropseForm=(props)=>{
     const [PurposeAdd,SetPurposeAdd] =useState([<PurposeAddform element="1"></PurposeAddform>]);
     const [EnterdetailsShow,SetEnterdetailsShow] = useState(false);
     const [DisplayEnterdetails,SetDisplayEnterdetails] = useState("none");
+    const [districtData,setDistrictData] = useState([]);
+    const [tehsilData,setTehsilData] =useState([]);
+    const [revenueData,setRevenuStateData] =useState([]);
+    const [mustilData,setMustilData] =useState([]);
     const [ParentAdd,SetParentAdd] =useState([<ParentLicenceAddform element="1"></ParentLicenceAddform>]);
     const HandleEnterDetails=()=>{
         if (EnterdetailsShow) {
@@ -96,6 +101,7 @@ const ApllicantPuropseForm=(props)=>{
             village2:village2,
             Khasra:Khasra,
             khatoni:khatoni,
+            tehsil:tehsil
         //   "data": {"Rectangle":"","kanalBigha":"","marlaBiswa":"","sarsai":"","colKhasra":"","developerLlp":"","registeringdate":"","validitydate":"","colirrevocialble":"","authSignature":"","nameAuthSign":"","registerAuthority":"","totalAppliedArea":""},
         }
     
@@ -149,17 +155,125 @@ const ApllicantPuropseForm=(props)=>{
             }})
             .then((Resp)=>{
                 console.log("DISTRICTLIST",Resp)
+                return Resp;
             })
-              
+            setDistrictData(Resp.data);
         }catch(error){
             console.log(error.message);
         }
-     }      
+     }     
      
+     console.log("state data",districtData)
+     const getTehslidata=async()=>{
+        if (district2!=="") {
+            const datatopost ={
+                "RequestInfo": {
+                  "apiId": "Rainmaker",
+                  "ver": "v1",
+                  "ts": 0,
+                  "action": "_search",
+                  "did": "",
+                  "key": "",
+                  "msgId": "090909",
+                  "requesterId": "",
+                  "authToken": ""
+                }
+                
+              }
+              
+            try{
+                const Resp = await axios.post("/egov-mdms-service/v1/_tehsil?dCode="+ district2,datatopost,{headers:{
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-origin':"*",
+                }}).then((response)=>{
+                    return response
+                });
+                setTehsilData(Resp.data)
+            }catch(error){
+                console.log(error.message);
+            }
+        }
+     }
+
+     const getRevenuStateData=async()=>{
+        if (tehsil!=="") {
+            const datatopost ={
+                "RequestInfo": {
+                  "apiId": "Rainmaker",
+                  "ver": "v1",
+                  "ts": 0,
+                  "action": "_search",
+                  "did": "",
+                  "key": "",
+                  "msgId": "090909",
+                  "requesterId": "",
+                  "authToken": ""
+                }
+                
+              }
+              
+            try{
+                const Resp = await axios.post("/egov-mdms-service/v1/_village?"+"dCode="+district2+"&"+"tCode="+tehsil,datatopost,{headers:{
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-origin':"*",
+                }}).then((response)=>{
+                    return response
+                });
+                setRevenuStateData(Resp.data)
+            }catch(error){
+                console.log(error.message);
+            }
+        }
+     }
+
+     const getMustilData=async()=>{
+        if (revenueName!=="") {
+            const datatopost ={
+                "RequestInfo": {
+                  "apiId": "Rainmaker",
+                  "ver": "v1",
+                  "ts": 0,
+                  "action": "_search",
+                  "did": "",
+                  "key": "",
+                  "msgId": "090909",
+                  "requesterId": "",
+                  "authToken": ""
+                }
+                
+              }
+              
+            try{
+                const Resp = await axios.post("/egov-mdms-service/v1/_must?"+"dCode="+district2+"&"+"tCode="+tehsil+"&NVCode="+revenueName,datatopost,{headers:{
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-origin':"*",
+                }}).then((response)=>{
+                    return response
+                });
+                setMustilData(Resp.data);
+                console.log("MUSTDATA",Resp.data)
+            }catch(error){
+                console.log(error.message);
+            }
+        }
+     }
      useEffect(()=>{
         DistrictApiCall();
-      },[])
+      },[]);
 
+
+    useEffect(()=>{
+        getTehslidata();
+    },[district2])
+    
+    useEffect(()=>{
+        getRevenuStateData();
+    },[district2,tehsil])
+    
+    useEffect(()=>{
+        getMustilData();
+    },[district2,tehsil,revenueName])
+     
     useEffect(()=>{
         if (PurposeformSubmitted) {
             props.PurposeForm(true);
@@ -271,10 +385,12 @@ const ApllicantPuropseForm=(props)=>{
                             <Form.Label><b>District</b> <span style={{color:"red"}}>*</span></Form.Label>
                         </div>
                         <Form.Select type="text" defaultValue="Select" placeholder="District"  onChange={(e)=>setDistrict2(e.target.value)} value={district2}>
-                            <option value="1">District 1</option>
-                            <option value="2">District 2</option>
-                            <option value="3">District 3</option>
-                            <option value="3">District 4</option>
+                            {(districtData!==undefined && districtData.length>0)?
+                            (districtData.map((el,i)=>
+                            <option value={el.districtCode}>{el.districtName}</option>)):
+                            <option value="1">no district</option>}
+                            
+                            
                         </Form.Select>
                     </Col>
                 
@@ -583,12 +699,11 @@ const ApllicantPuropseForm=(props)=>{
                             <div>
                                 <Form.Label><b>Tehsil</b></Form.Label>
                             </div>
-                            <Form.Select type="text" defaultValue="Select"  >
-                            <option>Tehsil 1</option>
-                                                            <option>Tehsil 2</option>
-                                                            <option>Tehsil 3</option>
-                                                            <option>Tehsil 4</option>
-                                                            <option>Tehsil 5</option>
+                            <Form.Select type="text" defaultValue="Select" value={tehsil} onChange={(e)=>setTehsil(e.target.value)}>
+                            {(tehsilData!==undefined && tehsilData.length>0)?
+                            (tehsilData.map((el,i)=>
+                            <option value={el.code}>{el.name}</option>)):
+                            <option value="1">--Select Tehsil--</option>}
                             </Form.Select>
                         </Col>
                         <Col md={4} xxl lg="4">
@@ -596,11 +711,10 @@ const ApllicantPuropseForm=(props)=>{
                                 <Form.Label><b>Name of Revenue estate</b></Form.Label>
                             </div>
                             <Form.Select type="text" defaultValue="Select" onChange={(e)=>setRevenueName(e.target.value)} value={revenueName} >
-                            <option>revenuestate 1</option>
-                                                            <option>revenuestate 2</option>
-                                                            <option>revenuestate 3</option>
-                                                            <option>revenuestate 4</option>
-                                                            <option>revenuestate 5</option>
+                            {(revenueData!==undefined && revenueData.length>0)?
+                            (revenueData.map((el,i)=>
+                            <option value={el.code}>{el.name}</option>)):
+                            <option value="1">--Select Revenue State--</option>}
                             </Form.Select>
                         </Col>
                         <Col md={4} xxl lg="4">
@@ -609,11 +723,10 @@ const ApllicantPuropseForm=(props)=>{
                             </div>
                             <Form.Select type="text" defaultValue="Select" placeholder="Tehshil"   onChange={(e)=>setMustil(e.target.value)} value={mustil} >
                             
-                            <option>mustil 1</option>
-                                                            <option>mustil 2</option>
-                                                            <option>mustil 3</option>
-                                                            <option>mustil 4</option>
-                                                            <option>mustil 5</option>
+                            {(mustilData!==undefined && mustilData.length>0)?
+                            (mustilData.map((el,i)=>
+                            <option value={el}>{el}</option>)):
+                            <option value="1">--Select Mustil--</option>}
                             </Form.Select>
                         </Col>
                         
