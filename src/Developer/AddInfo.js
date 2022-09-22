@@ -69,14 +69,14 @@ function AddInfo() {
           'Content-Type': 'application/json',
           'X-APISETU-APIKEY':'PDSHazinoV47E18bhNuBVCSEm90pYjEF',
           'X-APISETU-CLIENTID':'in.gov.tcpharyana',
-          'Access-Control-Allow-Origin':"https://apisetu.gov.in",
+          'Access-Control-Allow-Origin':"*",
         }})
 
         const Directory = await axios.get("/mca-directors/v1/companies/U72200CH1998PTC022006", {headers:{
           'Content-Type': 'application/json',
           'X-APISETU-APIKEY':'PDSHazinoV47E18bhNuBVCSEm90pYjEF',
           'X-APISETU-CLIENTID':'in.gov.tcpharyana',
-          'Access-Control-Allow-Origin':"https://apisetu.gov.in",
+          'Access-Control-Allow-Origin':"*",
         }})
 
         console.log(Resp.data)
@@ -122,9 +122,10 @@ const postAddInfo=async()=>{
 
   const [noofRows, setNoOfRows] = useState(1);
   const [aoofRows, setAoOfRows] = useState(1);
-  const AddInfoForm = (e) => {
+  const AddInfoForm = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
+    
     let forms = {
       cinNo: cinNo,
       companyName: companyName,
@@ -141,7 +142,15 @@ const postAddInfo=async()=>{
       Percetage: Percetage,
       UploadPDF: UploadPDF,
     }
-
+    try {
+      let res = await axios.post("/user/developer/_registration",forms).then((response)=>{
+        return response
+      });
+      console.log("FORMDATA",res)
+      
+    } catch (err) {
+      console.log(err);
+    }
     localStorage.setItem("step1", JSON.stringify(forms));
     let frmData = JSON.parse(localStorage.getItem("step1a") || "[]");
 
