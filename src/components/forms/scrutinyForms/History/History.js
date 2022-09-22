@@ -3,10 +3,9 @@ import {Row, Col, Card, Container,Form, Button} from "react-bootstrap"
 
 
 const windowHeight =(window!==undefined)? window.innerHeight:null
-const DisApprovalList=(props)=>{
+const HistoryList=(props)=>{
 
-    const Listlist = props.disapprovallist
-    console.log("disapprovals",Listlist)
+    
     return(
         <Container className="justify-content-center"  style={{
                             
@@ -17,28 +16,15 @@ const DisApprovalList=(props)=>{
                 <Card>
                     <Card.Header>
                         <Card.Title style={{fontFamily:"Roboto", fontSize:30, fontWeight:"bold"}}>
-                            Disapproval List
+                            History
                         </Card.Title>
                     </Card.Header>
                     <Card.Body style={{overflowY:"auto", height:250,backgroundColor:"#C6C6C6"}}>
                         <Form>
-                           {(Listlist!==undefined && Listlist!==null && Listlist.length>0)?
-                           (Listlist.map((el,i)=>
-                           <Row key={i} style={{marginBottom:10}}>
-                           <Col>
-                               <h4 style={{fontSize:16,fontFamily:"Roboto", fontWeight:"lighter"}}>
-                                    {el}
-                                </h4>
-                           </Col>
-                           <Col>
-                               <Form.Control type="text" placeholder="Reason for Disapprove">
-
-                               </Form.Control>
-                           </Col>
-                       </Row>)):
+                           
                        <div>
-                        <h2 style={{fontSize:18, fontFamily:"Roboto",fontWeight:"lighter"}}>No Disapproval list to show right now</h2>
-                        </div>}
+                        <h2 style={{fontSize:18, fontFamily:"Roboto",fontWeight:"lighter"}}>No History list to show right now</h2>
+                        </div>
                             
                             
                         </Form>
@@ -55,4 +41,4 @@ const DisApprovalList=(props)=>{
     )
 }
 
-export default DisApprovalList;
+export default HistoryList;
