@@ -102,6 +102,24 @@ useEffect(()=>{
   HandleGetMCNdata();
 },[cinNo])
 
+const postAddInfo=async()=>{
+
+  try{
+    const Resp =  await axios.post("http://localhost:8081/user/developer/_registration",
+    {headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-origin':"*",
+    }})
+    .then((Resp)=>{
+        console.log("FORMDATA",Resp)
+        return Resp;
+    })
+
+  }catch(error){
+    console.log(error)
+  }
+}
+
   const [noofRows, setNoOfRows] = useState(1);
   const [aoofRows, setAoOfRows] = useState(1);
   const AddInfoForm = (e) => {
@@ -129,6 +147,11 @@ useEffect(()=>{
 
     localStorage.setItem("step2", JSON.stringify(form2));
     let frData = JSON.parse(localStorage.getItem("step2") || "[]");
+
+
+    useEffect(()=>{
+      postAddInfo();
+    },[]);
   };
 
   return (
