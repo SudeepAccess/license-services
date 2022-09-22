@@ -1222,7 +1222,11 @@
     source-map "^0.5.7"
     stylis "4.0.13"
 
+<<<<<<< HEAD
 "@emotion/cache@^11.10.0", "@emotion/cache@^11.10.3":
+=======
+"@emotion/cache@^11.10.0":
+>>>>>>> 0fa53634b19e3a42f490cc8d1b980ec617a72e5b
   version "11.10.3"
   resolved "https://registry.npmjs.org/@emotion/cache/-/cache-11.10.3.tgz"
   integrity sha512-Psmp/7ovAa8appWh3g51goxu/z3iVms7JXOreq136D8Bbn6dYraPnmL6mdM8GThEx9vwSn92Fz+mGSjBzN8UPQ==
@@ -1747,7 +1751,11 @@
     "@material/theme" "^14.0.0"
     tslib "^2.1.0"
 
+<<<<<<< HEAD
 "@mui/base@5.0.0-alpha.96", "@mui/base@^5.0.0-alpha.96":
+=======
+"@mui/base@^5.0.0-alpha.96":
+>>>>>>> 0fa53634b19e3a42f490cc8d1b980ec617a72e5b
   version "5.0.0-alpha.96"
   resolved "https://registry.npmjs.org/@mui/base/-/base-5.0.0-alpha.96.tgz"
   integrity sha512-GZf2YguepLFMWGG8vQNLRl7FlXPDeyxQBYgrkHxwNJYeRw55rrGrJxHzL1iCbk71VZ2IIAIs5IAxNpyHK9iqPQ==
@@ -1760,11 +1768,14 @@
     clsx "^1.2.1"
     prop-types "^15.8.1"
     react-is "^18.2.0"
+<<<<<<< HEAD
 
 "@mui/core-downloads-tracker@^5.10.4":
   version "5.10.4"
   resolved "https://registry.npmjs.org/@mui/core-downloads-tracker/-/core-downloads-tracker-5.10.4.tgz"
   integrity sha512-VGekVa9dleJ+ii47+gXvKUV5a11T0nsjXN8bk5NqiJRQWRCAhbTHgsfZuctNcMeLW9FSf2gu6U0k2U6rhABKcA==
+=======
+>>>>>>> 0fa53634b19e3a42f490cc8d1b980ec617a72e5b
 
 "@mui/icons-material@^5.10.3":
   version "5.10.3"
@@ -2379,7 +2390,11 @@
   dependencies:
     "@types/react" "*"
 
+<<<<<<< HEAD
 "@types/react-transition-group@^4.2.0", "@types/react-transition-group@^4.4.4", "@types/react-transition-group@^4.4.5":
+=======
+"@types/react-transition-group@^4.2.0", "@types/react-transition-group@^4.4.4":
+>>>>>>> 0fa53634b19e3a42f490cc8d1b980ec617a72e5b
   version "4.4.5"
   resolved "https://registry.npmjs.org/@types/react-transition-group/-/react-transition-group-4.4.5.tgz"
   integrity sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==
@@ -2387,9 +2402,15 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@>=16.9.11":
+<<<<<<< HEAD
   version "17.0.49"
   resolved "https://registry.npmjs.org/@types/react/-/react-17.0.49.tgz"
   integrity sha512-CCBPMZaPhcKkYUTqFs/hOWqKjPxhTEmnZWjlHHgIMop67DsXywf9B5Os9Hz8KSacjNOgIdnZVJamwl232uxoPg==
+=======
+  version "18.0.17"
+  resolved "https://registry.npmjs.org/@types/react/-/react-18.0.17.tgz"
+  integrity sha512-38ETy4tL+rn4uQQi7mB81G7V1g0u2ryquNmsVIOKUAEIDK+3CUjZ6rSRpdvS99dNBnkLFL83qfmtLacGOTIhwQ==
+>>>>>>> 0fa53634b19e3a42f490cc8d1b980ec617a72e5b
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -3853,7 +3874,11 @@ csstype@^2.5.2:
   resolved "https://registry.npmjs.org/csstype/-/csstype-2.6.20.tgz"
   integrity sha512-/WwNkdXfckNgw6S5R125rrW8ez139lBHWouiBvX8dfMFtcn6V81REDqnH7+CRpRipfYlyU1CmOnOxrmGcFOjeA==
 
+<<<<<<< HEAD
 csstype@^3.0.2, csstype@^3.1.0:
+=======
+csstype@^3.0.2:
+>>>>>>> 0fa53634b19e3a42f490cc8d1b980ec617a72e5b
   version "3.1.0"
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.0.tgz"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
@@ -8045,7 +8070,11 @@ react-transition-group@^2.5.3:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
+<<<<<<< HEAD
 react-transition-group@^4.4.0, react-transition-group@^4.4.2, react-transition-group@^4.4.5:
+=======
+react-transition-group@^4.4.0, react-transition-group@^4.4.2:
+>>>>>>> 0fa53634b19e3a42f490cc8d1b980ec617a72e5b
   version "4.4.5"
   resolved "https://registry.npmjs.org/react-transition-group/-/react-transition-group-4.4.5.tgz"
   integrity sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==

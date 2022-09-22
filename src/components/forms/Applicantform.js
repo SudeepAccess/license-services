@@ -6,13 +6,12 @@ import { Button, Form } from "react-bootstrap";
 import { Card, Row, Col } from "react-bootstrap";
 import axios from 'axios';
 import { useForm } from "react-hook-form";
-
-
-
+// const baseURL = "http://10.1.1.18:8094/egov-mdms-service/v1/_search?tenant_id=hr";
+// const URL_MDMS = process.env.REACT_APP_MDMS
 const ApllicantForm = (props) => {
 
-   
-    const [form, setForm] = useState([]);
+    const [post, setPost] = useState([]);
+    // const [form, setForm] = useState([]);
     const [developer, setDeveloper] = useState('');
     const [name, setName] = useState('');
     const [mobile, setMobile] = useState('');
@@ -26,13 +25,10 @@ const ApllicantForm = (props) => {
     const [district, setDistrict] = useState('');
     const [state, setState] = useState('');
     const [nameOwner, setnameOwner] = useState('');
-
-
-
     const [FormSubmitted, SetFormSubmitted] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false)
+    const [isSubmit, setIsSubmit] = useState(false);
 
     const handleNameChange = event => {
         setName(event.target.value);
@@ -94,30 +90,121 @@ const ApllicantForm = (props) => {
         let frmData = JSON.parse(localStorage.getItem('step1') || "[]")
     };
     // function callApi() {
-    //     fetch("https://dummy.restapiexample.com/api/v1/employees")
+    //     fetch("http://10.1.1.18:8094/egov-mdms-service/v1/_search")
     //     .then(response => response.text())
     //     .then(result => console.log(result))
     //     .catch(error => console.log('error', error));
     //   }
+    const HandleGetMCNdata=async(tenentId)=>{
+        try{
+            const abc =  
+            {
+              "RequestInfo": {
+                  "apiId": "Rainmaker",
+                  "ver": "v1",
+                  "ts": 0,
+                  "action": "_search",
+                  "did": "",
+                  "key": "",
+                  "msgId": "090909",
+                  "requesterId": "",
+                  "authToken": ""
+              },
+              "MdmsCriteria": {
+                  "tenantId": "hr",
+                  "moduleDetails": [
+                      {
+                          "moduleName": "common-masters",
+                          "masterDetails": [
+                              {
+                                  "name": "Department"
+                              },
+                              {
+                                  "name": "Designation"
+                              },
+                              {
+                                  "name": "StateInfo"
+                              },
+                              {
+                                  "name": "wfSlaConfig"
+                              }
+                          ]
+                      },
+                      {
+                          "moduleName": "tenant",
+                          "masterDetails": [
+                              {
+                                  "name": "tenants"
+                              },
+                              {
+                                  "name": "citymodule"
+                              }
+                          ]
+                      },
+                      {
+                          "moduleName": "DIGIT-UI",
+                          "masterDetails": [
+                              {
+                                  "name": "ApiCachingSettings"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          }
+          
+            // const Resp = await axios.post(URL_MDMS+"/egov-mdms-service/v1/_search",
+       const Resp =  await axios.post("/egov-mdms-service/v1/_search",
+            abc,
+            {headers:{
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-origin':"*",
+            }})
+            .then((Resp)=>{
+                console.log("ghr",Resp)
+            })
+          
+        }
+    catch(error){
+      console.log(error.message);
+    }
+}
+
+useEffect(()=>{
+  HandleGetMCNdata();
+},[])
+    
     useEffect(() => {
         if (FormSubmitted) {
             props.ApplicantFormSubmit(true);
         }
-        fetch("https://dummy.restapiexample.com/api/v1/employees",
-        {
-            method:'GET',
-            // headers:{
-            //     'content-Type':'application/json'
-            // }
-        }).then(resp=>resp.json()).then(resp=>employeedata(resp))
+       
 
     }, [FormSubmitted])
+    // useEffect(() => {
+    //     axios.get(`${baseURL}/1`).then((response) => {
+    //       setPost(response.data);
+    //     });
+    //   }, []);
+
+    //   function createPost() {
+    //     axios
+    //       .post(baseURL, {
+    //         Description: "Hello World!",
+    //         body: "This is a new post."
+    //       })
+    //       .then((response) => {
+    //         setPost(response.data);
+    //       });
+    //   }
+    
+    //   if (!post) return "No post!"
 
     return (
         <Form onSubmit={ApplicantFormSubmitHandler} autoComplete="off">
             <Form.Group className="justify-content-center" controlId="formBasicEmail">
                 <Row className="ml-auto" style={{ marginBottom: 5 }}>
-                    <Col md={4} xxl lg="4">
+               <Col md={4} xxl lg="4">
                         <div>
                             <Form.Label><b>Developer</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
@@ -133,7 +220,7 @@ const ApllicantForm = (props) => {
                         </div>
                         <Form.Control type="text" className="form-control"  pattern="[A-Za-z]*" name="authorizedPerson" minLength={10} maxLength={99}
 
-                            onChange={(e) => setName(e.target.value)} onChange1={handleNameChange} value={name} />
+                            onChange={(e) => setName(e.target.value)}  onChange1={handleNameChange} value={name} />
                         {errors.name && <p>Please check the First Name</p>}
                     </Col>
                     <Col md={4} xxl lg="4">

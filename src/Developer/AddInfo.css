@@ -132,3 +132,17 @@
         border: #0572bb 10px solid;
       }
       
+      .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+        background-color: #0572bb;
+        color: #fff;
+        border: #0572bb;
+        margin-bottom: 0;
+      }
+
+      .form-group label{
+        font-weight: bold;
+      }
+
+      .form-group{
+        margin-bottom: 0.5rem;
+      }
