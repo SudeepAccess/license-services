@@ -8,7 +8,7 @@ const Developerinfo=(props)=>{
     const [uncheckedValue,setUncheckedVlue]=useState([]);
     console.log(uncheckedValue);
     return(
-        <Form>
+        <Form ref={props.developerInfoRef}>
             {/* <div className="justify-content-center" 
                 onClick={()=>(displayGeneral==="none")?setDisplayGeneralInfo("block"):setDisplayGeneralInfo("none")} 
                 style={{
@@ -325,6 +325,12 @@ const Developerinfo=(props)=>{
                     </Col>
                 </Row>
             </Form.Group>
+            <div style={{position:"relative", marginBottom:40}}>
+             <Button onClick={()=>props.passUncheckedList({"data":uncheckedValue})}>
+                 Submit
+             </Button>
+         </div>
+         <hr></hr>
         </Form>
     )
 }

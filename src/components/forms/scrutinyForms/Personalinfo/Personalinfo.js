@@ -7,7 +7,7 @@ const Personalinfo=(props)=>{
     const [uncheckedValue,setUncheckedVlue]=useState([]);
     console.log(uncheckedValue);
     return(
-        <Form>
+        <Form ref={props.personalInfoRef}>
              {/* <div className="justify-content-center" 
                 style={{
                     width:"100%", 

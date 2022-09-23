@@ -9,7 +9,7 @@ const AppliedLandinfo=(props)=>{
     console.log(uncheckedValue);
     const [migrationApllied,setMigrationApplied] = useState(true);
     return(
-        <Form>
+        <Form ref={props.appliedLandInfoRef}>
             {/* <div className="justify-content-center" 
                 onClick={()=>(displayPurpose==="none")?setDisplayPurposeInfo("block"):setDisplayPurposeInfo("none")} 
                 style={{
@@ -6156,6 +6156,12 @@ const AppliedLandinfo=(props)=>{
 
 
             </Form.Group>
+            <div style={{position:"relative", marginBottom:40}}>
+             <Button onClick={()=>props.passUncheckedList({"data":uncheckedValue})}>
+                 Submit
+             </Button>
+         </div>
+         <hr></hr>
         </Form>
     )
 }

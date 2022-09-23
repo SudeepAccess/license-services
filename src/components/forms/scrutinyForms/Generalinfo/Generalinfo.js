@@ -8,7 +8,7 @@ const Genarelinfo=(props)=>{
     const [uncheckedValue,setUncheckedVlue]=useState([]);
     console.log(uncheckedValue);
     return(
-        <Form>
+        <Form ref={props.generalInfoRef}>
             {/* <div className="justify-content-center" 
                 onClick={()=>(displayPurpose==="none")?setDisplayPurposeInfo("block"):setDisplayPurposeInfo("none")} 
                 style={{
@@ -155,6 +155,12 @@ const Genarelinfo=(props)=>{
                     </Col>
                 </Row>
             </Form.Group>
+            <div style={{position:"relative", marginBottom:40}}>
+             <Button onClick={()=>props.passUncheckedList({"data":uncheckedValue})}>
+                 Submit
+             </Button>
+         </div>
+         <hr></hr>
         </Form>
     )
 }
