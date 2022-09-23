@@ -100,6 +100,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function PopupGfg() {
   const [modal, setmodal] = useState(false);
+  const [modalValuesArray,setModalValuesArray]= useState([]);
   // const Modal = () => (
   //   <Popup trigger={<button className="button"> Open Modal </button>} modal>
   //     <span> Modal content </span>
@@ -147,7 +148,25 @@ export default function PopupGfg() {
   };
 
   const [noofRows, setNoOfRows] = useState(1);
+  const [modalNAme,setModalNAme]=useState("");
+  const [modalDesignation,setModalDesignation]=useState("");
+  const [modalPercentage,setModalPercentage]=useState("");
 
+  const handleArrayValues=()=>{
+  
+    if (modalNAme!=="" && modalDesignation!=="" && modalPercentage!=="") {
+      
+      const values ={
+        "name":modalNAme,
+        "designation":modalDesignation,
+        "percentage":modalPercentage
+      }
+      setModalValuesArray((prev)=>[...prev,values]);
+      setmodal(!modal)
+    }
+  }
+  console.log("FORMARRAYVAL",modalValuesArray);
+  
   return (
     <>
       {/* <DashboardScreen /> */}
@@ -422,6 +441,7 @@ export default function PopupGfg() {
                 type="button"
                 style={{ float: "right" }}
                 className="btn btn-success"
+                onClick={handleArrayValues}
               >
                 Submit
               </button>

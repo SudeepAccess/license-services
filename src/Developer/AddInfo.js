@@ -25,14 +25,16 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, Ca
 function AddInfo() {
   const [modal, setmodal] = useState(false);
   const [data, setData] = useState([])
-  useEffect(() => {
-    fetch("https://apisetu.gov.in/mca/v1/companies/U72200CH1998PTC022006").then((result) => {
-      result.json().then((resp) => {
-        setData(resp)
-      })
-    })
-  }, [])
-  console.warn(data)
+  const [devDetail, setdevDetail] = useState([])
+
+  // useEffect(() => {
+  //   fetch("https://apisetu.gov.in/mca/v1/companies/U72200CH1998PTC022006").then((result) => {
+  //     result.json().then((resp) => {
+  //       setData(resp)
+  //     })
+  //   })
+  // }, [])
+  // console.warn(data)
   const {
     register,
     handleSumit,
@@ -58,6 +60,11 @@ function AddInfo() {
   const [uploadPdf, setUploadPDF] = useState("");
   const [serialNumber, setSerialNumber] = useState("");
   const [DirectorData,setDirectorData]=useState([]);
+  const [modalNAme,setModalNAme]=useState("");
+  const [modalDesignation,setModalDesignation]=useState("");
+  const [modalPercentage,setModalPercentage]=useState("");
+  
+  const [modalValuesArray,setModalValuesArray]= useState([]);
   const handleshow = (e) => {
     const getshow = e.target.value;
     setShowhide(getshow);
@@ -98,79 +105,103 @@ function AddInfo() {
 
     }
 }
-
+const handleArrayValues=()=>{
+  
+  if (modalNAme!=="" && modalDesignation!=="" && modalPercentage!=="") {
+    
+    const values ={
+      "name":modalNAme,
+      "designation":modalDesignation,
+      "percentage":modalPercentage,
+      "uploadPdf": null,
+      "serialNumber": null
+    }
+    setModalValuesArray((prev)=>[...prev,values]);
+    setmodal(!modal)
+  }
+}
+console.log("FORMARRAYVAL",modalValuesArray);
 useEffect(()=>{
   HandleGetMCNdata();
 },[cin_Number])
 
-const postAddInfo=async()=>{
+// const postAddInfo=async()=>{
 
-  try{
-    const Resp =  await axios.post("http://localhost:8081/user/developer/_registration",
-    {headers:{
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-origin':"*",
-    }})
-    .then((Resp)=>{
-        console.log("FORMDATA",Resp)
-        return Resp;
-    })
+//   try{
+//     const Resp =  await axios.post("http://localhost:8081/user/developer/_registration",
+//     {headers:{
+//         'Content-Type': 'application/json',
+//         'Access-Control-Allow-origin':"*",
+//     }})
+//     .then((Resp)=>{
+//         console.log("FORMDATA",Resp.devDetail)
+//         return Resp;
+//     })
 
-  }catch(error){
-    console.log(error)
-  }
-}
+//   }catch(error){
+//     console.log(error)
+//   }
+// }
 
   const [noofRows, setNoOfRows] = useState(1);
   const [aoofRows, setAoOfRows] = useState(1);
   const AddInfoForm = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
-    
-    let devDetail = {
-      cin_Number: cin_Number,
-      companyName: companyName,
-      dateOfCorporation: dateOfCorporation,
-      registeredAddress: registeredAddress,
-      email: email,
-      mobileNumber: mobileNumber,
-      gst_Number: gst_Number,
-      sharName: sharName,
-      uploadPdf: uploadPdf,
-      percentage: percentage,
-      designition: designition,
-      serialNumber: serialNumber,
+    let barArray = []
+    const formTab = {
+      
+      "developerDetail": [
+
+          {
+            "devDetail":{
+              "cin_Number": cin_Number,
+              "companyName": companyName,
+              "dateOfCorporation": dateOfCorporation,
+              "registeredAddress": registeredAddress,
+              "email": email,
+              "mobileNumber": mobileNumber,
+              "gst_Number": gst_Number,
+              "directorsInformation": DirectorData,
+              "shareHoldingPatterens":modalValuesArray,
+              "capacityDevelopAColony": null,
+              "addRemoveAuthoizedUsers": null,
+              "licencesPermissionGrantedToDeveloper": null
+              
+            }
+          }
+      ]
+        
     };
-    // let form2 = {
-    //   TbName: TbName,
-    //   Designition: Designition,
-    //   Percetage: Percetage,
-    //   UploadPDF: UploadPDF,
-    // }
+    
     try {
-      let res = await axios.post("http://localhost:8081/user/developer/_registration",devDetail,{
+      let res = await axios.post("http://localhost:8081/user/developer/_registration",formTab,{
         headers:{
           'Content-Type': 'application/json',
-          'Access-Control-Allow-origin':"http://localhost:8081",
+          'Access-Control-Allow-origin':"*",
       }
       }).then((response)=>{
         return response
       });
-      console.log("FORMDATA",res)
+      
       
     } catch (err) {
       console.log(err);
     }
-    localStorage.setItem("devDetails", JSON.stringify(devDetail));
-    devDetail.push();
+    console.log("FORMARRAL",devDetail);
+    console.log("director data",DirectorData);
+    const formData = ("devDetail",JSON.stringify(devDetail));
+    console.log("sdsdsds",formData);
+    // localStorage.setItem("devDetail", JSON.stringify(devDetail));
+    // devDetail.push();
     // let frmData = JSON.parse(localStorage.getItem("step1a") || "[]");
 
 
 
 
-    useEffect(()=>{
-      postAddInfo();
-    },[]);
+    // useEffect(()=>{
+    //   postAddInfo();
+    // },[]);
   };
 
   return (
@@ -480,49 +511,54 @@ const postAddInfo=async()=>{
                           <th>Name</th>
                           <th>Designition</th>
                           <th>Percentage</th>
-                          <th>Upload PDF</th>
+                          <th>View PDF</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {[...Array(noofRows)].map((elementInArray, input) => {
-                          return (
-                            <tr>
-                              <td>1</td>
-                              <td>
-                                <input
-                                  type="text"
-                                  value={sharName}
-                                  placeholder=""
-                                  class="form-control"
-                                />
-                              </td>
-                              <td>
-                                <input
-                                  type="text"
-                                  value={designition}
-                                  placeholder=""
-                                  class="form-control"
-                                />
-                              </td>
-                              <td>
-                                <input
-                                  type="text"
-                                  value={percentage}
-                                  placeholder=""
-                                  class="form-control"
-                                />
-                              </td>
-                              <td>
-                                <input
-                                  type="file"
-                                  value={uploadPdf}
-                                  placeholder=""
-                                  class="form-control"
-                                />
-                              </td>
-                            </tr>
-                          );
-                        })}
+                        {
+                          (modalValuesArray.length>0)?
+                          modalValuesArray.map((elementInArray, input) => {
+                            return (
+                              <tr>
+                                <td>{input+ 1}</td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    value={elementInArray.name}
+                                    placeholder={elementInArray.name}
+                                    readOnly
+                                    class="form-control"
+                                  />
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    value={elementInArray.designation}
+                                    placeholder={elementInArray.designation}
+                                    readOnly
+                                    class="form-control"
+                                  />
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    value={elementInArray.percentage}
+                                    placeholder={elementInArray.percentage}
+                                    readOnly
+                                    class="form-control"
+                                  />
+                                </td>
+                                <td>
+                                  <div className="text-center">
+                                    <button className="btn btn-success btn-sm">View</button>
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })
+                          :
+                          <p>Click on the Add More Button</p>
+                        }
                       </tbody>
                     </Table>
                   </div>
@@ -661,7 +697,8 @@ const postAddInfo=async()=>{
                                     <label htmlFor="name" className="text">Name</label>
                                     <input
                                       type="text"
-                                      value={sharName}
+                                      
+                                      onChange={(e)=>setModalNAme(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -670,7 +707,8 @@ const postAddInfo=async()=>{
                                     <label htmlFor="name" className="text">	Designition</label>
                                     <input
                                       type="text"
-                                      value={designition}
+                                      
+                                      onChange={(e)=>setModalDesignation(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -680,7 +718,8 @@ const postAddInfo=async()=>{
                                     <label htmlFor="name" className="text">Percentage</label>
                                     <input
                                       type="flot"
-                                      value={percentage}
+                                      
+                                      onChange={(e)=>setModalPercentage(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -703,9 +742,10 @@ const postAddInfo=async()=>{
                             <div className="submit-btn">
                               <div className="form-group col-md6 mt-6">
                                 <button
-                                  type="submit"
+                                  type="button"
                                   style={{ float: "right" }}
                                   className="btn btn-success"
+                                  onClick={handleArrayValues}
                                 >
                                   Submit
                                 </button>
