@@ -38,24 +38,25 @@ function AddInfo() {
     handleSumit,
     formState: { error },
   } = useForm([
-    { Sr: "", Name: "", Mobile: "", Email: "", PAN: "", Aadhar: "" },
+    { Sr: "", name: "", mobileNumber: "", email: "", PAN: "", Aadhar: "" },
   ]);
   const formSubmit = (data) => {
     console.log("data", data);
   };
   const [FormSubmitted, setFormSubmitted] = useState(false);
   const [showhide, setShowhide] = useState("No");
-  const [cinNo, setCinNo] = useState("");
+  const [cin_Number, setCinNo] = useState("");
   const [companyName, setCompanyName] = useState("");
-  const [Incorporation, setIncorporation] = useState("");
-  const [Registered, setRegistered] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Mobile, setMobile] = useState("");
-  const [GST, setGST] = useState("");
-  const [TbName, setTbName] = useState("");
-  const [Designition, setDesignition] = useState("");
-  const [Percetage, setPercetage] = useState("");
-  const [UploadPDF, setUploadPDF] = useState("");
+  const [dateOfCorporation, setIncorporation] = useState("");
+  const [registeredAddress, setRegistered] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobileNumber, setMobile] = useState("");
+  const [gst_Number, setGST] = useState("");
+  const [sharName, setTbName] = useState("");
+  const [designition, setDesignition] = useState("");
+  const [percentage, setPercetage] = useState("");
+  const [uploadPdf, setUploadPDF] = useState("");
+  const [serialNumber, setSerialNumber] = useState("");
   const [DirectorData,setDirectorData]=useState([]);
   const handleshow = (e) => {
     const getshow = e.target.value;
@@ -64,7 +65,7 @@ function AddInfo() {
 
   const HandleGetMCNdata=async()=>{
     try{
-      if (cinNo.length===21) {
+      if (cin_Number.length===21) {
         const Resp = await axios.get("/mca/v1/companies/U72200CH1998PTC022006", {headers:{
           'Content-Type': 'application/json',
           'X-APISETU-APIKEY':'PDSHazinoV47E18bhNuBVCSEm90pYjEF',
@@ -83,7 +84,7 @@ function AddInfo() {
         console.log(Directory.data);
         setDirectorData(Directory.data);
         setCompanyName(Resp.data.companyName)
-        setIncorporation(Resp.data.incorporationDate)
+        setIncorporation(Resp.data.dateOfCorporation)
         setEmail(Resp.data.email)
         //console.log(Resp.data.Email)
      setRegistered(Resp.data.registeredAddress)
@@ -100,7 +101,7 @@ function AddInfo() {
 
 useEffect(()=>{
   HandleGetMCNdata();
-},[cinNo])
+},[cin_Number])
 
 const postAddInfo=async()=>{
 
@@ -126,24 +127,33 @@ const postAddInfo=async()=>{
     e.preventDefault();
     setFormSubmitted(true);
     
-    let forms = {
-      cinNo: cinNo,
+    let devDetail = {
+      cin_Number: cin_Number,
       companyName: companyName,
-      Incorporation: Incorporation,
-      Registered: Registered,
-      Email: Email,
-      Mobile: Mobile,
-      GST: GST,
-
+      dateOfCorporation: dateOfCorporation,
+      registeredAddress: registeredAddress,
+      email: email,
+      mobileNumber: mobileNumber,
+      gst_Number: gst_Number,
+      sharName: sharName,
+      uploadPdf: uploadPdf,
+      percentage: percentage,
+      designition: designition,
+      serialNumber: serialNumber,
     };
-    let form2 = {
-      TbName: TbName,
-      Designition: Designition,
-      Percetage: Percetage,
-      UploadPDF: UploadPDF,
-    }
+    // let form2 = {
+    //   TbName: TbName,
+    //   Designition: Designition,
+    //   Percetage: Percetage,
+    //   UploadPDF: UploadPDF,
+    // }
     try {
-      let res = await axios.post("/user/developer/_registration",forms).then((response)=>{
+      let res = await axios.post("http://localhost:8081/user/developer/_registration",devDetail,{
+        headers:{
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-origin':"http://localhost:8081",
+      }
+      }).then((response)=>{
         return response
       });
       console.log("FORMDATA",res)
@@ -151,11 +161,11 @@ const postAddInfo=async()=>{
     } catch (err) {
       console.log(err);
     }
-    localStorage.setItem("step1", JSON.stringify(forms));
-    let frmData = JSON.parse(localStorage.getItem("step1a") || "[]");
+    localStorage.setItem("devDetails", JSON.stringify(devDetail));
+    devDetail.push();
+    // let frmData = JSON.parse(localStorage.getItem("step1a") || "[]");
 
-    localStorage.setItem("step2", JSON.stringify(form2));
-    let frData = JSON.parse(localStorage.getItem("step2") || "[]");
+
 
 
     useEffect(()=>{
@@ -247,7 +257,7 @@ const postAddInfo=async()=>{
                         <input
                           type="text"
                           onChange={(e) => setCinNo(e.target.value)}
-                          value={cinNo}
+                          value={cin_Number}
                           className="form-control"
                         // placeholder=""
                         // {...register("name", {
@@ -306,8 +316,8 @@ const postAddInfo=async()=>{
                         <label htmlFor="name">Date of Incorporation</label>
                         <input
                           type="text"
-                          value={Incorporation}
-                          placeholder={Incorporation}
+                          value={dateOfCorporation}
+                          placeholder={dateOfCorporation}
                           className="form-control"
                         // placeholder=""
                         // {...register("name", {
@@ -336,8 +346,8 @@ const postAddInfo=async()=>{
                         <label htmlFor="name">Registered Address</label>
                         <input
                           type="text"
-                          value={Registered}
-                         placeholder={Registered}
+                          value={registeredAddress}
+                         placeholder={registeredAddress}
                           className="form-control"
                         // name="name"
                         // className={`form-control`}
@@ -367,8 +377,8 @@ const postAddInfo=async()=>{
                         <label htmlFor="email"> Email </label>
                         <input
                           type="text"
-                          value={Email}
-                         placeholder={Email}
+                          value={email}
+                         placeholder={email}
                           className="form-control"
                         // name="email"
                         // className={`form-control`}
@@ -391,8 +401,8 @@ const postAddInfo=async()=>{
                         <label htmlFor="name">Mobile No.</label>
                         <input
                           type="text"
-                          value={Mobile}
-                          placeholder={Mobile}
+                          value={mobileNumber}
+                          placeholder={mobileNumber}
                           className="form-control"
                         // name="name"
                         // className={`form-control`}
@@ -425,8 +435,8 @@ const postAddInfo=async()=>{
                         <label htmlFor="name">GST No.</label>
                         <input
                           type="text"
-                          value={GST}
-                         placeholder={GST}
+                          value={gst_Number}
+                         placeholder={gst_Number}
                           className="form-control"
                         // className={`form-control`}
                         // placeholder=""
@@ -469,7 +479,7 @@ const postAddInfo=async()=>{
                           <th>Sr. No</th>
                           <th>Name</th>
                           <th>Designition</th>
-                          <th>Percetage</th>
+                          <th>Percentage</th>
                           <th>Upload PDF</th>
                         </tr>
                       </thead>
@@ -481,7 +491,7 @@ const postAddInfo=async()=>{
                               <td>
                                 <input
                                   type="text"
-                                  name="name[]"
+                                  value={sharName}
                                   placeholder=""
                                   class="form-control"
                                 />
@@ -489,7 +499,7 @@ const postAddInfo=async()=>{
                               <td>
                                 <input
                                   type="text"
-                                  name="mail[]"
+                                  value={designition}
                                   placeholder=""
                                   class="form-control"
                                 />
@@ -497,7 +507,7 @@ const postAddInfo=async()=>{
                               <td>
                                 <input
                                   type="text"
-                                  name="mobile[]"
+                                  value={percentage}
                                   placeholder=""
                                   class="form-control"
                                 />
@@ -505,7 +515,7 @@ const postAddInfo=async()=>{
                               <td>
                                 <input
                                   type="file"
-                                  name="upload"
+                                  value={uploadPdf}
                                   placeholder=""
                                   class="form-control"
                                 />
@@ -651,7 +661,7 @@ const postAddInfo=async()=>{
                                     <label htmlFor="name" className="text">Name</label>
                                     <input
                                       type="text"
-                                      name="name[]"
+                                      value={sharName}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -660,17 +670,17 @@ const postAddInfo=async()=>{
                                     <label htmlFor="name" className="text">	Designition</label>
                                     <input
                                       type="text"
-                                      name="name[]"
+                                      value={designition}
                                       placeholder=""
                                       class="form-control"
                                     />
                                   </Col>
 
                                   <Col md={3} xxl lg="4">
-                                    <label htmlFor="name" className="text">Percetage</label>
+                                    <label htmlFor="name" className="text">Percentage</label>
                                     <input
                                       type="flot"
-                                      name="name[]"
+                                      value={percentage}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -680,7 +690,7 @@ const postAddInfo=async()=>{
                                     <label htmlFor="name" className="text">Upload PDF</label>
                                     <input
                                       type="file"
-                                      name="name[]"
+                                      value={uploadPdf}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -693,7 +703,7 @@ const postAddInfo=async()=>{
                             <div className="submit-btn">
                               <div className="form-group col-md6 mt-6">
                                 <button
-                                  type="button"
+                                  type="submit"
                                   style={{ float: "right" }}
                                   className="btn btn-success"
                                 >
@@ -751,7 +761,7 @@ const postAddInfo=async()=>{
                               <td>
                                 <input
                                   type="text"
-                                  name="name[]"
+                                  value={elementInArray.din}
                                   placeholder={elementInArray.din}
                                   class="form-control"
                                 />
@@ -759,7 +769,7 @@ const postAddInfo=async()=>{
                               <td>
                                 <input
                                   type="text"
-                                  name="mail[]"
+                                  value={elementInArray.name}
                                   placeholder={elementInArray.name}
                                   class="form-control"
                                 />
@@ -767,7 +777,7 @@ const postAddInfo=async()=>{
                               <td>
                                 <input
                                   type="text"
-                                  name="mobile[]"
+                                  value={elementInArray.contactNumber}
                                   placeholder={elementInArray.contactNumber}
                                   class="form-control"
                                 />
@@ -775,7 +785,7 @@ const postAddInfo=async()=>{
                               <td>
                                 <input
                                   type="file"
-                                  name="upload"
+                                  value={uploadPdf}
                                   placeholder=""
                                   class="form-control"
                                 />
