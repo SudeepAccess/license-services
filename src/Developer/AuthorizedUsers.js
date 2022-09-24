@@ -172,7 +172,7 @@ export default function PopupGfg() {
     }
   }
   console.log("FORMARRAYVAL",modalValuesArray);
-  
+  localStorage.setItem("authUserDetails",JSON.stringify(modalValuesArray))
   return (
     <>
       {/* <DashboardScreen /> */}
