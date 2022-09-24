@@ -239,31 +239,40 @@ export default function PopupGfg() {
                             />
                           </td>
                           <td>
-                            <input
+                            {/* <input
                               type="file"
                               value={elementInArray.uploadPan}
                               placeholder={elementInArray.uploadPan}
                               readOnly
                               class="form-control"
-                            />
+                            /> */}
+                            <div className="text-center">
+                              <button className="btn btn-success btn-sm">View</button>
+                            </div>
                           </td>
                           <td>
-                            <input
+                            {/* <input
                               type="file"
                               value={elementInArray.uploadAdhaar}
                               placeholder={elementInArray.uploadAdhaar}
                               readOnly
                               class="form-control"
-                            />
+                            /> */}
+                            <div className="text-center">
+                              <button className="btn btn-success btn-sm">View</button>
+                            </div>
                           </td>
                           <td>
-                            <input
+                            {/* <input
                               type="file"
                               value={elementInArray.uploadSign}
                               placeholder={elementInArray.uploadSign}
                               readOnly
                               class="form-control"
-                            />
+                            /> */}
+                            <div className="text-center">
+                              <button className="btn btn-success btn-sm">View</button>
+                            </div>
                           </td>
                         </tr>
                       );
@@ -480,14 +489,14 @@ export default function PopupGfg() {
               >
                 Add More
               </button> */}
-              <button
+              {/* <button
                 type="button"
                 style={{ float: "right" }}
                 className="btn btn-danger"
                 onClick={() => setNoOfRows(noofRows - 1)}
               >
                 Remove
-              </button>
+              </button> */}
             </div>
             <div className="form-group col-md6 mt-6">
               <button
