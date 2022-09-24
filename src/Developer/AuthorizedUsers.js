@@ -98,9 +98,20 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+// for redux use only
+import { useSelector } from "react-redux";
+import { selectCinNumber } from "../Redux/Slicer/Slicer";
+
+import { setAddAuthUserData } from "../Redux/Slicer/Slicer";
+import { useDispatch } from "react-redux";
+
 export default function PopupGfg() {
+
+  const Cin_number=useSelector(selectCinNumber);
+  console.log("AUTHCIN",Cin_number);
   const [modal, setmodal] = useState(false);
-  const [modalValuesArray,setModalValuesArray]= useState([]);
+  const [modalAuthUserValuesArray,setModalValuesArray]= useState([]);
+  const dispatch = useDispatch();
   // const Modal = () => (
   //   <Popup trigger={<button className="button"> Open Modal </button>} modal>
   //     <span> Modal content </span>
@@ -148,7 +159,7 @@ export default function PopupGfg() {
   };
 
   const [noofRows, setNoOfRows] = useState(1);
-  const [modalNAme,setModalNAme]=useState("");
+  const [modalUserName,setModalNAme]=useState("");
   const [modalMobile,setModalMobile]=useState("");
   const [modalEmail,setModalEmail]=useState("");
   const [uploadPan,setModalUploadPan]=useState("");
@@ -157,22 +168,29 @@ export default function PopupGfg() {
 
   const handleArrayValues=()=>{
   
-    if (modalNAme!=="" && modalMobile!=="" && modalEmail!=="") {
+    if (modalUserName!=="" && modalMobile!=="" && modalEmail!=="") {
       
       const values ={
-        "name":modalNAme,
-        "mobile":modalMobile,
-        "email":modalEmail,
-        "uploadPan":uploadPan,
-        "uploadAdhaar":uploadAdhaar,
-        "uploadSign":uploadSign
+        modalAuthUserValuesArray:{
+            name:modalUserName,
+            mobile:modalMobile,
+            email:modalEmail,
+            uploadPan:uploadPan,
+            uploadAdhaar:uploadAdhaar,
+            uploadSign:uploadSign
+        }
       }
+
+
+      dispatch(setAddAuthUserData(
+        values
+      ))
       setModalValuesArray((prev)=>[...prev,values]);
       setmodal(!modal)
     }
   }
-  console.log("FORMARRAYVAL",modalValuesArray);
-  localStorage.setItem("authUserDetails",JSON.stringify(modalValuesArray))
+  console.log("FORMARRAYVAL",modalAuthUserValuesArray);
+  localStorage.setItem("authUserDetails",JSON.stringify(modalAuthUserValuesArray))
   return (
     <>
       {/* <DashboardScreen /> */}
@@ -206,16 +224,16 @@ export default function PopupGfg() {
                   </thead>
                   <tbody>
                   {
-                          (modalValuesArray.length>0)?
-                          modalValuesArray.map((elementInArray, input) => {
+                          (modalAuthUserValuesArray.length>0)?
+                          modalAuthUserValuesArray.map((elementInArray, input) => {
                             return (
                         <tr>
                           <td>{input+1}</td>
                           <td>
                             <input
                               type="text"
-                              value={elementInArray.name}
-                              placeholder={elementInArray.name}
+                              value={elementInArray.modalAuthUserValuesArray.name}
+                              placeholder={elementInArray.modalAuthUserValuesArray.name}
                               readOnly
                               class="form-control"
                             />
@@ -223,8 +241,8 @@ export default function PopupGfg() {
                           <td>
                             <input
                               type="text"
-                              value={elementInArray.mobile}
-                              placeholder={elementInArray.mobile}
+                              value={elementInArray.modalAuthUserValuesArray.mobile}
+                              placeholder={elementInArray.modalAuthUserValuesArray.mobile}
                               readOnly
                               class="form-control"
                             />
@@ -232,8 +250,8 @@ export default function PopupGfg() {
                           <td>
                             <input
                               type="email"
-                              value={elementInArray.email}
-                              placeholder={elementInArray.email}
+                              value={elementInArray.modalAuthUserValuesArray.email}
+                              placeholder={elementInArray.modalAuthUserValuesArray.email}
                               readOnly
                               class="form-control"
                             />

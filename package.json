@@ -2,7 +2,7 @@
   "name": "digitforms",
   "version": "0.1.0",
   "private": true,
-  "proxy":"https://apisetu.gov.in",
+  "proxy": "https://apisetu.gov.in",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -15,6 +15,7 @@
     "@mui/base": "^5.0.0-alpha.96",
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.5",
+    "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -28,10 +29,12 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.2",
     "react-icons": "^4.4.0",
+    "react-redux": "^8.0.4",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "reactjs-popup": "^2.0.5",
     "reactstrap": "^9.1.4",
+    "redux": "^4.2.0",
     "validator": "^13.7.0",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
@@ -59,5 +62,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@redux-devtools/core": "^3.13.1"
   }
 }

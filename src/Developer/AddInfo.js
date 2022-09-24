@@ -22,6 +22,13 @@ import {
 import axios from "axios"
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 
+// for redux purpose
+import {setAddinfoData} from "../Redux/Slicer/Slicer";
+import { useDispatch } from "react-redux";
+
+
+
+
 function AddInfo() {
   const [modal, setmodal] = useState(false);
   const [data, setData] = useState([])
@@ -63,6 +70,7 @@ function AddInfo() {
   const [modalNAme,setModalNAme]=useState("");
   const [modaldesignition,setModaldesignition]=useState("");
   const [modalPercentage,setModalPercentage]=useState("");
+  const dispatch = useDispatch();
   
   const [modalValuesArray,setModalValuesArray]= useState([]);
   const handleshow = (e) => {
@@ -155,24 +163,26 @@ useEffect(()=>{
 
           {
             "devDetail":{
-              "cin_Number": cin_Number,
-              "companyName": companyName,
-              "dateOfCorporation": dateOfCorporation,
-              "registeredAddress": registeredAddress,
-              "email": email,
-              "mobileNumber": mobileNumber,
-              "gst_Number": gst_Number,
-              "directorsInformation": DirectorData,
-              "shareHoldingPatterens":modalValuesArray,
-              "capacityDevelopAColony": null,
-              "addRemoveAuthoizedUsers": null,
-              "licencesPermissionGrantedToDeveloper": null
+              cin_Number: cin_Number,
+              companyName: companyName,
+              dateOfCorporation: dateOfCorporation,
+              registeredAddress: registeredAddress,
+              email: email,
+              mobileNumber: mobileNumber,
+              gst_Number: gst_Number,
+              directorsInformation: DirectorData,
+              shareHoldingPatterens:modalValuesArray,
+              
               
             }
           }
       ]
         
     };
+
+    dispatch(setAddinfoData(
+      formTab.developerDetail[0].devDetail
+    ))
     
     try {
       let res = await axios.post("http://localhost:8081/user/developer/_registration",formTab,{
@@ -879,6 +889,7 @@ useEffect(()=>{
                 <button
                   className="btn btn-success"
                   style={{ float: "right" }}
+                  
                 >
                   Submit
                 </button>
