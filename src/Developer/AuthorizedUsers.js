@@ -149,17 +149,23 @@ export default function PopupGfg() {
 
   const [noofRows, setNoOfRows] = useState(1);
   const [modalNAme,setModalNAme]=useState("");
-  const [modalDesignation,setModalDesignation]=useState("");
-  const [modalPercentage,setModalPercentage]=useState("");
+  const [modalMobile,setModalMobile]=useState("");
+  const [modalEmail,setModalEmail]=useState("");
+  const [uploadPan,setModalUploadPan]=useState("");
+  const [uploadAdhaar,setModalUploadAhaar]=useState("");
+  const [uploadSign,setModalUploadSign]=useState("");
 
   const handleArrayValues=()=>{
   
-    if (modalNAme!=="" && modalDesignation!=="" && modalPercentage!=="") {
+    if (modalNAme!=="" && modalMobile!=="" && modalEmail!=="") {
       
       const values ={
         "name":modalNAme,
-        "designation":modalDesignation,
-        "percentage":modalPercentage
+        "mobile":modalMobile,
+        "email":modalEmail,
+        "uploadPan":uploadPan,
+        "uploadAdhaar":uploadAdhaar,
+        "uploadSign":uploadSign
       }
       setModalValuesArray((prev)=>[...prev,values]);
       setmodal(!modal)
@@ -199,61 +205,71 @@ export default function PopupGfg() {
                     </tr>
                   </thead>
                   <tbody>
-                    {[...Array(noofRows)].map((elementInArray, input) => {
-                      return (
+                  {
+                          (modalValuesArray.length>0)?
+                          modalValuesArray.map((elementInArray, input) => {
+                            return (
                         <tr>
-                          <td>1</td>
+                          <td>{input+1}</td>
                           <td>
                             <input
                               type="text"
-                              name="name[]"
-                              placeholder=""
+                              value={elementInArray.name}
+                              placeholder={elementInArray.name}
+                              readOnly
                               class="form-control"
                             />
                           </td>
                           <td>
                             <input
                               type="text"
-                              name="mobile[]"
-                              placeholder=""
+                              value={elementInArray.mobile}
+                              placeholder={elementInArray.mobile}
+                              readOnly
                               class="form-control"
                             />
                           </td>
                           <td>
                             <input
                               type="email"
-                              name="email[]"
-                              placeholder=""
+                              value={elementInArray.email}
+                              placeholder={elementInArray.email}
+                              readOnly
                               class="form-control"
                             />
                           </td>
                           <td>
                             <input
                               type="file"
-                              name="upload"
-                              placeholder=""
+                              value={elementInArray.uploadPan}
+                              placeholder={elementInArray.uploadPan}
+                              readOnly
                               class="form-control"
                             />
                           </td>
                           <td>
                             <input
                               type="file"
-                              name="upload"
-                              placeholder=""
+                              value={elementInArray.uploadAdhaar}
+                              placeholder={elementInArray.uploadAdhaar}
+                              readOnly
                               class="form-control"
                             />
                           </td>
                           <td>
                             <input
                               type="file"
-                              name="upload"
-                              placeholder=""
+                              value={elementInArray.uploadSign}
+                              placeholder={elementInArray.uploadSign}
+                              readOnly
                               class="form-control"
                             />
                           </td>
                         </tr>
                       );
-                    })}
+                    }) : <p>Click Add more button</p>
+                    }
+                    
                   </tbody>
                 </Table>
                 <div>
@@ -379,7 +395,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Name</label>
                                     <input
                                       type="text"
-                                      name="name[]"
+                                      onChange={(e)=>setModalNAme(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -388,7 +404,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Mobile Number</label>
                                     <input
                                       type="number"
-                                      name="name[]"
+                                      onChange={(e)=>setModalMobile(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -397,7 +413,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Email</label>
                                     <input
                                       type="email"
-                                      name="name[]"
+                                      onChange={(e)=>setModalEmail(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -408,7 +424,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Upload PAN PDF</label>
                                     <input
                                       type="file"
-                                      name="name[]"
+                                      value={uploadPan}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -417,7 +433,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Upload Aadhar PDF</label>
                                     <input
                                       type="file"
-                                      name="name[]"
+                                      value={uploadAdhaar}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -426,7 +442,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Upload Digital Signature PDF</label>
                                     <input
                                       type="file"
-                                      name="name[]"
+                                      value={uploadSign}
                                       placeholder=""
                                       class="form-control"
                                     />

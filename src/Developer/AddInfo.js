@@ -61,7 +61,7 @@ function AddInfo() {
   const [serialNumber, setSerialNumber] = useState("");
   const [DirectorData,setDirectorData]=useState([]);
   const [modalNAme,setModalNAme]=useState("");
-  const [modalDesignation,setModalDesignation]=useState("");
+  const [modaldesignition,setModaldesignition]=useState("");
   const [modalPercentage,setModalPercentage]=useState("");
   
   const [modalValuesArray,setModalValuesArray]= useState([]);
@@ -107,11 +107,11 @@ function AddInfo() {
 }
 const handleArrayValues=()=>{
   
-  if (modalNAme!=="" && modalDesignation!=="" && modalPercentage!=="") {
+  if (modalNAme!=="" && modaldesignition!=="" && modalPercentage!=="") {
     
     const values ={
       "name":modalNAme,
-      "designation":modalDesignation,
+      "designition":modaldesignition,
       "percentage":modalPercentage,
       "uploadPdf": null,
       "serialNumber": null
@@ -533,8 +533,8 @@ useEffect(()=>{
                                 <td>
                                   <input
                                     type="text"
-                                    value={elementInArray.designation}
-                                    placeholder={elementInArray.designation}
+                                    value={elementInArray.designition}
+                                    placeholder={elementInArray.designition}
                                     readOnly
                                     class="form-control"
                                   />
@@ -708,7 +708,7 @@ useEffect(()=>{
                                     <input
                                       type="text"
                                       
-                                      onChange={(e)=>setModalDesignation(e.target.value)}
+                                      onChange={(e)=>setModaldesignition(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
