@@ -71,21 +71,22 @@ import '../ui/Tab.css';
       <Tab eventKey="first" title="Add Info" aria-selected="false" className="nav-link">
       <AddInfo/> 
       </Tab>
-      <Tab eventKey="second" title="Upload Documents" aria-selected="false" className="nav-link" >
-      <UploadDocuments/>
-      </Tab>
       <Tab eventKey="third" title="Authorized Users" aria-selected="false" className="nav-link">
       <AuthorizedUsers/>   
-      </Tab>
-      <Tab eventKey="fourth" title="Reports" aria-selected="false" className="nav-link">
-      <Reports/>
       </Tab>
       <Tab eventKey="fifth" title=" Technical Capacity">
       <DeveloperCapacity/>
       </Tab>
-      <Tab eventKey="sixth" title=" Financial Capacity">
-      <CapacityDocuments/>
+      <Tab eventKey="second" title="Upload Documents" aria-selected="false" className="nav-link" >
+      <UploadDocuments/>
       </Tab>
+      <Tab eventKey="fourth" title="Reports" aria-selected="false" className="nav-link">
+      <Reports/>
+      </Tab>
+      
+      {/* <Tab eventKey="sixth" title=" Financial Capacity">
+      <CapacityDocuments/>
+      </Tab> */}
     </Tabs>
     {/* </div> */}
     </div>

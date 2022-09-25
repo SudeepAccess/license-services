@@ -13,8 +13,8 @@ const InitialStateAddinfo=
             gst_Number: null,
             directorsInformation: null,
             shareHoldingPatterens:null,
-            modalAuthUserValuesArray:null,
-            technicalCapacity:null
+            addRemoveAuthoizedUsers:null,
+            capacityDevelopAColony:null
             
     }
 
@@ -34,13 +34,13 @@ const AddinfoSlicer = createSlice({
             state.gst_Number = action.payload.gst_Number;
             state.directorsInformation = action.payload.directorsInformation;
             state.shareHoldingPatterens = action.payload.shareHoldingPatterens;
-            
+            state.financialCapacity = action.payload.financialCapacity;
         },
         setAddAuthUserData:(state,action)=>{
-            state.modalAuthUserValuesArray = action.payload.modalAuthUserValuesArray;
+            state.addRemoveAuthoizedUsers = action.payload.addRemoveAuthoizedUsers;
         },
         setTechnicalData:(state,action)=>{
-            state.technicalCapacity = action.payload.technicalCapacity;
+            state.capacityDevelopAColony = action.payload.capacityDevelopAColony;
         }
 
     }
@@ -61,8 +61,9 @@ export const selectMobileNumber=(state)=>state.addinfo.mobileNumber;
 export const selectGst_Number=(state)=>state.addinfo.gst_Number;
 export const selectDirectorsInformation=(state)=>state.addinfo.directorsInformation;
 export const selectShareHoldingPatterens=(state)=>state.addinfo.shareHoldingPatterens;
-export const selectmodalAuthUserValuesArray=(state)=>state.addinfo.modalAuthUserValuesArray;
-export const selectTechnicalValuesArray=(state)=>state.addinfo.technicalCapacity;
+export const selectFinancialCapacity=(state)=>state.addinfo.financialCapacity;
+export const selectmodalAuthUserValuesArray=(state)=>state.addinfo.addRemoveAuthoizedUsers;
+export const selectTechnicalValuesArray=(state)=>state.addinfo.capacityDevelopAColony;
 
 
 

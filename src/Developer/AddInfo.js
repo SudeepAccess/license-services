@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 // import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 // import Row from "react-bootstrap/Row";
 // import { Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -25,8 +26,6 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, Ca
 // for redux purpose
 import {setAddinfoData} from "../Redux/Slicer/Slicer";
 import { useDispatch } from "react-redux";
-
-
 
 
 function AddInfo() {
@@ -52,6 +51,14 @@ function AddInfo() {
   const formSubmit = (data) => {
     console.log("data", data);
   };
+
+  // onchange = (e) => {
+  //   this.setState({ value: e.target.value });
+  // };
+  const handleChange = (e) => {
+    this.setState({ isRadioSelected: true });
+  };
+  const [showhide0, setShowhide0] = useState("No");
   const [FormSubmitted, setFormSubmitted] = useState(false);
   const [showhide, setShowhide] = useState("No");
   const [cin_Number, setCinNo] = useState("");
@@ -73,9 +80,15 @@ function AddInfo() {
   const dispatch = useDispatch();
   
   const [modalValuesArray,setModalValuesArray]= useState([]);
+  const [financialCapacity,setFinancialCapacity]= useState([]);
   const handleshow = (e) => {
     const getshow = e.target.value;
     setShowhide(getshow);
+  };
+
+  const handleshow0 = (e) => {
+    const getshow = e.target.value;
+    setShowhide0(getshow);
   };
 
   const HandleGetMCNdata=async()=>{
@@ -159,10 +172,10 @@ useEffect(()=>{
     let barArray = []
     const formTab = {
       
-      "developerDetail": [
+      // "developerDetail": [
 
-          {
-            "devDetail":{
+      //     {
+            // "addInfo":{
               cin_Number: cin_Number,
               companyName: companyName,
               dateOfCorporation: dateOfCorporation,
@@ -172,36 +185,37 @@ useEffect(()=>{
               gst_Number: gst_Number,
               directorsInformation: DirectorData,
               shareHoldingPatterens:modalValuesArray,
+              financialCapacity:financialCapacity
               
-              
-            }
-          }
-      ]
+            // }
+      //     }
+      // ]
         
     };
 
     dispatch(setAddinfoData(
-      formTab.developerDetail[0].devDetail
+      // formTab.developerDetail[0].devDetail
+      formTab
     ))
-    
-    try {
-      let res = await axios.post("http://localhost:8081/user/developer/_registration",formTab,{
-        headers:{
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-origin':"*",
-      }
-      }).then((response)=>{
-        return response
-      });
+    console.log("FORMARRAL",formTab);
+    // try {
+    //   let res = await axios.post("http://localhost:8081/user/developer/_registration",formTab,{
+    //     headers:{
+    //       'Content-Type': 'application/json',
+    //       'Access-Control-Allow-origin':"*",
+    //   }
+    //   }).then((response)=>{
+    //     return response
+    //   });
       
       
-    } catch (err) {
-      console.log(err);
-    }
-    console.log("FORMARRAL",devDetail);
-    console.log("director data",DirectorData);
-    const formData = ("devDetail",JSON.stringify(devDetail));
-    console.log("sdsdsds",formData);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    // console.log("FORMARRAL",formTab);
+    // console.log("director data",DirectorData);
+    // const formData = ("formTab",JSON.stringify(formTab));
+    // console.log("sdsdsds",formData);
     // localStorage.setItem("devDetail", JSON.stringify(devDetail));
     // devDetail.push();
     // let frmData = JSON.parse(localStorage.getItem("step1a") || "[]");
@@ -280,6 +294,202 @@ useEffect(()=>{
                   {" "}
                   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Developer
                 </h4>
+                <div className="card">
+                  <div className="card-body">
+                    {/* <h5 className="card-title">
+                      (i) Details of following documents
+                    </h5> */}
+                    <div className="row">
+                      <div className="col-sm-12">
+                        {/* <h4 className='mt-3 text-center mb-3'>Output  </h4> */}
+
+                        {/* <div className="form-group row">
+                                  <label className="col-sm-3 col-form-label">Name</label>
+                                  <div className="col-sm-6">
+                                      <input type="text" className="form-control" id="inputPassword" placeholder="Enter Name" />
+                                  </div>
+                              </div> */}
+
+                        <div className="form-group row">
+                          {/* <label className="col-sm-3 col-form-label">Full Address</label> */}
+                          <div className="col-sm-3">
+                            Individual
+                            <input
+                              type="radio"
+                              className="mx-2"
+                              name="isyes"
+                              value="1"
+                              onChange={handleChange}
+                              onClick={handleshow0}
+                            />
+                          </div>
+                          <div className="col-sm-3">
+                            Company
+                            <input
+                              type="radio"
+                              className="mx-2 mt-1"
+                              name="isyes"
+                              value="0"
+                              onChange={handleChange}
+                              onClick={handleshow0}
+                            />
+                          </div>
+                          <div className="col-sm-3">
+                            LLP
+                            <input
+                              type="radio"
+                              className="mx-2 mt-1"
+                              name="isyes"
+                              value="2"
+                              onChange={handleChange}
+                              onClick={handleshow0}
+                            />
+                          </div>
+                        </div>
+
+                        {showhide0 === "1" && (
+                          <div className="form-group row mb-12">
+                            {/* <label className="col-sm-3 col-form-label">Individual</label> */}
+                            <div className="col-sm-12">
+                              {/* <textarea type="text" className="form-control" id="details" placeholder="Enter Details" /> */}
+                              <Table className="table table-bordered" size="sm">
+                                <thead>
+                                  <tr>
+                                    <th>S.No.</th>
+                                    <th>Particulars of document</th>
+                                    <th>Details </th>
+                                    <th>Annexure </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td> 1 </td>
+                                    <td>
+                                      Net Worth in case of individual certified by
+                                      CA
+                                    </td>
+                                    <td>
+                                      <input
+                                        type="file"
+                                        name="upload"
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td align="center" size="large">
+                                      <FileUploadIcon />
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </Table>
+                            </div>
+                          </div>
+                        )}
+
+                        {showhide0 === "0" && (
+                          <div className="form-group row">
+                            {/* <label className="col-sm-3 col-form-label">Company</label> */}
+                            <div className="col-sm-12">
+                              {/* <input type="text" className="form-control" id="Email" placeholder="Enter Email" /> */}
+                              <Table className="table table-bordered" size="sm">
+                                <thead>
+                                  <tr>
+                                    <th>S.No.</th>
+                                    <th>Particulars of document</th>
+                                    <th>Details </th>
+                                    <th>Annexure </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td> 1 </td>
+                                    <td>Balance sheet of last 3 years </td>
+                                    <td>
+                                      <input
+                                        type="file"
+                                        name="upload"
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td align="center" size="large">
+                                      <FileUploadIcon />
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td> 2 </td>
+                                    <td>Ps-3(Representing Paid-UP capital)</td>
+                                    <td>
+                                      <input
+                                        type="file"
+                                        name="upload"
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td align="center" size="large">
+                                      <FileUploadIcon />
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </Table>
+                            </div>
+                          </div>
+                        )}
+                        {showhide0 === "2" && (
+                          <div className="form-group row">
+                            {/* <label className="col-sm-3 col-form-label">LLP</label> */}
+                            <div className="col-sm-12">
+                              {/* <input type="text" className="form-control" id="llp" placeholder="Enter Email" /> */}
+                              <Table className="table table-bordered" size="sm">
+                                <thead>
+                                  <tr>
+                                    <th>S.No.</th>
+                                    <th>Particulars of document</th>
+                                    <th>Details </th>
+                                    <th>Annexure </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td> 1 </td>
+                                    <td>Networth of partners </td>
+                                    <td>
+                                      <input
+                                        type="file"
+                                        name="upload"
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td align="center" size="large">
+                                      <FileUploadIcon />
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td> 2 </td>
+                                    <td>Net worth of firm</td>
+                                    <td>
+                                      <input
+                                        type="file"
+                                        name="upload"
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td align="center" size="large">
+                                      <FileUploadIcon />
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </Table>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <h4 className="card-h">
                   {" "}
                   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;1. Developer Details:
@@ -891,7 +1101,7 @@ useEffect(()=>{
                   style={{ float: "right" }}
                   
                 >
-                  Submit
+                  Save and Continue
                 </button>
               </div>
             </div>

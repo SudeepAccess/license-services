@@ -25,17 +25,89 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
+import axios from "axios";
 import { useSelector } from "react-redux";
+import { selectFinancialCapacity } from "../Redux/Slicer/Slicer";
+import { selectCinNumber } from "../Redux/Slicer/Slicer";
+import { selectCompanayNAme } from "../Redux/Slicer/Slicer";
+import { selectDateOfCorporation } from "../Redux/Slicer/Slicer";
+import { selectRegisteredAddress } from "../Redux/Slicer/Slicer";
+import { selectEmail } from "../Redux/Slicer/Slicer";
+import { selectMobileNumber } from "../Redux/Slicer/Slicer";
+import { selectGst_Number } from "../Redux/Slicer/Slicer";
+import { selectShareHoldingPatterens } from "../Redux/Slicer/Slicer";
+import { selectDirectorsInformation } from "../Redux/Slicer/Slicer";
 import { selectmodalAuthUserValuesArray } from "../Redux/Slicer/Slicer";
-import {setTechnicalData} from "../Redux/Slicer/Slicer";
+import { setTechnicalData } from "../Redux/Slicer/Slicer";
 import { useDispatch } from "react-redux";
 
 const AppliedDetailForm = (props) => {
+  const financialCapacity = useSelector(selectFinancialCapacity)
+  const cin_Number = useSelector(selectCinNumber)
+  const companyName = useSelector(selectCompanayNAme)
+  const dateOfCorporation = useSelector(selectDateOfCorporation)
+  const registeredAddress = useSelector(selectRegisteredAddress)
+  const email = useSelector(selectEmail)
+  const mobileNumber = useSelector(selectMobileNumber)
+  const gst_Number = useSelector(selectGst_Number)
+  const shareHoldingPatterens = useSelector(selectShareHoldingPatterens)
+  const directorsData = useSelector(selectDirectorsInformation);
+  const authUserName = useSelector(selectmodalAuthUserValuesArray);
+
   const [modal, setmodal] = useState(false);
-  const [modalDevGrpValuesArray, setModalDevGrpValuesArray] = useState([]);
-  const authUserName=useSelector(selectmodalAuthUserValuesArray);
-  console.log("AUTHNAME",authUserName);
- 
+  const [modalColony, setmodalColony] = useState(false);
+  const [capacityDevelopColonyHdruAct, setModalCapacityDevelopColonyHdruAct] = useState([]);
+  const [modalColonyDevGrpValuesArray, setModalColonyDevGrpValuesArray] = useState([]);
+  const [capacityDevelopColonyLawAct, setCapacityDevelopColonyLawAct] = useState([]);
+  const [capacityDevelopAColony, setcapacityDevelopAColony] = useState([]);
+
+  const [licenceNumber, setModalLcNo] = useState("");
+  const [nameOfDeveloper, setModalDevName] = useState("");
+  const [purposeOfColony, setModalPurposeCol] = useState("");
+  const [sectorAndDevelopmentPlan, setModalDevPlan] = useState("");
+  const [validatingLicence, setModalDevValidity] = useState("");
+
+  
+  const [coloniesDeveloped,setColonyDev] = useState("");
+  const [area,setColonyArea] = useState("");
+  const [purpose,setColonyPurpose] = useState("");
+  const [statusOfDevelopment,setColonyStatusDev] = useState("");
+  const [outstandingDues,setColonyoutstandingDue] = useState("");
+
+  const [engineerName,setEngineerName] = useState("")
+  const [engineerQualification,setEngineerQualification] = useState("")
+  const [engineerSign,setEngineerSign] = useState("")
+  const [engineerDegree,setEngineerDegree] = useState("")
+  const [architectName,setArchitectName] = useState("")
+  const [architectQualification,setArchitectQualification] = useState("")
+  const [architectSign,setArchitectSign] = useState("")
+  const [architectDegree,setArchitectDegree] = useState("")
+  const [townPlannerName,setTownPlannerName] = useState("")
+  const [townPlannerQualification,setTownPlannerQualification] = useState("")
+  const [townPlannerSign,setTownPlannerSign] = useState("")
+  const [townPlannerDegree,setTownPlannerDegree] = useState("")
+  const [existingDeveloperAgreement,setExistingDev] = useState("")
+  const [existingDeveloperAgreementDoc,setExistingDevDoc] = useState("")
+  const [technicalCapacity,setTechnicalCapacity] = useState("")
+  const [technicalCapacityDoc,setTechnicalCapacityDoc] = useState("")
+  const [engineerNameN,setengineerNameN] = useState("")
+  const [engineerDocN,setEngineerDocN] = useState("")
+  const [architectNameN,setArchitectNameN] = useState("")
+  const [architectDocN,setArchitectDocN] = useState("")
+  const [uplaodSpaBoard,setUplaodSpaBoard] = useState("")
+  const [uplaodSpaBoardDoc,setUplaodSpaBoardDoc] = useState("")
+  const [agreementDoc,setAgreementDoc] = useState("")
+  const [boardDoc,setBoardDoc] = useState("")
+  const [registeredDoc,setRegisteredDoc] = useState("")
+  const [boardDocY,setBoardDocY] = useState("")
+  const [earlierDocY,setEarlierDocY] = useState("")
+  const [boardDocN,setBoardDocN] = useState("")
+  const [earlierDocN,setEarlierDocN] = useState("")
+  const [technicalAssistanceAgreementDoc,setTechnicalAssistanceAgreementDoc] = useState("")
+
+  
+  console.log("AUTHNAME", authUserName);
+
   const dispatch = useDispatch();
   const {
     register,
@@ -103,41 +175,141 @@ const AppliedDetailForm = (props) => {
   };
 
 
-  const [lic_number,setModalLcNo] = useState("");
-  const [dev_name,setModalDevName] = useState("");
-  const [purpose_Colony,setModalPurposeCol] = useState("");
-  const [dev_plan,setModalDevPlan] = useState("");
-  const [dev_validity,setModalDevValidity] = useState("");
-  const handleArrayValues=()=>{
-  
-    if (lic_number!=="" && dev_name!=="" && purpose_Colony!=="") {
-      
-      const values ={
-        modalDevGrpValuesArray:{
-          lic_number:lic_number,
-          dev_name:dev_name,
-          purpose_Colony:purpose_Colony,
-          dev_plan:dev_plan,
-          dev_validity:dev_validity
-        }
+  const handleArrayValues = () => {
+
+    if (licenceNumber !== "" && nameOfDeveloper !== "" && purposeOfColony !== "") {
+
+      const values = {
+        
+          licenceNumber: licenceNumber,
+          nameOfDeveloper: nameOfDeveloper,
+          purposeOfColony: purposeOfColony,
+          sectorAndDevelopmentPlan: sectorAndDevelopmentPlan,
+          validatingLicence: validatingLicence
+        
       }
-
-
-      
-      setModalDevGrpValuesArray((prev)=>[...prev,values]);
+      setModalCapacityDevelopColonyHdruAct((prev) => [...prev, values]);
       setmodal(!modal)
     }
-    console.log("DevCapacity",modalDevGrpValuesArray);
-  localStorage.setItem("DevCapacityDetails",JSON.stringify(modalDevGrpValuesArray))
+    console.log("DevCapacityFirst", capacityDevelopColonyHdruAct);
+    localStorage.setItem("DevCapacityDetails", JSON.stringify(capacityDevelopColonyHdruAct))
   }
 
-  const submitTechdevData=()=>{ 
-    dispatch(setTechnicalData(
-      values
-    ))
 
+  const handleColonyDevGrp=()=>{
+    const colonyDevValues = {
+      
+        coloniesDeveloped:coloniesDeveloped,
+        area:area,
+        purpose:purpose,
+        statusOfDevelopment:statusOfDevelopment,
+        outstandingDues:outstandingDues
+      
+      
+    }
+    setCapacityDevelopColonyLawAct((prev) => [...prev, colonyDevValues]);
+    setmodalColony(!modalColony)
+    console.log("DevCapacityColony", capacityDevelopColonyLawAct);
   }
 
+  const submitTechdevData = async (e) => {
+    e.preventDefault();
+    const formDataValues = {
+      "developerDetail" :[
+        {
+          "devDetail":{
+            addInfo:{
+              financialCapacity:financialCapacity,
+              cin_Number:cin_Number,
+              companyName:companyName,
+              dateOfCorporation:dateOfCorporation,
+              registeredAddress:registeredAddress,
+              email:email,
+              mobileNumber:mobileNumber,
+              gst_Number:gst_Number,
+              shareHoldingPatterens:shareHoldingPatterens,
+              directorsData:directorsData,
+            },
+            addRemoveAuthoizedUsers:{
+              authUserName:authUserName
+            },
+            capacityDevelopAColony: {
+              capacityDevelopColonyHdruAct: capacityDevelopColonyHdruAct,
+              capacityDevelopColonyLawAct:capacityDevelopColonyLawAct,
+              technicalExpertEngaged:{
+                engineerName:engineerName,
+                engineerQualification:engineerQualification,
+                engineerSign:engineerSign,
+                engineerDegree:engineerDegree,
+                architectName:architectName,
+                architectQualification:architectQualification,
+                architectSign:architectSign,
+                architectDegree:architectDegree,
+                townPlannerName:townPlannerName,
+                townPlannerQualification:townPlannerQualification,
+                townPlannerSign:townPlannerSign,
+                townPlannerDegree:townPlannerDegree,
+                existingDeveloperAgreement:existingDeveloperAgreement,
+                existingDeveloperAgreementDoc:existingDeveloperAgreementDoc,
+                technicalCapacity:technicalCapacity,
+                technicalCapacityDoc:technicalCapacityDoc,
+                engineerNameN:engineerNameN,
+                engineerDocN:engineerDocN,
+                architectNameN:architectNameN,
+                architectDocN:architectDocN,
+                uplaodSpaBoard:uplaodSpaBoard,
+                uplaodSpaBoardDoc:uplaodSpaBoardDoc
+              },
+              designationDirector:{
+                agreementDoc:agreementDoc,
+                boardDoc:boardDoc
+              },
+              obtainedLicense:{
+                registeredDoc:registeredDoc,
+                boardDocY:boardDocY,
+                earlierDocY:earlierDocY,
+                boardDocN:boardDocN,
+                earlierDocN:earlierDocN,
+                technicalAssistanceAgreementDoc:technicalAssistanceAgreementDoc
+              }
+              
+              
+            },
+
+          }
+        }
+      ]
+
+      
+    }
+
+    try {
+      let res = await axios.post("http://localhost:8081/user/developer/_registration",formDataValues,{
+        headers:{
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-origin':"*",
+      }
+      }).then((response)=>{
+        return response
+      });
+      
+      
+    } catch (err) {
+      console.log(err);
+    }
+
+    console.log("FINAL SUBMIT",formDataValues)
+    localStorage.setItem("capacity",JSON.stringify(formDataValues));
+    setcapacityDevelopAColony((prev) => [...prev, formDataValues]);
+    
+    // dispatch(setTechnicalData(
+    //   formDataValues
+    // ))
+    
+  }
+  const jsonobj=localStorage.getItem("capacity") ;
+  console.log(JSON.parse(jsonobj));
+  
 
   const [noofRows, setNoOfRows] = useState(1);
   const [noofRow, setNoOfRow] = useState(1);
@@ -192,72 +364,72 @@ const AppliedDetailForm = (props) => {
                 <label for="No">No</label>
                 {showhide0 === "Yes" && (
                   <div className="card-body">
-                  {/* <h5 className="card-h">Add/Remove Authorized Users</h5> */}
-                  <div className="table-bd">
-                    <Table className="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>S. no</th>
-                          <th> Licence No / year and date of grant of licence </th>
-                          <th>Name of developer *</th>
-                          <th>Purpose of colony </th>
-                          <th>Sector and development plan </th>
-                          <th>Validity of licence including renewals if any</th>
-                          {/* <th>Remove</th> */}
-                        </tr>
-                      </thead>
-                      <tbody>
-                      {
-                          (modalDevGrpValuesArray.length>0)?
-                          modalDevGrpValuesArray.map((elementInArray, input) => {
-                            return (
-                            <tr>
-                             
-                             <td>{input+1}</td>
-                              <td>
-                                <input
-                                  type="text"
-                                  value={elementInArray.modalDevGrpValuesArray.lic_number}
-                                  placeholder={elementInArray.modalDevGrpValuesArray.lic_number}
-                                  class="form-control"
-                                />
-                              </td>
-                              <td>
-                                <input
-                                  type="text"
-                                  value={elementInArray.modalDevGrpValuesArray.dev_Name}
-                                  placeholder={elementInArray.modalDevGrpValuesArray.dev_name}
-                                  class="form-control"
-                                />
-                              </td>
-                              <td>
-                                <input
-                                  type="email"
-                                  value={elementInArray.modalDevGrpValuesArray.purpose_Colony}
-                                  placeholder={elementInArray.modalDevGrpValuesArray.purpose_Colony}
-                                  class="form-control"
-                                />
-                              </td>
-                              <td>
-                                {/* <input
+                    {/* <h5 className="card-h">Add/Remove Authorized Users</h5> */}
+                    <div className="table-bd">
+                      <Table className="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>S. no</th>
+                            <th> Licence No / year and date of grant of licence </th>
+                            <th>Name of developer *</th>
+                            <th>Purpose of colony </th>
+                            <th>Sector and development plan </th>
+                            <th>Validity of licence including renewals if any</th>
+                            {/* <th>Remove</th> */}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {
+                            (capacityDevelopColonyHdruAct.length > 0) ?
+                              capacityDevelopColonyHdruAct.map((elementInArray, input) => {
+                                return (
+                                  <tr>
+
+                                    <td>{input + 1}</td>
+                                    <td>
+                                      <input
+                                        type="text"
+                                        value={elementInArray.licenceNumber}
+                                        placeholder={elementInArray.licenceNumber}
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td>
+                                      <input
+                                        type="text"
+                                        value={elementInArray.nameOfDeveloper}
+                                        placeholder={elementInArray.nameOfDeveloper}
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td>
+                                      <input
+                                        type="email"
+                                        value={elementInArray.purposeOfColony}
+                                        placeholder={elementInArray.purposeOfColony}
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td>
+                                      {/* <input
                                   type="file"
                                   name="upload"
                                   placeholder=""
                                   class="form-control"
                                 /> */}
-                                <button className="btn btn-success btn-sm">View</button>
-                              </td>
-                              <td>
-                                {/* <input
+                                      <button className="btn btn-success btn-sm">View</button>
+                                    </td>
+                                    <td>
+                                      {/* <input
                                   type="file"
                                   name="upload"
                                   placeholder=""
                                   class="form-control"
                                 /> */}
-                                <button className="btn btn-success btn-sm">View</button>
-                              </td>
-          
-                              {/* <td>
+                                      <button className="btn btn-success btn-sm">View</button>
+                                    </td>
+
+                                    {/* <td>
                                 <button
                                   type="button"
                                   style={{ float: "right" }}
@@ -267,122 +439,122 @@ const AppliedDetailForm = (props) => {
                                   <DeleteIcon />
                                 </button>
                               </td> */}
-                            </tr>
-                            )
-                          }):<p>Click on Add more</p>
-                        }
-                      </tbody>
-                    </Table>
-                    <div>
-                            <button
-                              type="button"
-                              style={{
-                                float: "left",
-                                backgroundColor: "#0b3629",
-                                color: "white",
-                              }}
-                              className="btn mt-3"
-                              // onClick={() => setNoOfRows(noofRows + 1)}
-                              onClick={() => setmodal(true)}
-                            >
-                              Add More
-                            </button>
-          
-                            <div>
-                              <Modal
-                                size="lg"
-                                isOpen={modal}
-                                toggle={() => setmodal(!modal)}
-                              >
-                                <ModalHeader
-                                  toggle={() => setmodal(!modal)}
-                                ></ModalHeader>
-          
-                                <ModalBody>
-                                  <div className="card2">
-                                    <div className="popupcard">
-                                      
-          
-                                      <form className="text1">
-                                        <Row>
-                                            <Col md={4} xxl lg="4">
-                                              <label htmlFor="name" className="text">Licence No / year and date of grant of licence</label>
-                                              <input
-                                                type="text"
-                                                onChange={(e)=>setModalLcNo(e.target.value)}
-                                                placeholder=""
-                                                class="form-control"
-                                              />
-                                            </Col>
-                                            <Col md={4} xxl lg="4">
-                                              <label htmlFor="name" className="text">Name of developer *</label>
-                                              <input
-                                                type="text"
-                                                onChange={(e)=>setModalDevName(e.target.value)}
-                                                placeholder=""
-                                                class="form-control"
-                                              />
-                                            </Col>
-                                            <Col md={4} xxl lg="4">
-                                              <label htmlFor="name" className="text">Purpose of colony</label>
-                                              <input
-                                                type="text"
-                                                onChange={(e)=>setModalPurposeCol(e.target.value)}
-                                                placeholder=""
-                                                class="form-control"
-                                              />
-                                            </Col>
-                                        </Row>
-                                          <Row>
-                                            <Col md={4} xxl lg="4">
-                                              <label htmlFor="name" className="text">Sector and development plan</label>
-                                              <input
-                                                type="file"
-                                                onChange={(e)=>setModalDevPlan(e.target.value)}
-                                                placeholder=""
-                                                class="form-control"
-                                              />
-                                            </Col>
-                                            <Col md={4} xxl lg="4">
-                                              <label htmlFor="name" className="text">Validity of licence including renewals if any</label>
-                                              <input
-                                                type="file"
-                                                onChange={(e)=>setModalDevValidity(e.target.value)}
-                                                placeholder=""
-                                                class="form-control"
-                                              />
-                                            </Col>
-                                           
-                                        </Row>
-                                      </form>
-                                      
-                                    </div>
-                                    <div className="submit-btn">
-                                    <div className="form-group col-md6 mt-6">
+                                  </tr>
+                                )
+                              }) : <p>Click on Add more</p>
+                          }
+                        </tbody>
+                      </Table>
+                      <div>
                         <button
                           type="button"
-                          onClick={handleArrayValues}
-                          style={{ float: "right" }}
-                          className="btn btn-success"
+                          style={{
+                            float: "left",
+                            backgroundColor: "#0b3629",
+                            color: "white",
+                          }}
+                          className="btn mt-3"
+                          // onClick={() => setNoOfRows(noofRows + 1)}
+                          onClick={() => setmodal(true)}
                         >
-                          Submit
+                          Add More
                         </button>
-                      </div>
-                      </div>
+
+                        <div>
+                          <Modal
+                            size="lg"
+                            isOpen={modal}
+                            toggle={() => setmodal(!modal)}
+                          >
+                            <ModalHeader
+                              toggle={() => setmodal(!modal)}
+                            ></ModalHeader>
+
+                            <ModalBody>
+                              <div className="card2">
+                                <div className="popupcard">
+
+
+                                  <form className="text1">
+                                    <Row>
+                                      <Col md={4} xxl lg="4">
+                                        <label htmlFor="name" className="text">Licence No / year and date of grant of licence</label>
+                                        <input
+                                          type="text"
+                                          onChange={(e) => setModalLcNo(e.target.value)}
+                                          placeholder=""
+                                          class="form-control"
+                                        />
+                                      </Col>
+                                      <Col md={4} xxl lg="4">
+                                        <label htmlFor="name" className="text">Name of developer *</label>
+                                        <input
+                                          type="text"
+                                          onChange={(e) => setModalDevName(e.target.value)}
+                                          placeholder=""
+                                          class="form-control"
+                                        />
+                                      </Col>
+                                      <Col md={4} xxl lg="4">
+                                        <label htmlFor="name" className="text">Purpose of colony</label>
+                                        <input
+                                          type="text"
+                                          onChange={(e) => setModalPurposeCol(e.target.value)}
+                                          placeholder=""
+                                          class="form-control"
+                                        />
+                                      </Col>
+                                    </Row>
+                                    <Row>
+                                      <Col md={4} xxl lg="4">
+                                        <label htmlFor="name" className="text">Sector and development plan</label>
+                                        <input
+                                          type="file"
+                                          onChange={(e) => setModalDevPlan(e.target.value)}
+                                          placeholder=""
+                                          class="form-control"
+                                        />
+                                      </Col>
+                                      <Col md={4} xxl lg="4">
+                                        <label htmlFor="name" className="text">Validity of licence including renewals if any</label>
+                                        <input
+                                          type="file"
+                                          onChange={(e) => setModalDevValidity(e.target.value)}
+                                          placeholder=""
+                                          class="form-control"
+                                        />
+                                      </Col>
+
+                                    </Row>
+                                  </form>
+
+                                </div>
+                                <div className="submit-btn">
+                                  <div className="form-group col-md6 mt-6">
+                                    <button
+                                      type="button"
+                                      onClick={handleArrayValues}
+                                      style={{ float: "right" }}
+                                      className="btn btn-success"
+                                    >
+                                      Submit
+                                    </button>
                                   </div>
-                                </ModalBody>
-                                <ModalFooter
-                                  toggle={() => setmodal(!modal)}
-                                ></ModalFooter>
-                              </Modal>
-                            </div>
-                          </div>
-                        
-                          <br></br>
-                  <br></br>
+                                </div>
+                              </div>
+                            </ModalBody>
+                            <ModalFooter
+                              toggle={() => setmodal(!modal)}
+                            ></ModalFooter>
+                          </Modal>
+                        </div>
+                      </div>
+
+                      <br></br>
+                      <br></br>
+                    </div>
+
                   </div>
-                 
-                </div>
                 )}
               </div>
 
@@ -393,7 +565,194 @@ const AppliedDetailForm = (props) => {
                 other law/Act as .
               </p>
               <div>
-                <UnderTable />
+                <div className="card-body">
+                  {/* <h5 className="card-h">Add/Remove Authorized Users</h5> */}
+                  <div className="table-bd">
+                    <Table className="table table-bordered">
+                      <thead>
+                        <tr>
+                          {/* <th>Add More</th> */}
+                          <th>S.No</th>
+                          <th>Colonies developed</th>
+                          <th>Area</th>
+                          <th>Purpose</th>
+                          <th>Status of development</th>
+                          <th>Outstanding Dues</th>
+                          {/* <th>Action</th> */}
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {
+                            (capacityDevelopColonyLawAct.length > 0) ?
+                            capacityDevelopColonyLawAct.map((elementInArray, input) => {
+                                return (
+                            <tr>
+                             <td>{input+1}</td>
+                              <td>
+                                <input
+                                  type="text"
+                                  value={elementInArray.coloniesDeveloped}
+                                  placeholder={elementInArray.coloniesDeveloped}
+                                  class="form-control"
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  type="text"
+                                  value={elementInArray.area}
+                                  placeholder={elementInArray.area}
+                                  class="form-control"
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  type="email"
+                                  value={elementInArray.purpose}
+                                  placeholder={elementInArray.purpose}
+                                  class="form-control"
+                                />
+                              </td>
+                              <td>
+                                {/* <input
+                                  type="file"
+                                  name="upload"
+                                  placeholder=""
+                                  class="form-control"
+                                /> */}
+                                <button className="btn btn-success btn-sm">View</button>
+                              </td>
+                              <td>
+                                {/* <input
+                                  type="file"
+                                  name="upload"
+                                  placeholder=""
+                                  class="form-control"
+                                /> */}
+                                <button className="btn btn-success btn-sm">View</button>
+                              </td>
+
+                              {/* <td>
+                      <button
+                        type="button"
+                        style={{ float: "right" }}
+                        className="btn btn-danger"
+                        onClick={() => setNoOfRows(noofRows - 1)}
+                      >
+                        <DeleteIcon />
+                      </button>
+                    </td> */}
+                            </tr>
+                                )}
+                              ):<p>Click on add more</p>
+                  }
+                      </tbody>
+                    </Table>
+                    <div>
+                      <button
+                        type="button"
+                        style={{
+                          float: "left",
+                          backgroundColor: "#0b3629",
+                          color: "white",
+                        }}
+                        className="btn mt-3"
+                        // onClick={() => setNoOfRows(noofRows + 1)}
+                        onClick={() => setmodalColony(true)}
+                      >
+                        Add More
+                      </button>
+
+                      <div>
+                        <Modal
+                          size="lg"
+                          isOpen={modalColony}
+                          toggle={() => setmodalColony(!modalColony)}
+                        >
+                          <ModalHeader
+                            toggle={() => setmodalColony(!modalColony)}
+                          ></ModalHeader>
+
+                          <ModalBody>
+                            <div className="card2">
+                              <div className="popupcard">
+                                <form className="text1">
+                                  <Row>
+                                    <Col md={4} xxl lg="4">
+                                      <label htmlFor="name" className="text">Colonies developed</label>
+                                      <input
+                                        type="text"
+                                        onChange={(e) => setColonyDev(e.target.value)}
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </Col>
+                                    <Col md={4} xxl lg="4">
+                                      <label htmlFor="name" className="text">Area</label>
+                                      <input
+                                        type="number"
+                                        onChange={(e) => setColonyArea(e.target.value)}
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </Col>
+                                    <Col md={4} xxl lg="4">
+                                      <label htmlFor="name" className="text">Purpose</label>
+                                      <input
+                                        type="text"
+                                        onChange={(e) => setColonyPurpose(e.target.value)}
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </Col>
+                                  </Row>
+                                  <Row>
+                                    <Col md={4} xxl lg="4">
+                                      <label htmlFor="name" className="text">Status of development</label>
+                                      <input
+                                        type="file"
+                                        onChange={(e) => setColonyStatusDev(e.target.value)}
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </Col>
+                                    <Col md={4} xxl lg="4">
+                                      <label htmlFor="name" className="text">Outstanding Dues</label>
+                                      <input
+                                        type="file"
+                                        onChange={(e) => setColonyoutstandingDue(e.target.value)}
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </Col>
+
+                                  </Row>
+                                </form>
+
+                              </div>
+                              <div className="submit-btn">
+                                <div className="form-group col-md6 mt-6">
+                                  <button
+                                    type="button"
+                                    style={{ float: "right" }}
+                                    className="btn btn-success"
+                                    onClick={handleColonyDevGrp}
+                                  >
+                                    Submit
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </ModalBody>
+                          <ModalFooter
+                            toggle={() => setmodalColony(!modalColony)}
+                          ></ModalFooter>
+                        </Modal>
+                      </div>
+                    </div>
+                    <br></br>
+                    <br></br>
+                  </div>
+                </div>
               </div>
 
               <div className="hl"></div>
@@ -441,11 +800,18 @@ const AppliedDetailForm = (props) => {
                             <tbody>
                               <tr>
                                 <td>1</td>
-                                <td>Name of Engineer</td>
+                                <td>
+                                  <input
+                                   typr="text"
+                                   onChange={(e) => setEngineerName(e.target.value)}
+                                   placeholder="Name of Engineer"
+                                   class="form-control"
+                                  />
+                                </td>
                                 <td>
                                   <input
                                     type="text"
-                                    name="name[]"
+                                    onChange={(e) => setEngineerQualification(e.target.value)}
                                     placeholder=""
                                     class="form-control"
                                   />
@@ -454,23 +820,35 @@ const AppliedDetailForm = (props) => {
                                 <td>
                                   <input
                                     type="file"
-                                    name="upload"
+                                    onChange={(e) => setEngineerSign(e.target.value)}
                                     placeholder=""
                                     class="form-control"
                                   />
                                 </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                <input
+                                    type="file"
+                                    onChange={(e) => setEngineerDegree(e.target.value)}
+                                    placeholder=""
+                                    class="form-control"
+                                  />
                                 </td>
                               </tr>
 
                               <tr>
                                 <td>2</td>
-                                <td> Name of Architect</td>
+                                <td> 
+                                <input
+                                   typr="text"
+                                   onChange={(e) => setArchitectName(e.target.value)}
+                                   placeholder="Name of Architect"
+                                   class="form-control"
+                                  />
+                                </td>
                                 <td>
                                   <input
                                     type="text"
-                                    name="name[]"
+                                    onChange={((e) => setArchitectQualification(e.target.value))}
                                     placeholder=""
                                     class="form-control"
                                   />
@@ -479,23 +857,34 @@ const AppliedDetailForm = (props) => {
                                 <td>
                                   <input
                                     type="file"
-                                    name="upload"
+                                    onChange={((e) => setArchitectSign(e.target.value))}
                                     placeholder=""
                                     class="form-control"
                                   />
                                 </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                  <input
+                                    type="file"
+                                    onChange={((e) => setArchitectDegree(e.target.value))}
+                                    class="form-control"
+                                  />
                                 </td>
                               </tr>
 
                               <tr>
                                 <td>3</td>
-                                <td> Name of Town Planner</td>
+                                <td> 
+                                <input
+                                    type="text"
+                                    onChange={((e) => setTownPlannerName(e.target.value))}
+                                    placeholder="Name of Town Planner"
+                                    class="form-control"
+                                  />
+                                </td>
                                 <td>
                                   <input
                                     type="text"
-                                    name="name[]"
+                                    onChange={((e) => setTownPlannerQualification(e.target.value))}
                                     placeholder=""
                                     class="form-control"
                                   />
@@ -504,15 +893,21 @@ const AppliedDetailForm = (props) => {
                                 <td>
                                   <input
                                     type="file"
-                                    name="upload"
+                                    onChange={((e) => setTownPlannerSign(e.target.value))}
                                     placeholder=""
                                     class="form-control"
                                   />
                                 </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                <input
+                                    type="file"
+                                    onChange={((e) => setTownPlannerDegree(e.target.value))}
+                                    placeholder=""
+                                    class="form-control"
+                                  />
                                 </td>
                               </tr>
+                              
                             </tbody>
                           </Table>
                         </div>
@@ -540,43 +935,99 @@ const AppliedDetailForm = (props) => {
                                 <td>
                                   {" "}
                                   Agreement with existing colonizer/developer
-                                  who has already developed a colony
+                                    who has already developed a colony
+                                  {/* <input
+                                    type="text"
+                                    onChange={((e) => setExistingDev(e.target.value))}
+                                    placeholder=""
+                                  /> */}
                                 </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                <input
+                                    type="file"
+                                    onChange={((e) => setExistingDevDoc(e.target.value))}
+                                    placeholder=""
+                                    class="form-control"
+                                  />
                                 </td>
                               </tr>
                               <tr>
                                 <td> 2&nbsp;&nbsp; </td>
-                                <td>Technical capacity</td>
+                                <td>
+                                <input
+                                    type="text"
+                                    onChange={((e) => setTechnicalCapacity(e.target.value))}
+                                    placeholder="Technical Capacity"
+                                    class="form-control"
+                                  />
+                                </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                  <input
+                                    type="file"
+                                    onChange={((e) => setTechnicalCapacityDoc(e.target.value))}
+                                    placeholder=""
+                                    class="form-control"
+                                  />
                                 </td>
                               </tr>
                               <tr>
                                 <td> 3 &nbsp;&nbsp;</td>
                                 {/* <td colSpan={2}>Larry the Bird</td> */}
-                                <td>Name of Engineer</td>
+                                <td>
+                                  <input 
+                                    type="text"
+                                    placeholder="Name of Engineer"
+                                    onChange={((e)=> setengineerNameN(e.target.value))}
+                                    class="form-control"
+                                  />
+                                </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                <input
+                                    type="file"
+                                    onChange={((e) => setEngineerDocN(e.target.value))}
+                                    placeholder=""
+                                    class="form-control"
+                                  />
                                 </td>
                               </tr>
                               <tr>
                                 <td> 4&nbsp;&nbsp; </td>
-                                <td> Name of Architect</td>
+                                <td>
+                                <input 
+                                    type="text"
+                                    placeholder="Name of Architect"
+                                    onChange={((e)=> setArchitectNameN(e.target.value))}
+                                    class="form-control"
+                                  />
+                                </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                <input
+                                    type="file"
+                                    onChange={((e) => setArchitectDocN(e.target.value))}
+                                    placeholder=""
+                                    class="form-control"
+                                  />
                                 </td>
                               </tr>
                               <tr>
                                 <td> 5&nbsp;&nbsp; </td>
                                 <td>
+                                  {/* <input
+                                  type="text"
+                                  onChange={((e) => setUplaodSpaBoard(e.target.value))} 
+                                  placeholder=""
+                                  class="form-control"
+                                  /> */}
                                   Upload SPA/GPA/ Board Resolution to sign
                                   collaboration agreement on behalf of land
                                   owner(s)
                                 </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                  <input 
+                                    type="file"
+                                    class="form-control"
+                                    onChange={((e)=> setUplaodSpaBoardDoc(e.target.value))}
+                                  />
                                 </td>
                               </tr>
                             </tbody>
@@ -604,7 +1055,7 @@ const AppliedDetailForm = (props) => {
                   value="Yes"
                   id="Yes"
                   className="mx-2 mt-1"
-                  onChange={handleChange}
+                  onChange={(e)=>handleChange(e.target.value)}
                   name="Yes"
                   onClick={handleshow}
                 />
@@ -615,7 +1066,7 @@ const AppliedDetailForm = (props) => {
                   value="No"
                   id="No"
                   className="mx-2 mt-1"
-                  onChange={handleChange}
+                  onChange={(e)=>handleChange(e.target.value)}
                   name="Yes"
                   onClick={handleshow}
                 />
@@ -642,7 +1093,11 @@ const AppliedDetailForm = (props) => {
                                   technical assistance
                                 </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                  <input
+                                    type="file"
+                                    onChange={((e) => setAgreementDoc(e.target.value))}
+                                    class="form-control"
+                                  />
                                 </td>
                               </tr>
                               <tr>
@@ -652,7 +1107,11 @@ const AppliedDetailForm = (props) => {
                                   firm/company provided technical assistance
                                 </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                <input
+                                    type="file"
+                                    onChange={((e) => setBoardDoc(e.target.value))}
+                                    class="form-control"
+                                  />
                                 </td>
                               </tr>
                             </tbody>
@@ -711,7 +1170,11 @@ const AppliedDetailForm = (props) => {
                                   <td> 1 </td>
                                   <td> Registered and Irrevocable Agreement</td>
                                   <td align="center" size="large">
-                                    <FileUploadIcon />
+                                    <input 
+                                      type="file"
+                                      onChange={((e)=> setRegisteredDoc(e.target.value))}
+                                      class="form-control"
+                                    />
                                   </td>
                                 </tr>
 
@@ -722,7 +1185,11 @@ const AppliedDetailForm = (props) => {
                                     firm/company provided technical assistance
                                   </td>
                                   <td align="center" size="large">
-                                    <FileUploadIcon />
+                                    <input 
+                                      type="file"
+                                      onChange={((e)=> setBoardDocY(e.target.value))}
+                                      class="form-control"
+                                    />
                                   </td>
                                 </tr>
                                 <tr>
@@ -734,7 +1201,11 @@ const AppliedDetailForm = (props) => {
                                     to set up a colony under act of 1975.
                                   </td>
                                   <td align="center" size="large">
-                                    <FileUploadIcon />
+                                    <input 
+                                      type="file"
+                                      onChange={((e)=> setEarlierDocY(e.target.value))}
+                                      class="form-control"
+                                    />
                                   </td>
                                 </tr>
                               </tbody>{" "}
@@ -766,7 +1237,11 @@ const AppliedDetailForm = (props) => {
                                   technical assistance
                                 </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                  <input 
+                                    type="file"
+                                    onChange={((e)=> setTechnicalAssistanceAgreementDoc(e.target.value))}
+                                    class="form-control"
+                                  />
                                 </td>
                               </tr>
 
@@ -777,7 +1252,11 @@ const AppliedDetailForm = (props) => {
                                   firm/company provided technical assistance
                                 </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                <input 
+                                      type="file"
+                                      onChange={((e)=> setBoardDocN(e.target.value))}
+                                      class="form-control"
+                                    />
                                 </td>
                               </tr>
                               <tr>
@@ -789,21 +1268,25 @@ const AppliedDetailForm = (props) => {
                                   set up a colony under act of 1975.
                                 </td>
                                 <td align="center" size="large">
-                                  <FileUploadIcon />
+                                <input 
+                                      type="file"
+                                      onChange={((e)=> setEarlierDocN(e.target.value))}
+                                      class="form-control"
+                                    />
                                 </td>
                               </tr>
                             </tbody>
                           </Table>
                         </div>
                       </div>
-                    
+
                     </div>
                   </div>
                 )}
               </div>
               {/* </Col> */}
             </div>
-              <div className="form-group col-md2 mt-4">
+            <div className="form-group col-md2 mt-4">
               <button className="btn btn-success" style={{ float: "right" }} onClick={submitTechdevData} >
                 Submit
               </button>

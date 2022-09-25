@@ -110,7 +110,7 @@ export default function PopupGfg() {
   const Cin_number=useSelector(selectCinNumber);
   console.log("AUTHCIN",Cin_number);
   const [modal, setmodal] = useState(false);
-  const [modalAuthUserValuesArray,setModalValuesArray]= useState([]);
+  const [addRemoveAuthoizedUsers,setModalValuesArray]= useState([]);
   const dispatch = useDispatch();
   // const Modal = () => (
   //   <Popup trigger={<button className="button"> Open Modal </button>} modal>
@@ -162,35 +162,43 @@ export default function PopupGfg() {
   const [modalUserName,setModalNAme]=useState("");
   const [modalMobile,setModalMobile]=useState("");
   const [modalEmail,setModalEmail]=useState("");
-  const [uploadPan,setModalUploadPan]=useState("");
-  const [uploadAdhaar,setModalUploadAhaar]=useState("");
-  const [uploadSign,setModalUploadSign]=useState("");
+  const [uploadPanPdf,setModalUploadPan]=useState("");
+  const [uploadAadharPdf,setModalUploadAhaar]=useState("");
+  const [uploadDigitalSignaturePdf,setModalUploadSign]=useState("");
 
   const handleArrayValues=()=>{
   
     if (modalUserName!=="" && modalMobile!=="" && modalEmail!=="") {
       
       const values ={
-        modalAuthUserValuesArray:{
             name:modalUserName,
             mobile:modalMobile,
             email:modalEmail,
-            uploadPan:uploadPan,
-            uploadAdhaar:uploadAdhaar,
-            uploadSign:uploadSign
-        }
+            uploadPanPdf:uploadPanPdf,
+            uploadAadharPdf:uploadAadharPdf,
+            uploadDigitalSignaturePdf:uploadDigitalSignaturePdf
+        
       }
 
 
-      dispatch(setAddAuthUserData(
-        values
-      ))
+      
       setModalValuesArray((prev)=>[...prev,values]);
       setmodal(!modal)
     }
   }
-  console.log("FORMARRAYVAL",modalAuthUserValuesArray);
-  localStorage.setItem("authUserDetails",JSON.stringify(modalAuthUserValuesArray))
+  console.log("FORMARRAYVAL",addRemoveAuthoizedUsers);
+  localStorage.setItem("authUserDetails",JSON.stringify(addRemoveAuthoizedUsers))
+
+  const addAuthSubmit = async (e) => {
+    e.preventDefault();
+    const authTableValues = {
+      addRemoveAuthoizedUsers:addRemoveAuthoizedUsers
+    }
+    dispatch(setAddAuthUserData(
+      authTableValues
+    ))
+    console.log("AUTH USER DATA",authTableValues);
+  }
   return (
     <>
       {/* <DashboardScreen /> */}
@@ -224,16 +232,16 @@ export default function PopupGfg() {
                   </thead>
                   <tbody>
                   {
-                          (modalAuthUserValuesArray.length>0)?
-                          modalAuthUserValuesArray.map((elementInArray, input) => {
+                          (addRemoveAuthoizedUsers.length>0)?
+                          addRemoveAuthoizedUsers.map((elementInArray, input) => {
                             return (
                         <tr>
                           <td>{input+1}</td>
                           <td>
                             <input
                               type="text"
-                              value={elementInArray.modalAuthUserValuesArray.name}
-                              placeholder={elementInArray.modalAuthUserValuesArray.name}
+                              value={elementInArray.name}
+                              placeholder={elementInArray.name}
                               readOnly
                               class="form-control"
                             />
@@ -241,8 +249,8 @@ export default function PopupGfg() {
                           <td>
                             <input
                               type="text"
-                              value={elementInArray.modalAuthUserValuesArray.mobile}
-                              placeholder={elementInArray.modalAuthUserValuesArray.mobile}
+                              value={elementInArray.mobile}
+                              placeholder={elementInArray.mobile}
                               readOnly
                               class="form-control"
                             />
@@ -250,8 +258,8 @@ export default function PopupGfg() {
                           <td>
                             <input
                               type="email"
-                              value={elementInArray.modalAuthUserValuesArray.email}
-                              placeholder={elementInArray.modalAuthUserValuesArray.email}
+                              value={elementInArray.email}
+                              placeholder={elementInArray.email}
                               readOnly
                               class="form-control"
                             />
@@ -451,7 +459,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Upload PAN PDF</label>
                                     <input
                                       type="file"
-                                      value={uploadPan}
+                                      value={uploadPanPdf}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -460,7 +468,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Upload Aadhar PDF</label>
                                     <input
                                       type="file"
-                                      value={uploadAdhaar}
+                                      value={uploadAadharPdf}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -469,7 +477,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Upload Digital Signature PDF</label>
                                     <input
                                       type="file"
-                                      value={uploadSign}
+                                      value={uploadDigitalSignaturePdf}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -521,8 +529,9 @@ export default function PopupGfg() {
                 type="button"
                 style={{ float: "right" }}
                 className="btn btn-success"
+                onClick={addAuthSubmit}
               >
-                Submit
+                Save and Continue
               </button>
             </div>
           </div>
