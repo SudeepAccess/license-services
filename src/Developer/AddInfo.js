@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 // import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 // import Row from "react-bootstrap/Row";
 // import { Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -22,68 +23,96 @@ import {
 import axios from "axios"
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 
+// for redux purpose
+import {setAddinfoData} from "../Redux/Slicer/Slicer";
+import { useDispatch } from "react-redux";
+
+
 function AddInfo() {
   const [modal, setmodal] = useState(false);
   const [data, setData] = useState([])
-  useEffect(() => {
-    fetch("https://apisetu.gov.in/mca/v1/companies/U72200CH1998PTC022006").then((result) => {
-      result.json().then((resp) => {
-        setData(resp)
-      })
-    })
-  }, [])
-  console.warn(data)
+  const [devDetail, setdevDetail] = useState([])
+
+  // useEffect(() => {
+  //   fetch("https://apisetu.gov.in/mca/v1/companies/U72200CH1998PTC022006").then((result) => {
+  //     result.json().then((resp) => {
+  //       setData(resp)
+  //     })
+  //   })
+  // }, [])
+  // console.warn(data)
   const {
     register,
     handleSumit,
     formState: { error },
   } = useForm([
-    { Sr: "", Name: "", Mobile: "", Email: "", PAN: "", Aadhar: "" },
+    { Sr: "", name: "", mobileNumber: "", email: "", PAN: "", Aadhar: "" },
   ]);
   const formSubmit = (data) => {
     console.log("data", data);
   };
+
+  // onchange = (e) => {
+  //   this.setState({ value: e.target.value });
+  // };
+  const handleChange = (e) => {
+    this.setState({ isRadioSelected: true });
+  };
+  const [showhide0, setShowhide0] = useState("No");
   const [FormSubmitted, setFormSubmitted] = useState(false);
   const [showhide, setShowhide] = useState("No");
-  const [cinNo, setCinNo] = useState("");
+  const [cin_Number, setCinNo] = useState("");
   const [companyName, setCompanyName] = useState("");
-  const [Incorporation, setIncorporation] = useState("");
-  const [Registered, setRegistered] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Mobile, setMobile] = useState("");
-  const [GST, setGST] = useState("");
-  const [TbName, setTbName] = useState("");
-  const [Designition, setDesignition] = useState("");
-  const [Percetage, setPercetage] = useState("");
-  const [UploadPDF, setUploadPDF] = useState("");
+  const [dateOfCorporation, setIncorporation] = useState("");
+  const [registeredAddress, setRegistered] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobileNumber, setMobile] = useState("");
+  const [gst_Number, setGST] = useState("");
+  const [sharName, setTbName] = useState("");
+  const [designition, setDesignition] = useState("");
+  const [percentage, setPercetage] = useState("");
+  const [uploadPdf, setUploadPDF] = useState("");
+  const [serialNumber, setSerialNumber] = useState("");
   const [DirectorData,setDirectorData]=useState([]);
+  const [modalNAme,setModalNAme]=useState("");
+  const [modaldesignition,setModaldesignition]=useState("");
+  const [modalPercentage,setModalPercentage]=useState("");
+  const dispatch = useDispatch();
+  
+  const [modalValuesArray,setModalValuesArray]= useState([]);
+  const [financialCapacity,setFinancialCapacity]= useState([]);
   const handleshow = (e) => {
     const getshow = e.target.value;
     setShowhide(getshow);
   };
 
+  const handleshow0 = (e) => {
+    const getshow = e.target.value;
+    setShowhide0(getshow);
+  };
+
   const HandleGetMCNdata=async()=>{
     try{
-      if (cinNo.length===21) {
+      if (cin_Number.length===21) {
         const Resp = await axios.get("/mca/v1/companies/U72200CH1998PTC022006", {headers:{
           'Content-Type': 'application/json',
           'X-APISETU-APIKEY':'PDSHazinoV47E18bhNuBVCSEm90pYjEF',
           'X-APISETU-CLIENTID':'in.gov.tcpharyana',
-          'Access-Control-Allow-Origin':"https://apisetu.gov.in",
+          'Access-Control-Allow-Origin':"*",
         }})
 
         const Directory = await axios.get("/mca-directors/v1/companies/U72200CH1998PTC022006", {headers:{
           'Content-Type': 'application/json',
           'X-APISETU-APIKEY':'PDSHazinoV47E18bhNuBVCSEm90pYjEF',
           'X-APISETU-CLIENTID':'in.gov.tcpharyana',
-          'Access-Control-Allow-Origin':"https://apisetu.gov.in",
+          'Access-Control-Allow-Origin':"*",
         }})
 
         console.log(Resp.data)
         console.log(Directory.data);
         setDirectorData(Directory.data);
         setCompanyName(Resp.data.companyName)
-        setIncorporation(Resp.data.incorporationDate)
+        setIncorporation(Resp.data.dateOfCorporation)
         setEmail(Resp.data.email)
         //console.log(Resp.data.Email)
      setRegistered(Resp.data.registeredAddress)
@@ -97,61 +126,106 @@ function AddInfo() {
 
     }
 }
-
-useEffect(()=>{
-  HandleGetMCNdata();
-},[cinNo])
-
-const postAddInfo=async()=>{
-
-  try{
-    const Resp =  await axios.post("http://localhost:8081/user/developer/_registration",
-    {headers:{
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-origin':"*",
-    }})
-    .then((Resp)=>{
-        console.log("FORMDATA",Resp)
-        return Resp;
-    })
-
-  }catch(error){
-    console.log(error)
+const handleArrayValues=()=>{
+  
+  if (modalNAme!=="" && modaldesignition!=="" && modalPercentage!=="") {
+    
+    const values ={
+      "name":modalNAme,
+      "designition":modaldesignition,
+      "percentage":modalPercentage,
+      "uploadPdf": null,
+      "serialNumber": null
+    }
+    setModalValuesArray((prev)=>[...prev,values]);
+    setmodal(!modal)
   }
 }
+console.log("FORMARRAYVAL",modalValuesArray);
+useEffect(()=>{
+  HandleGetMCNdata();
+},[cin_Number])
+
+// const postAddInfo=async()=>{
+
+//   try{
+//     const Resp =  await axios.post("http://localhost:8081/user/developer/_registration",
+//     {headers:{
+//         'Content-Type': 'application/json',
+//         'Access-Control-Allow-origin':"*",
+//     }})
+//     .then((Resp)=>{
+//         console.log("FORMDATA",Resp.devDetail)
+//         return Resp;
+//     })
+
+//   }catch(error){
+//     console.log(error)
+//   }
+// }
 
   const [noofRows, setNoOfRows] = useState(1);
   const [aoofRows, setAoOfRows] = useState(1);
-  const AddInfoForm = (e) => {
+  const AddInfoForm = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
-    let forms = {
-      cinNo: cinNo,
-      companyName: companyName,
-      Incorporation: Incorporation,
-      Registered: Registered,
-      Email: Email,
-      Mobile: Mobile,
-      GST: GST,
+    let barArray = []
+    const formTab = {
+      
+      // "developerDetail": [
 
+      //     {
+            // "addInfo":{
+              cin_Number: cin_Number,
+              companyName: companyName,
+              dateOfCorporation: dateOfCorporation,
+              registeredAddress: registeredAddress,
+              email: email,
+              mobileNumber: mobileNumber,
+              gst_Number: gst_Number,
+              directorsInformation: DirectorData,
+              shareHoldingPatterens:modalValuesArray,
+              financialCapacity:financialCapacity
+              
+            // }
+      //     }
+      // ]
+        
     };
-    let form2 = {
-      TbName: TbName,
-      Designition: Designition,
-      Percetage: Percetage,
-      UploadPDF: UploadPDF,
-    }
 
-    localStorage.setItem("step1", JSON.stringify(forms));
-    let frmData = JSON.parse(localStorage.getItem("step1a") || "[]");
+    dispatch(setAddinfoData(
+      // formTab.developerDetail[0].devDetail
+      formTab
+    ))
+    console.log("FORMARRAL",formTab);
+    // try {
+    //   let res = await axios.post("http://localhost:8081/user/developer/_registration",formTab,{
+    //     headers:{
+    //       'Content-Type': 'application/json',
+    //       'Access-Control-Allow-origin':"*",
+    //   }
+    //   }).then((response)=>{
+    //     return response
+    //   });
+      
+      
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    // console.log("FORMARRAL",formTab);
+    // console.log("director data",DirectorData);
+    // const formData = ("formTab",JSON.stringify(formTab));
+    // console.log("sdsdsds",formData);
+    // localStorage.setItem("devDetail", JSON.stringify(devDetail));
+    // devDetail.push();
+    // let frmData = JSON.parse(localStorage.getItem("step1a") || "[]");
 
-    localStorage.setItem("step2", JSON.stringify(form2));
-    let frData = JSON.parse(localStorage.getItem("step2") || "[]");
 
 
-    useEffect(()=>{
-      postAddInfo();
-    },[]);
+
+    // useEffect(()=>{
+    //   postAddInfo();
+    // },[]);
   };
 
   return (
@@ -220,6 +294,202 @@ const postAddInfo=async()=>{
                   {" "}
                   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Developer
                 </h4>
+                <div className="card">
+                  <div className="card-body">
+                    {/* <h5 className="card-title">
+                      (i) Details of following documents
+                    </h5> */}
+                    <div className="row">
+                      <div className="col-sm-12">
+                        {/* <h4 className='mt-3 text-center mb-3'>Output  </h4> */}
+
+                        {/* <div className="form-group row">
+                                  <label className="col-sm-3 col-form-label">Name</label>
+                                  <div className="col-sm-6">
+                                      <input type="text" className="form-control" id="inputPassword" placeholder="Enter Name" />
+                                  </div>
+                              </div> */}
+
+                        <div className="form-group row">
+                          {/* <label className="col-sm-3 col-form-label">Full Address</label> */}
+                          <div className="col-sm-3">
+                            Individual
+                            <input
+                              type="radio"
+                              className="mx-2"
+                              name="isyes"
+                              value="1"
+                              onChange={handleChange}
+                              onClick={handleshow0}
+                            />
+                          </div>
+                          <div className="col-sm-3">
+                            Company
+                            <input
+                              type="radio"
+                              className="mx-2 mt-1"
+                              name="isyes"
+                              value="0"
+                              onChange={handleChange}
+                              onClick={handleshow0}
+                            />
+                          </div>
+                          <div className="col-sm-3">
+                            LLP
+                            <input
+                              type="radio"
+                              className="mx-2 mt-1"
+                              name="isyes"
+                              value="2"
+                              onChange={handleChange}
+                              onClick={handleshow0}
+                            />
+                          </div>
+                        </div>
+
+                        {showhide0 === "1" && (
+                          <div className="form-group row mb-12">
+                            {/* <label className="col-sm-3 col-form-label">Individual</label> */}
+                            <div className="col-sm-12">
+                              {/* <textarea type="text" className="form-control" id="details" placeholder="Enter Details" /> */}
+                              <Table className="table table-bordered" size="sm">
+                                <thead>
+                                  <tr>
+                                    <th>S.No.</th>
+                                    <th>Particulars of document</th>
+                                    <th>Details </th>
+                                    <th>Annexure </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td> 1 </td>
+                                    <td>
+                                      Net Worth in case of individual certified by
+                                      CA
+                                    </td>
+                                    <td>
+                                      <input
+                                        type="file"
+                                        name="upload"
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td align="center" size="large">
+                                      <FileUploadIcon />
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </Table>
+                            </div>
+                          </div>
+                        )}
+
+                        {showhide0 === "0" && (
+                          <div className="form-group row">
+                            {/* <label className="col-sm-3 col-form-label">Company</label> */}
+                            <div className="col-sm-12">
+                              {/* <input type="text" className="form-control" id="Email" placeholder="Enter Email" /> */}
+                              <Table className="table table-bordered" size="sm">
+                                <thead>
+                                  <tr>
+                                    <th>S.No.</th>
+                                    <th>Particulars of document</th>
+                                    <th>Details </th>
+                                    <th>Annexure </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td> 1 </td>
+                                    <td>Balance sheet of last 3 years </td>
+                                    <td>
+                                      <input
+                                        type="file"
+                                        name="upload"
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td align="center" size="large">
+                                      <FileUploadIcon />
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td> 2 </td>
+                                    <td>Ps-3(Representing Paid-UP capital)</td>
+                                    <td>
+                                      <input
+                                        type="file"
+                                        name="upload"
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td align="center" size="large">
+                                      <FileUploadIcon />
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </Table>
+                            </div>
+                          </div>
+                        )}
+                        {showhide0 === "2" && (
+                          <div className="form-group row">
+                            {/* <label className="col-sm-3 col-form-label">LLP</label> */}
+                            <div className="col-sm-12">
+                              {/* <input type="text" className="form-control" id="llp" placeholder="Enter Email" /> */}
+                              <Table className="table table-bordered" size="sm">
+                                <thead>
+                                  <tr>
+                                    <th>S.No.</th>
+                                    <th>Particulars of document</th>
+                                    <th>Details </th>
+                                    <th>Annexure </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td> 1 </td>
+                                    <td>Networth of partners </td>
+                                    <td>
+                                      <input
+                                        type="file"
+                                        name="upload"
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td align="center" size="large">
+                                      <FileUploadIcon />
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td> 2 </td>
+                                    <td>Net worth of firm</td>
+                                    <td>
+                                      <input
+                                        type="file"
+                                        name="upload"
+                                        placeholder=""
+                                        class="form-control"
+                                      />
+                                    </td>
+                                    <td align="center" size="large">
+                                      <FileUploadIcon />
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </Table>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <h4 className="card-h">
                   {" "}
                   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;1. Developer Details:
@@ -238,7 +508,7 @@ const postAddInfo=async()=>{
                         <input
                           type="text"
                           onChange={(e) => setCinNo(e.target.value)}
-                          value={cinNo}
+                          value={cin_Number}
                           className="form-control"
                         // placeholder=""
                         // {...register("name", {
@@ -297,8 +567,8 @@ const postAddInfo=async()=>{
                         <label htmlFor="name">Date of Incorporation</label>
                         <input
                           type="text"
-                          value={Incorporation}
-                          placeholder={Incorporation}
+                          value={dateOfCorporation}
+                          placeholder={dateOfCorporation}
                           className="form-control"
                         // placeholder=""
                         // {...register("name", {
@@ -327,8 +597,8 @@ const postAddInfo=async()=>{
                         <label htmlFor="name">Registered Address</label>
                         <input
                           type="text"
-                          value={Registered}
-                         placeholder={Registered}
+                          value={registeredAddress}
+                         placeholder={registeredAddress}
                           className="form-control"
                         // name="name"
                         // className={`form-control`}
@@ -358,8 +628,8 @@ const postAddInfo=async()=>{
                         <label htmlFor="email"> Email </label>
                         <input
                           type="text"
-                          value={Email}
-                         placeholder={Email}
+                          value={email}
+                         placeholder={email}
                           className="form-control"
                         // name="email"
                         // className={`form-control`}
@@ -382,8 +652,8 @@ const postAddInfo=async()=>{
                         <label htmlFor="name">Mobile No.</label>
                         <input
                           type="text"
-                          value={Mobile}
-                          placeholder={Mobile}
+                          value={mobileNumber}
+                          placeholder={mobileNumber}
                           className="form-control"
                         // name="name"
                         // className={`form-control`}
@@ -416,8 +686,8 @@ const postAddInfo=async()=>{
                         <label htmlFor="name">GST No.</label>
                         <input
                           type="text"
-                          value={GST}
-                         placeholder={GST}
+                          value={gst_Number}
+                         placeholder={gst_Number}
                           className="form-control"
                         // className={`form-control`}
                         // placeholder=""
@@ -460,50 +730,55 @@ const postAddInfo=async()=>{
                           <th>Sr. No</th>
                           <th>Name</th>
                           <th>Designition</th>
-                          <th>Percetage</th>
-                          <th>Upload PDF</th>
+                          <th>Percentage</th>
+                          <th>View PDF</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {[...Array(noofRows)].map((elementInArray, input) => {
-                          return (
-                            <tr>
-                              <td>1</td>
-                              <td>
-                                <input
-                                  type="text"
-                                  name="name[]"
-                                  placeholder=""
-                                  class="form-control"
-                                />
-                              </td>
-                              <td>
-                                <input
-                                  type="text"
-                                  name="mail[]"
-                                  placeholder=""
-                                  class="form-control"
-                                />
-                              </td>
-                              <td>
-                                <input
-                                  type="text"
-                                  name="mobile[]"
-                                  placeholder=""
-                                  class="form-control"
-                                />
-                              </td>
-                              <td>
-                                <input
-                                  type="file"
-                                  name="upload"
-                                  placeholder=""
-                                  class="form-control"
-                                />
-                              </td>
-                            </tr>
-                          );
-                        })}
+                        {
+                          (modalValuesArray.length>0)?
+                          modalValuesArray.map((elementInArray, input) => {
+                            return (
+                              <tr>
+                                <td>{input+ 1}</td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    value={elementInArray.name}
+                                    placeholder={elementInArray.name}
+                                    readOnly
+                                    class="form-control"
+                                  />
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    value={elementInArray.designition}
+                                    placeholder={elementInArray.designition}
+                                    readOnly
+                                    class="form-control"
+                                  />
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    value={elementInArray.percentage}
+                                    placeholder={elementInArray.percentage}
+                                    readOnly
+                                    class="form-control"
+                                  />
+                                </td>
+                                <td>
+                                  <div className="text-center">
+                                    <button className="btn btn-success btn-sm">View</button>
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })
+                          :
+                          <p>Click on the Add More Button</p>
+                        }
                       </tbody>
                     </Table>
                   </div>
@@ -642,7 +917,8 @@ const postAddInfo=async()=>{
                                     <label htmlFor="name" className="text">Name</label>
                                     <input
                                       type="text"
-                                      name="name[]"
+                                      
+                                      onChange={(e)=>setModalNAme(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -651,17 +927,19 @@ const postAddInfo=async()=>{
                                     <label htmlFor="name" className="text">	Designition</label>
                                     <input
                                       type="text"
-                                      name="name[]"
+                                      
+                                      onChange={(e)=>setModaldesignition(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
                                   </Col>
 
                                   <Col md={3} xxl lg="4">
-                                    <label htmlFor="name" className="text">Percetage</label>
+                                    <label htmlFor="name" className="text">Percentage</label>
                                     <input
                                       type="flot"
-                                      name="name[]"
+                                      
+                                      onChange={(e)=>setModalPercentage(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -671,7 +949,7 @@ const postAddInfo=async()=>{
                                     <label htmlFor="name" className="text">Upload PDF</label>
                                     <input
                                       type="file"
-                                      name="name[]"
+                                      value={uploadPdf}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -687,6 +965,7 @@ const postAddInfo=async()=>{
                                   type="button"
                                   style={{ float: "right" }}
                                   className="btn btn-success"
+                                  onClick={handleArrayValues}
                                 >
                                   Submit
                                 </button>
@@ -742,7 +1021,7 @@ const postAddInfo=async()=>{
                               <td>
                                 <input
                                   type="text"
-                                  name="name[]"
+                                  value={elementInArray.din}
                                   placeholder={elementInArray.din}
                                   class="form-control"
                                 />
@@ -750,7 +1029,7 @@ const postAddInfo=async()=>{
                               <td>
                                 <input
                                   type="text"
-                                  name="mail[]"
+                                  value={elementInArray.name}
                                   placeholder={elementInArray.name}
                                   class="form-control"
                                 />
@@ -758,7 +1037,7 @@ const postAddInfo=async()=>{
                               <td>
                                 <input
                                   type="text"
-                                  name="mobile[]"
+                                  value={elementInArray.contactNumber}
                                   placeholder={elementInArray.contactNumber}
                                   class="form-control"
                                 />
@@ -766,7 +1045,7 @@ const postAddInfo=async()=>{
                               <td>
                                 <input
                                   type="file"
-                                  name="upload"
+                                  value={uploadPdf}
                                   placeholder=""
                                   class="form-control"
                                 />
@@ -820,8 +1099,9 @@ const postAddInfo=async()=>{
                 <button
                   className="btn btn-success"
                   style={{ float: "right" }}
+                  
                 >
-                  Submit
+                  Save and Continue
                 </button>
               </div>
             </div>

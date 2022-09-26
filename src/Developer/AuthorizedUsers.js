@@ -98,8 +98,20 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+// for redux use only
+import { useSelector } from "react-redux";
+import { selectCinNumber } from "../Redux/Slicer/Slicer";
+
+import { setAddAuthUserData } from "../Redux/Slicer/Slicer";
+import { useDispatch } from "react-redux";
+
 export default function PopupGfg() {
+
+  const Cin_number=useSelector(selectCinNumber);
+  console.log("AUTHCIN",Cin_number);
   const [modal, setmodal] = useState(false);
+  const [addRemoveAuthoizedUsers,setModalValuesArray]= useState([]);
+  const dispatch = useDispatch();
   // const Modal = () => (
   //   <Popup trigger={<button className="button"> Open Modal </button>} modal>
   //     <span> Modal content </span>
@@ -147,7 +159,46 @@ export default function PopupGfg() {
   };
 
   const [noofRows, setNoOfRows] = useState(1);
+  const [modalUserName,setModalNAme]=useState("");
+  const [modalMobile,setModalMobile]=useState("");
+  const [modalEmail,setModalEmail]=useState("");
+  const [uploadPanPdf,setModalUploadPan]=useState("");
+  const [uploadAadharPdf,setModalUploadAhaar]=useState("");
+  const [uploadDigitalSignaturePdf,setModalUploadSign]=useState("");
 
+  const handleArrayValues=()=>{
+  
+    if (modalUserName!=="" && modalMobile!=="" && modalEmail!=="") {
+      
+      const values ={
+            name:modalUserName,
+            mobile:modalMobile,
+            email:modalEmail,
+            uploadPanPdf:uploadPanPdf,
+            uploadAadharPdf:uploadAadharPdf,
+            uploadDigitalSignaturePdf:uploadDigitalSignaturePdf
+        
+      }
+
+
+      
+      setModalValuesArray((prev)=>[...prev,values]);
+      setmodal(!modal)
+    }
+  }
+  console.log("FORMARRAYVAL",addRemoveAuthoizedUsers);
+  localStorage.setItem("authUserDetails",JSON.stringify(addRemoveAuthoizedUsers))
+
+  const addAuthSubmit = async (e) => {
+    e.preventDefault();
+    const authTableValues = {
+      addRemoveAuthoizedUsers:addRemoveAuthoizedUsers
+    }
+    dispatch(setAddAuthUserData(
+      authTableValues
+    ))
+    console.log("AUTH USER DATA",authTableValues);
+  }
   return (
     <>
       {/* <DashboardScreen /> */}
@@ -180,61 +231,80 @@ export default function PopupGfg() {
                     </tr>
                   </thead>
                   <tbody>
-                    {[...Array(noofRows)].map((elementInArray, input) => {
-                      return (
+                  {
+                          (addRemoveAuthoizedUsers.length>0)?
+                          addRemoveAuthoizedUsers.map((elementInArray, input) => {
+                            return (
                         <tr>
-                          <td>1</td>
+                          <td>{input+1}</td>
                           <td>
                             <input
                               type="text"
-                              name="name[]"
-                              placeholder=""
+                              value={elementInArray.name}
+                              placeholder={elementInArray.name}
+                              readOnly
                               class="form-control"
                             />
                           </td>
                           <td>
                             <input
                               type="text"
-                              name="mobile[]"
-                              placeholder=""
+                              value={elementInArray.mobile}
+                              placeholder={elementInArray.mobile}
+                              readOnly
                               class="form-control"
                             />
                           </td>
                           <td>
                             <input
                               type="email"
-                              name="email[]"
-                              placeholder=""
+                              value={elementInArray.email}
+                              placeholder={elementInArray.email}
+                              readOnly
                               class="form-control"
                             />
                           </td>
                           <td>
-                            <input
+                            {/* <input
                               type="file"
-                              name="upload"
-                              placeholder=""
+                              value={elementInArray.uploadPan}
+                              placeholder={elementInArray.uploadPan}
+                              readOnly
                               class="form-control"
-                            />
+                            /> */}
+                            <div className="text-center">
+                              <button className="btn btn-success btn-sm">View</button>
+                            </div>
                           </td>
                           <td>
-                            <input
+                            {/* <input
                               type="file"
-                              name="upload"
-                              placeholder=""
+                              value={elementInArray.uploadAdhaar}
+                              placeholder={elementInArray.uploadAdhaar}
+                              readOnly
                               class="form-control"
-                            />
+                            /> */}
+                            <div className="text-center">
+                              <button className="btn btn-success btn-sm">View</button>
+                            </div>
                           </td>
                           <td>
-                            <input
+                            {/* <input
                               type="file"
-                              name="upload"
-                              placeholder=""
+                              value={elementInArray.uploadSign}
+                              placeholder={elementInArray.uploadSign}
+                              readOnly
                               class="form-control"
-                            />
+                            /> */}
+                            <div className="text-center">
+                              <button className="btn btn-success btn-sm">View</button>
+                            </div>
                           </td>
                         </tr>
                       );
-                    })}
+                    }) : <p>Click Add more button</p>
+                    }
+                    
                   </tbody>
                 </Table>
                 <div>
@@ -360,7 +430,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Name</label>
                                     <input
                                       type="text"
-                                      name="name[]"
+                                      onChange={(e)=>setModalNAme(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -369,7 +439,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Mobile Number</label>
                                     <input
                                       type="number"
-                                      name="name[]"
+                                      onChange={(e)=>setModalMobile(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -378,7 +448,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Email</label>
                                     <input
                                       type="email"
-                                      name="name[]"
+                                      onChange={(e)=>setModalEmail(e.target.value)}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -389,7 +459,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Upload PAN PDF</label>
                                     <input
                                       type="file"
-                                      name="name[]"
+                                      value={uploadPanPdf}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -398,7 +468,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Upload Aadhar PDF</label>
                                     <input
                                       type="file"
-                                      name="name[]"
+                                      value={uploadAadharPdf}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -407,7 +477,7 @@ export default function PopupGfg() {
                                     <label htmlFor="name" className="text">Upload Digital Signature PDF</label>
                                     <input
                                       type="file"
-                                      name="name[]"
+                                      value={uploadDigitalSignaturePdf}
                                       placeholder=""
                                       class="form-control"
                                     />
@@ -422,6 +492,7 @@ export default function PopupGfg() {
                 type="button"
                 style={{ float: "right" }}
                 className="btn btn-success"
+                onClick={handleArrayValues}
               >
                 Submit
               </button>
@@ -444,22 +515,23 @@ export default function PopupGfg() {
               >
                 Add More
               </button> */}
-              <button
+              {/* <button
                 type="button"
                 style={{ float: "right" }}
                 className="btn btn-danger"
                 onClick={() => setNoOfRows(noofRows - 1)}
               >
                 Remove
-              </button>
+              </button> */}
             </div>
             <div className="form-group col-md6 mt-6">
               <button
                 type="button"
                 style={{ float: "right" }}
                 className="btn btn-success"
+                onClick={addAuthSubmit}
               >
-                Submit
+                Save and Continue
               </button>
             </div>
           </div>

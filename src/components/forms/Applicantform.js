@@ -241,7 +241,7 @@ useEffect(()=>{
                         <div>
                             <Form.Label><b>Authorized Mobile No 2 </b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
-                        <Form.Control type="number" placeholder="Authorized Mobile No 2" onChange={(e) => setMobile2(e.target.value)} value={mobile2} />
+                        <Form.Control type="text" placeholder="Authorized Mobile No 2" onChange={(e) => setMobile2(e.target.value)} value={mobile2} />
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
@@ -353,10 +353,11 @@ useEffect(()=>{
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label><b>If LC-I is not signed by self (in case of an individual) nature of authorization (GPA/SPA)</b><span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>Address for communication</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text" disabled readOnly />
                     </Col>
+                 
 
                 </Row><br></br>
                 <Row className="ml-auto" style={{ marginBottom: 5 }}>
@@ -368,33 +369,34 @@ useEffect(()=>{
                     </Col>
                     <Col md={4} xxl lg="4">
                         <div>
-                            <Form.Label><b>Address for communication</b> <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Label><b>If LC-I is not signed by self (in case of an individual) nature of authorization (GPA/SPA)</b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text" disabled readOnly />
                     </Col>
-                    <Col md={4} xxl lg="4">
-                        <div>
-                            <Form.Label><b>Name of the authorized person to sign the application</b><span style={{ color: "red" }}>*</span></Form.Label>
-                        </div>
-                        <Form.Control type="text" disabled readOnly />
-                    </Col>
-
-                </Row><br></br>
-                <Row className="ml-auto" style={{ marginBottom: 5 }}>
-                    <Col md={4} xxl lg="4">
+                    <Col md={4} xxl lg="4" style={{marginTop:45}}>
                         <div>
                             <Form.Label><b>Email ID for communication</b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text" disabled readOnly />
                     </Col>
-                    <Col md={4} xxl lg="4">
+                
+
+                </Row><br></br>
+                <Row className="ml-auto" style={{ marginBottom: 5 }}>
+                <Col md={4} xxl lg="4">
+                        <div>
+                            <Form.Label><b>Name of the authorized person to sign the application</b><span style={{ color: "red" }}>*</span></Form.Label>
+                        </div>
+                        <Form.Control type="text" disabled readOnly />
+                    </Col>
+                    {/* <Col md={4} xxl lg="4">
                         <div>
                             <Form.Label><b>Name of individual Land owner/ land-owning company/ firm/ LLP etc.</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text"  pattern="[A-Za-z]*" minLength={4}
                             onChange={(e) => setnameOwner(e.target.value)} value={nameOwner} onChange1={handleNameOwnerChange} />
                         {errors.nameOwner && <p></p>}
-                    </Col>
+                    </Col> */}
 
 
                 </Row>
