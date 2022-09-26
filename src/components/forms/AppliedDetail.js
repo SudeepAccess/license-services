@@ -957,29 +957,7 @@ onchange = e => {
                                      <hr/>
                                      <h5 className="text-black"><b>3.Deen Dayal Jan Awas Yojna (DDJAY):-</b></h5>
                                     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
-        <TableHead>
-          <TableRow>
-            <TableCell><b>Detail of plots</b></TableCell>
-            <TableCell ><b>No.</b></TableCell>
-            <TableCell ><b>Area</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            <TableRow>
-                <TableCell >
-                                                        <div className="px-2">
-                                                            <p className="mb-2" onChange={(e)=>setFrozenNo(e.target.value)} value={frozenNo}><b>Details of frozen plots (50%) 
-                                                            </b></p>
-                                                        </div>
-                </TableCell>
-                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
-              <TableCell component="th" scope="row">
-                <input type="number" className="form-control"/>
-              </TableCell>
-            </TableRow>
-            </TableBody>
-      </Table>
+      <DDJAYForm displayDdjay={(DdjayFormDisplay===null)?"none":DdjayFormDisplay.displayDdjayForms}></DDJAYForm>
                                      </TableContainer>
                                      <br></br>
           

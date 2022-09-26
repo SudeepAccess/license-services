@@ -15,7 +15,7 @@ import { ContentCutOutlined } from "@mui/icons-material";
 import CalculateIcon from '@mui/icons-material/Calculate';
 import InfoIcon from '@mui/icons-material/Info';
 import DDJAYForm from "./DDJAY";
-import { selectDdjayFormShowDisplay } from "../../Redux/Slicer/Slicer";
+import {setDisplayDDAJForm  } from "../../Redux/Slicer/Slicer";
 import { useDispatch } from "react-redux";
 
 
@@ -86,6 +86,9 @@ const ApllicantPuropseForm = (props) => {
         setShowhide2(getshow);
     }
     const[displayDdjayForm,setDisplayDdjayForm]=useState(
+        {display:"none"}
+    )
+    const [displayCommercial,setDisplayCommercial]=useState(
         {display:"none"}
     )
     const dispatch=useDispatch();
@@ -405,36 +408,27 @@ const ApllicantPuropseForm = (props) => {
     const handleChangePurpose=(e)=>{
         setSelectPurpose(e.target.value)
         if(e.target.value==="08"){
+            // setDisplayCommercial({display:"none"})
             console.log("handleChangePurpose")
-            if (displayDdjayForm==="none" ) {
+            if (displayDdjayForm.display==="none" ) {
+                setDisplayDdjayForm({display:"block"});
                 const data = {"displayDdjayForms": {displayDdjayForms:"block"}}
                
-               dispatch(selectDdjayFormShowDisplay(data)) 
+               dispatch(setDisplayDDAJForm(data)) 
             }
             else{
+                setDisplayDdjayForm({display:"none"});
                 const data = {"displayDdjayForms": {displayDdjayForms:"none"}}
-               dispatch(selectDdjayFormShowDisplay(data)) 
+               dispatch(setDisplayDDAJForm(data)) 
             }
         
         }
+        // else if (e.target.value==="01") {
+        //     setDisplayDdjayForm({display:"none"});
+        //     setDisplayCommercial({display:"block"});
+        // }
     }
-//     const handleDisplayDdjay=async()=>{
-//        console.log("fgh")
-//        if(purposeDd==="08"){
-//         if (displayDdjayForm==="none" ) {
-//             const data = {displayDdjayForm:"block"}
-//            await dispatch(setDisplayDdjayForm(data)) 
-//         }
-//         else{
-//             const data = {displayDdjayForm:"none"}
-//            await dispatch(setDisplayDdjayForm(data)) 
-//         }
-//        }
-//     }
-//     useEffect(()=>{
-//         handleDisplayDdjay()
-//     },[purposeDd])
-//  console.log("Purpose",purposeDd)
+
     
     return (
         <Form onSubmit={PurposeFormSubmitHandler}>
