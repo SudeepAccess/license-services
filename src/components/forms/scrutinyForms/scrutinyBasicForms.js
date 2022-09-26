@@ -3,6 +3,7 @@ import Personalinfo from "./Personalinfo/Personalinfo";
 import Genarelinfo from "./Generalinfo/Generalinfo";
 import Developerinfo from "./Developerinfo/Developerinfo";
 import AppliedLandinfo from "./AppliedLand/AppliedLand";
+import Feeandcharges from "./AppliedLand/Feeandcharges";
 import DisApprovalList from "./DisApprovalList/DisApprovalList";
 import HistoryList from "./History/History";
 import { Button } from "react-bootstrap";
@@ -14,11 +15,13 @@ const ScrutitnyForms=()=>{
     const generalInfoRef = useRef();
     const developerInfoRef = useRef();
     const appliedInfoRef = useRef();
+    const feeandchargesInfoRef = useRef();
 
     const [displayPersonal,setDisplayPersonalInfo] = useState([]);
     const [displayPurpose,setDisplayPurposeInfo] = useState([]);
     const [displayGeneral,setDisplayGeneralInfo] = useState([]);
     const [displayAppliedLand,setDisplayAppliedLandInfo] = useState([]);
+    const[displayFeeandCharges,setDisplayFeeandChargesInfo]=useState([]);
 
     const [uncheckedValue,setUncheckedVlue]=useState([]);
 
@@ -40,6 +43,11 @@ const ScrutitnyForms=()=>{
         setDisplayAppliedLandInfo(data.data)
         console.log(data);
     };
+    const getUncheckedFeeandChargesInfo=(data)=>{
+        setDisplayFeeandChargesInfo(data.data)
+        console.log(data);
+    };
+
  
     console.log(uncheckedValue);
 
@@ -57,6 +65,9 @@ const ScrutitnyForms=()=>{
     const handleScrolltoAppliedLandInfo=()=>{
         appliedInfoRef.current.scrollIntoView({behavior:"smooth"});
     };
+    const handleScrolltoFeeandChargesInfo=()=>{
+        feeandchargesInfoRef.current.scrollIntoView({behavior:"smooth"});
+    };
 
     console.log(displayPersonal)
     return(
@@ -67,13 +78,15 @@ const ScrutitnyForms=()=>{
                     <Button onClick={handleScrolltOGeneral} style={{height:50, marginBottom:10}}>Step 2</Button>
                     <Button onClick={handleScrolltoDeveloper} style={{height:50, marginBottom:10}}>Step 3</Button>
                     <Button onClick={handleScrolltoAppliedLandInfo} style={{height:50, marginBottom:10}}>Step 4</Button>
-                    <Button style={{height:50, marginBottom:10}}>Step 5</Button>
+                    <Button onClick={handleScrolltoFeeandChargesInfo} style={{height:50, marginBottom:10}}>Step 5</Button>
+                  
                 </div>
-                <div style={{position:"relative",width:"88%",padding:5,height:"100%",overflowY:"auto", borderStyle:"solid",borderWidth:1,borderColor:"black"}}>
+                <div style={{position:"relative",width:"85%",padding:5,height:"100%",overflowY:"auto", borderStyle:"solid",borderWidth:1,borderColor:"black"}}>
                     <Personalinfo personalInfoRef={personalInfoRef} passUncheckedList={getUncheckedPersonalinfos}></Personalinfo>
                     <Genarelinfo generalInfoRef={generalInfoRef} passUncheckedList={getUncheckedGeneralinfos}></Genarelinfo>
                     <Developerinfo developerInfoRef={developerInfoRef} passUncheckedList={getUncheckedPurposeinfos}></Developerinfo>
-                    <AppliedLandinfo appliedLandInfoRef={appliedInfoRef} passUncheckedList={getUncheckedDeveloperinfos}></AppliedLandinfo>
+                    <AppliedLandinfo appliedInfoRef={appliedInfoRef} passUncheckedList={getUncheckedDeveloperinfos}></AppliedLandinfo>
+                    <Feeandcharges feeandchargesInfoRef={feeandchargesInfoRef} passUncheckedList={getUncheckedFeeandChargesInfo}></Feeandcharges>
                 </div>
            </div>
             <div style={{position:"relative",marginTop:400,width:"100%", height:"30%",display:"flex"}}>
@@ -81,7 +94,8 @@ const ScrutitnyForms=()=>{
                         disapprovallistDeveloper = {displayPurpose}
                         disapprovallistGeneral={displayGeneral}
                         disapprovallistAppliedLand={displayAppliedLand}
-                        disapprovallistPersonal={displayPersonal}></DisApprovalList>
+                        disapprovallistPersonal={displayPersonal}
+                        DisApprovalListFeeandCharges={displayFeeandCharges}></DisApprovalList>
                 <HistoryList></HistoryList>
             </div>
        </div>

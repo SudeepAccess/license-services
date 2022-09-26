@@ -6,6 +6,8 @@ import { Button, Form } from "react-bootstrap";
 import { Card, Row, Col } from "react-bootstrap";
 import axios from 'axios';
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { selectAurthorizedUserValuesArray } from "../../Redux/Slicer/Slicer";
 // const baseURL = "http://10.1.1.18:8094/egov-mdms-service/v1/_search?tenant_id=hr";
 // const URL_MDMS = process.env.REACT_APP_MDMS
 const ApllicantForm = (props) => {
@@ -29,6 +31,7 @@ const ApllicantForm = (props) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
+    const aurthorizedUserData = JSON.parse(localStorage.getItem("data_user"));
 
     const handleNameChange = event => {
         setName(event.target.value);
@@ -200,6 +203,12 @@ useEffect(()=>{
     
     //   if (!post) return "No post!"
 
+    useEffect(()=>{
+        if (aurthorizedUserData!==undefined && aurthorizedUserData !== null) {
+            console.log("authorized user data",aurthorizedUserData.aurthorizedUserInfoArray[0].name)
+        }
+    },[aurthorizedUserData]);
+
     return (
         <Form onSubmit={ApplicantFormSubmitHandler} autoComplete="off">
             <Form.Group className="justify-content-center" controlId="formBasicEmail">
@@ -220,7 +229,12 @@ useEffect(()=>{
                         </div>
                         <Form.Control type="text" className="form-control"  pattern="[A-Za-z]*" name="authorizedPerson" minLength={10} maxLength={99}
 
-                            onChange={(e) => setName(e.target.value)}  onChange1={handleNameChange} value={name} />
+                            onChange={(e) => setName(e.target.value)} 
+                            placeholder={(aurthorizedUserData!==null && aurthorizedUserData!==undefined)?
+                                aurthorizedUserData.aurthorizedUserInfoArray[0].name:"N/A"}
+                                onChange1={handleNameChange} value=
+                                {(aurthorizedUserData!==null && aurthorizedUserData!==undefined)?
+                                    aurthorizedUserData.aurthorizedUserInfoArray[0].name:"N/A"} disabled/>
                         {errors.name && <p>Please check the First Name</p>}
                     </Col>
                     <Col md={4} xxl lg="4">
@@ -229,7 +243,11 @@ useEffect(()=>{
                         </div>
                         <Form.Control type="text" className="form-control"  pattern="[0-9]*" name="authorizedmobile" maxLength={10}
 
-                            onChange={(e) => setMobile(e.target.value)} onChange1={handleMobileChange} value={mobile} />
+                            onChange={(e) => setMobile(e.target.value)} 
+                            placeholder={(aurthorizedUserData!==null && aurthorizedUserData!==undefined)?
+                                aurthorizedUserData.aurthorizedUserInfoArray[0].mobile:"N/A"}
+                            onChange1={handleMobileChange} value={(aurthorizedUserData!==null && aurthorizedUserData!==undefined)?
+                                aurthorizedUserData.aurthorizedUserInfoArray[0].mobile:"N/A"}disabled />
                         {errors.mobile && <p>Please check the First Name</p>}
 
 
@@ -248,7 +266,12 @@ useEffect(()=>{
                             <Form.Label><b>Email ID</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text" name="authorizedEmail" maxLength={25} pattern="[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]*"
-                            onChange={(e) => setEmail(e.target.value)} value={email} onChange1={handleEmailChange} />
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder={(aurthorizedUserData!==null && aurthorizedUserData!==undefined)?
+                                aurthorizedUserData.aurthorizedUserInfoArray[0].email:"N/A"}
+                            onChange1={handleEmailChange} 
+                            value={(aurthorizedUserData!==null && aurthorizedUserData!==undefined)?
+                                aurthorizedUserData.aurthorizedUserInfoArray[0].email:"N/A"} disabled/>
                         {errors.email && <p>Please check the First Name</p>}
                     </Col>
                     <Col md={4} xxl lg="4">
@@ -256,7 +279,12 @@ useEffect(()=>{
                             <Form.Label><b>PAN No </b><span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
                         <Form.Control type="text"  name="authorizedPan" maxLength={10} pattern="[a-z]+[0-9]+[0-9]*"
-                            onChange={(e) => setPan(e.target.value)} value={pan} onChange1={handlePanChange} />
+                            onChange={(e) => setPan(e.target.value)} 
+                            placeholder={(aurthorizedUserData!==null && aurthorizedUserData!==undefined)?
+                                aurthorizedUserData.aurthorizedUserInfoArray[0].pan:"N/A"}
+                             onChange1={handlePanChange}
+                             value={(aurthorizedUserData!==null && aurthorizedUserData!==undefined)?
+                                aurthorizedUserData.aurthorizedUserInfoArray[0].pan:"N/A"} disabled/> 
                         {errors.pan && <p>Please check the First Name</p>}
                     </Col>
 

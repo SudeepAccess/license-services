@@ -13,12 +13,10 @@ import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { ContentCutOutlined } from "@mui/icons-material";
 import CalculateIcon from '@mui/icons-material/Calculate';
-import {
-    createMuiTheme,
-    MuiThemeProvider,
-    withStyles
-} from "@material-ui/core/styles";
-import Tooltip from "@material-ui/core/Tooltip";
+import InfoIcon from '@mui/icons-material/Info';
+import DDJAYForm from "./DDJAY";
+import { selectDdjayFormShowDisplay } from "../../Redux/Slicer/Slicer";
+import { useDispatch } from "react-redux";
 
 
 
@@ -71,8 +69,8 @@ const ApllicantPuropseForm = (props) => {
             SetDisplayEnterdetails("block");
         }
     }
-    // const [purpose,setSelectPurpose] = useState("")
-    const setSelectPurpose = (e) => {
+    const [purposeDd,setSelectPurpose] = useState("01");
+    const setSelectPurposeDd = (e) => {
         const purposeSelected = e.target.value;
         console.log("purpose", purposeSelected)
         localStorage.setItem("purpose", purposeSelected)
@@ -87,6 +85,10 @@ const ApllicantPuropseForm = (props) => {
         const getshow = e.target.value;
         setShowhide2(getshow);
     }
+    const[displayDdjayForm,setDisplayDdjayForm]=useState(
+        {display:"none"}
+    )
+    const dispatch=useDispatch();
     const style = {
         position: 'absolute',
         top: '50%',
@@ -106,19 +108,7 @@ const ApllicantPuropseForm = (props) => {
         borderLeft: 0,
         bgcolor: 'background.paper',
     }
-    const defaultTheme = createMuiTheme();
-    const theme = createMuiTheme({
-        overrides: {
-            MuiTooltip: {
-                tooltip: {
-                    fontSize: "20px",
-                    color: "black",
-                    backgroundColor: "white",
-                    border:"2px solid black"
-                }
-            }
-        }
-    });
+  
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -142,26 +132,6 @@ const ApllicantPuropseForm = (props) => {
             tehsil: tehsil
             //   "data": {"Rectangle":"","kanalBigha":"","marlaBiswa":"","sarsai":"","colKhasra":"","developerLlp":"","registeringdate":"","validitydate":"","colirrevocialble":"","authSignature":"","nameAuthSign":"","registerAuthority":"","totalAppliedArea":""},
         }
-
-
-
-
-
-        // Rectangle:Rectangle,
-        // kanalBigha:kanalBigha,
-        // marlaBiswa:marlaBiswa,
-        // sarsai:sarsai,
-        // colKhasra:colKhasra,
-        // developerLlp:developerLlp,
-        // registeringdate:registeringdate,
-        // validitydate:validitydate,
-        // colirrevocialble:colirrevocialble,
-        // authSignature:authSignature,
-        // nameAuthSign:nameAuthSign,
-        // registerAuthority:registerAuthority,
-        // totalAppliedArea:totalAppliedArea
-
-
         // console.log("FRMDATA",forms);
         localStorage.setItem('step2', JSON.stringify(forms))
         // form.push(forms)
@@ -432,16 +402,49 @@ const ApllicantPuropseForm = (props) => {
         const getshow = e.target.value;
         setShowhide(getshow);
     };
-
+    const handleChangePurpose=(e)=>{
+        setSelectPurpose(e.target.value)
+        if(e.target.value==="08"){
+            console.log("handleChangePurpose")
+            if (displayDdjayForm==="none" ) {
+                const data = {"displayDdjayForms": {displayDdjayForms:"block"}}
+               
+               dispatch(selectDdjayFormShowDisplay(data)) 
+            }
+            else{
+                const data = {"displayDdjayForms": {displayDdjayForms:"none"}}
+               dispatch(selectDdjayFormShowDisplay(data)) 
+            }
+        
+        }
+    }
+//     const handleDisplayDdjay=async()=>{
+//        console.log("fgh")
+//        if(purposeDd==="08"){
+//         if (displayDdjayForm==="none" ) {
+//             const data = {displayDdjayForm:"block"}
+//            await dispatch(setDisplayDdjayForm(data)) 
+//         }
+//         else{
+//             const data = {displayDdjayForm:"none"}
+//            await dispatch(setDisplayDdjayForm(data)) 
+//         }
+//        }
+//     }
+//     useEffect(()=>{
+//         handleDisplayDdjay()
+//     },[purposeDd])
+//  console.log("Purpose",purposeDd)
+    
     return (
         <Form onSubmit={PurposeFormSubmitHandler}>
             <Form.Group className="justify-content-center" controlId="formBasicEmail">
                 <Row className="ml-auto" style={{ marginBottom: 5 }}>
-                    <Col md={4} xxl lg="4">
+                    <Col md={4} xxl lg="3">
                         <div>
                             <Form.Label><b>Puropse Of License</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
-                        <Form.Select type="text" defaultValue="Select" placeholder="Puropse" onSelect={(e) => setSelectPurpose(e.target.value)} onChange={(e) => setPurpose(e.target.value)} value={purpose} >
+                        <Form.Select type="text" defaultValue={purposeDd} placeholder="Puropse"  onChange={handleChangePurpose} value={purposeDd} >
 
                             <option value="01">Plotted Commercial</option>
                             <option value="02">Group Housing Commercial</option>
@@ -449,23 +452,28 @@ const ApllicantPuropseForm = (props) => {
                             <option value="04">Commercial Integrated </option>
                             <option value="05">Commercial Plotted</option>
                             <option value="06">Industrial Colony Commercial</option>
-                            <option value="07">IT Colony Commercial</option>
-                            <option value="08">DDJAY Commercial </option>
-                            <option value="09">NILP (Commercial </option>
-                            <option value="10">Low density Eco friendly</option>
-                            <option value="11">TOD Commercial </option>
+                            <option value="07" >IT Colony Commercial</option>
+                            <option value="08" >DDJAY</option>
                             <option value="12">TOD Group housing</option>
                         </Form.Select>
                     </Col>
-                    <Col md={4} xxl lg="4">
-                        <div>
-                            <Form.Label><b>State </b><span style={{ color: "red" }}>*</span></Form.Label>
+                    <div className="col col-3">
+                            <label htmlFor="potential"><h6><b>Potential Zone:</b></h6></label>
+                            <select className="form-control" id="potential"
+                                name="potential" 
+                            >
+                                <option value="" >--Potential Zone--
+                                </option>
+                                <option value="K.Mishra">Hyper</option>
+                                <option value="potential 1">High I</option>
+                                <option value="potential 2">High II</option>
+                                <option value="potential 2">Medium</option>
+                                <option value="potential 2">Low I</option>
+                                <option value="potential 2">Low II</option>
+                            </select>
+                        
                         </div>
-                        <Form.Control type="text" defaultValue="Haryana" disabled  >
-
-                        </Form.Control>
-                    </Col>
-                    <Col md={4} xxl lg="4">
+                    <Col md={4} xxl lg="3">
                         <div>
                             <Form.Label><b>District</b> <span style={{ color: "red" }}>*</span></Form.Label>
                         </div>
@@ -478,6 +486,15 @@ const ApllicantPuropseForm = (props) => {
 
                         </Form.Select>
                     </Col>
+                    <Col md={4} xxl lg="3">
+                        <div>
+                            <Form.Label><b>State </b><span style={{ color: "red" }}>*</span></Form.Label>
+                        </div>
+                        <Form.Control type="text" defaultValue="Haryana" disabled  >
+
+                        </Form.Control>
+                    </Col>
+                   
 
                 </Row>
 
@@ -870,24 +887,14 @@ const ApllicantPuropseForm = (props) => {
                                 <Row className="ml-auto mb-3" >
 
                                     <div className="col col-12">
-                                        <MuiThemeProvider theme={defaultTheme}>
-                                            <div className="App" style={{ width: "60vw", height: "7vh" }}>
-                                                <MuiThemeProvider theme={theme}>
-                                                    <Tooltip title="Whether collaboration agreement entered for the Khasra?">
-                                                        <div style={{ marginBottom: "20px" }}>
-                                                            <h6><b>Collaboration Agreement</b> &nbsp;&nbsp;
+                                        <h6 data-toggle="tooltip" data-placement="top" title="Whether collaboration agreement entered for the Khasra?(yes/no)"><b>(h)&nbsp;Collaboration agreement&nbsp;<InfoIcon style={{color:"blue"}}/> </b>&nbsp;&nbsp;
+                                      
                                                                 <input type="radio" value="Yes" id="Yes"
                                                                     onChange={handleChange} name="Yes" onClick={handleshow1} />&nbsp;&nbsp;
                                                                 <label for="Yes"><h6><b>Yes</b></h6></label>&nbsp;&nbsp;
                                                                 <input type="radio" value="No" id="No"
                                                                     onChange={handleChange} name="Yes" onClick={handleshow1} />&nbsp;&nbsp;
                                                                 <label for="No"><h6><b>No</b></h6></label></h6>
-                                                        </div>
-                                                    </Tooltip>
-
-                                                </MuiThemeProvider>
-                                            </div>
-                                        </MuiThemeProvider>
                                         {
                                             showhide1 === "Yes" && (
                                                 <div className="row "  >
@@ -966,18 +973,7 @@ const ApllicantPuropseForm = (props) => {
                                 <th>Biswa</th>
                                 <th>Biswansi</th>
                                 <th>Area &nbsp;&nbsp;<CalculateIcon color="primary" /></th>
-                                <th> <MuiThemeProvider theme={defaultTheme}>
-                                    <div className="App" style={{ width: "10vw", height: "7vh" }}>
-                                        <MuiThemeProvider theme={theme}>
-                                            <Tooltip title="Whether collaboration agreement entered for the Khasra?">
-                                                <div style={{ marginBottom: "20px" }}>
-                                                    <h6><b>Collaboration Agreement</b> &nbsp;&nbsp;</h6>
-                                                </div>
-                                            </Tooltip>
-
-                                        </MuiThemeProvider>
-                                    </div>
-                                </MuiThemeProvider>
+                                <th>  <h6 data-toggle="tooltip" data-placement="top" title="Whether collaboration agreement entered for the Khasra?(yes/no)"><b>Collaboration agreement&nbsp;&nbsp;<InfoIcon style={{color:"blue"}}/> </b>&nbsp;&nbsp;</h6>
                                 </th>
                                 {/* <th> {
                                             showhide2==="Yes" && (
@@ -1022,32 +1018,20 @@ const ApllicantPuropseForm = (props) => {
                         </thead>
                         <tbody>
                             <tr >
-                                <td ><input type="text" className="form-control" /></td>
-                                <td ><input type="text" className="form-control" /></td>
-                                <td ><input type="text" className="form-control" /></td>
-                                <td class="text-center"><input type="text" className="form-control" /></td>
-                                <td class="text-center"><input type="text" className="form-control" /></td>
-                                <td class="text-center">  <Form.Select type="select" defaultValue="Select"  >
-
-                                    <option>Consolidated</option>
-                                    <option>Non Consolidated</option>
-
-
-                                </Form.Select></td>
-                                <td class="text-center"><input type="text" className="form-control" /></td>
-                                <td class="text-center"><input type="text" className="form-control" /></td>
-                                <td class="text-center"><input type="text" className="form-control" /></td>
-                                <td class="text-center"><input type="text" className="form-control" /></td>
-                                <td class="text-center"><input type="text" className="form-control" /></td>
-                                <td class="text-center"><input type="text" className="form-control" /></td>
-                                <td class="text-center"><input type="text" className="form-control" /></td>
-                                <td class="text-center"> <input type="radio" value="Yes" id="Yes"
-                                    onChange={handleChange} name="Yes" onClick={handleshow2} />
-                                    <label for="Yes">Yes</label> &nbsp;&nbsp;
-
-                                    <input type="radio" value="No" id="No"
-                                        onChange={handleChange} name="Yes" onClick={handleshow2} />
-                                    <label for="No">No</label></td>
+                                <td ><input type="text" className="form-control" disabled/></td>
+                                <td ><input type="text" className="form-control"disabled /></td>
+                                <td ><input type="text" className="form-control"disabled /></td>
+                                <td class="text-center"><input type="text" className="form-control"disabled /></td>
+                                <td class="text-center"><input type="text" className="form-control" disabled/></td>
+                                <td class="text-center"> <input type="text" className="form-control"disabled /> </td>
+                                <td class="text-center"><input type="text" className="form-control" disabled/></td>
+                                <td class="text-center"><input type="text" className="form-control" disabled/></td>
+                                <td class="text-center"><input type="text" className="form-control" disabled/></td>
+                                <td class="text-center"><input type="text" className="form-control" disabled/></td>
+                                <td class="text-center"><input type="text" className="form-control" disabled/></td>
+                                <td class="text-center"><input type="text" className="form-control" disabled/></td>
+                                <td class="text-center"><input type="text" className="form-control"disabled /></td>
+                                <td class="text-center"> <input type="text" className="form-control"disabled /></td>
                                 {/* <td>{
                                             showhide2==="Yes" && (
                                                 

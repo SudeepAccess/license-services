@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import Box from '@material-ui/core//Box';
 import { Button, Form } from "react-bootstrap";
 import Typography from '@material-ui/core/Typography'
-import Modal from '@material-ui/core//Modal';
+import Modal from 'react-bootstrap/Modal';
 import { Card, Row, Col} from "react-bootstrap";
+import InfoIcon from '@mui/icons-material/Info';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -17,9 +18,14 @@ const style = {
     boxShadow: 24,
     p: 4,
   };
+ 
 
 
 const FeesChargesForm=(props)=> {
+    // const [show, setShow] = useState(false);
+
+   
+    // const handleShow = () => setShow(true);
 
     const[form,setForm]=useState([]);
     const [feeDetail,setFeeDetail]=useState('');
@@ -35,6 +41,7 @@ const FeesChargesForm=(props)=> {
     const FeesChrgesFormSubmitHandler=(e)=>{
         e.preventDefault();
         SetFeesChargesFormSubmitted(true);
+       
         let forms={
             feeDetail:feeDetail,
             licenseFee:licenseFee,
@@ -64,9 +71,9 @@ const FeesChargesForm=(props)=> {
         const getshow=e.target.value;
         setShowhide0(getshow);
     }
-    const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+//     const [open, setOpen] = React.useState(false);
+//   const handleOpen = () => setOpen(true);
+//   const handleClose = () => setOpen(false);
  
     const [showhide,setShowhide]=useState("No");
     const handleshow=e=>{
@@ -114,6 +121,10 @@ const FeesChargesForm=(props)=> {
      const[noOfRows,setNoOfRows]=useState(1);
      const[noOfRow,setNoOfRow]=useState(1);
      const[noOfRow1,setNoOfRow1]=useState(1);
+     const [show, setShow] = useState(false);
+     const [payShow,setPayShow]=useState(false);
+     const handleClose = () => setShow(false);
+     const handleShow = () => setShow(true);
      
      
      return (
@@ -124,44 +135,46 @@ const FeesChargesForm=(props)=> {
                 <Col col-12>
                  
                             <div className="row">
-                            <div className="col col-3">
+                            <div className="col col-4">
                               
                                         <h6><b>(i)Fees/Charges details Total area</b></h6>
-                                        <input type="text" className="form-control"required  minLength={1} maxLength={20} pattern="[0-9]*"
+                                        <input type="text" className="form-control"  minLength={1} maxLength={20} pattern="[0-9]*"
                                          onChange={(e)=>setFeeDetail(e.target.value)} value={feeDetail} onChange1={handleFeesChange} />
                                          {errors.feeDetail && <p>Please check the First Name</p>}
                              </div>
-                             <div className="col col-3">
+                             <div className="col col-4">
                               
                                         <h6><b>(ii)Licence Fees (25%)</b></h6>
-                                        <input type="text" className="form-control" required  minLength={1} maxLength={20} pattern="[0-9]*"
+                                        <input type="text" className="form-control"   minLength={1} maxLength={20} pattern="[0-9]*"
                                          onChange={(e)=>setLicenseFee(e.target.value)} value={licenseFee} onChange1={handleLicFeesChange} />
                                          {errors.licenseFee && <p>Please check the First Name</p>}
                              </div>
-                             <div className="col col-3">
+                             <div className="col col-4">
                               
                               <h6><b>(iii)Scrutiny Fees</b></h6>
-                              <input type="text" className="form-control" required  minLength={1} maxLength={20} pattern="[0-9]*"
+                              <input type="text" className="form-control"   minLength={1} maxLength={20} pattern="[0-9]*"
                                onChange={(e)=>setScrutinyFee(e.target.value)} value={ScrutinyFee} onChange1={handleScrutinyFeesChange} />
                                {errors.ScrutinyFee && <p></p>}
                    </div>
-                   <div className="col col-3">
-                              
-                              <h6><b>(iv)Total Fees (License fee 25% + Scrutiny Fees)</b></h6>
-                              <input type="text" className="form-control" required  minLength={1} maxLength={20} pattern="[0-9]*"
+                   </div><br></br>
+                   
+                   <div className="row">
+                   <div className="col col-4">
+                   <h6 data-toggle="tooltip" data-placement="top" title="Total Fees (License fee 25% + Scrutiny Fees)"><b>(iv)&nbsp;Total Fees&nbsp;<InfoIcon style={{color:"blue"}}/> </b>&nbsp;&nbsp;</h6>
+                   
+                              <input type="text" className="form-control"   minLength={1} maxLength={20} pattern="[0-9]*"
                                onChange={(e)=>setTotalFee(e.target.value)} value={totalFee}onChange1={handleTotalFeesChange} />
                                {errors.totalFee && <p></p>}
                    </div>
-                             </div><br></br>
-                             <div className="row">
-                            <div className="col col-3">
+                            
+                            <div className="col col-4" >
                               
                                         <h6><b>(v)Remark (If any)</b></h6>
-                                        <input type="number" className="form-control" minLength={2} maxLength={100}
+                                        <input type="text" className="form-control" minLength={2} maxLength={100}
                                          onChange={(e)=>setRemark(e.target.value)} value={remark} onChange1={handleRemarkChange} />
                                          {errors.remark && <p></p>}
                              </div>
-                             <div className="col col-3">
+                             {/* <div className="col col-3">
                               
                                         <h6 ><b>(vi)Select Aggregator</b></h6>
                                         <select className="form-control" id="developer"
@@ -175,12 +188,10 @@ const FeesChargesForm=(props)=> {
                                                         <option ></option>
                                                       
                                                     </select>
-                             </div>
-                             <div className="col col-3">
-                              
-                              <h6  required onChange={(e)=>setPreviousLic(e.target.value)} value={previousLic}
-                                 onChange1={handlePrevLicChange } >
-                                 {errors.previousLic && <p></p>}<b>(vii)Do you want to adjust the fee from any previous license (Yes/No)</b></h6>
+                             </div> */}
+                             <div className="col col-4">
+                             <h6  onChange={(e)=>setPreviousLic(e.target.value)} value={previousLic} data-toggle="tooltip" data-placement="top" title="Do you want to adjust the fee from any previous license (Yes/No)"><b>(vi)&nbsp;Adjust Fees&nbsp;<InfoIcon style={{color:"blue"}}/> </b>&nbsp;&nbsp;</h6>
+                             
                               <input type="radio" value="Yes" id="Yes"
                                                 onChange1={handleChange} name="Yes" onClick={handleshow0}
                                               />
@@ -191,10 +202,13 @@ const FeesChargesForm=(props)=> {
                                                 <label for="No">No</label>
                                                 {
                                             showhide0==="Yes" && (
-                                                <div className="row " >
+                                                <div className="row "  >
                                                         <div className="col col-12">
                                                             <label for="parentLicense" className="font-weight-bold">Enter License Number/LOI number</label>
                                                             <input type="text" className="form-control"/>
+                                                            <label for="parentLicense" className="font-weight-bold">Amount (previous)</label>
+                                                            <input type="text" className="form-control" disabled/>
+                                                            
                                                         </div>
                                                        
                                                     </div> 
@@ -202,14 +216,14 @@ const FeesChargesForm=(props)=> {
                                             )
                                         }
                    </div>
-                   <div className="col col-3">
+                   {/* <div className="col col-3">
                               
                               <h6><b>(viii)Amount (previous)</b></h6>
                               <input type="number" className="form-control"  required  minLength={1} maxLength={20} pattern="[0-9]*"
                                onChange={(e)=>setAmount(e.target.value)} value={amount}
                                onChange1={handleAmountChange  } />
                                {errors.amount && <p></p>}
-                   </div>
+                   </div> */}
                              </div>
                              <hr/>
                              <h5 className="text-black"><b>1.Undertakings:-</b></h5>
@@ -227,68 +241,62 @@ const FeesChargesForm=(props)=> {
                                             for non completion of the external development works. </li>
                                         <li>I/We solemnly affirm and declare that the contents of the above application
                                             are correct to the best of my/ our knowledge and belief and no information
-                                            has been concealed therein.  <Button onClick={handleOpen}>Read More</Button>
+                                            has been concealed therein.  <button  className="btn btn-primary"onClick={()=>setShow(true)}>Read More</button>
                                             {/* <span class="readMoreLink" data-toggle="modal"
                                                 data-target="#licenceAgreement" >Read more</span> */}
                                                 </li></ul>
-                                               
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography> */}
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          <ul>
-                                                        <li>Morbi in sem quis dui placerat ornare. Pellentesque odio
-                                                            nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.
-                                                            Cras consequat.</li>
-                                                        <li>Praesent dapibus, neque id cursus faucibus, tortor neque
-                                                            egestas augue, eu vulputate magna eros eu erat. Aliquam erat
-                                                            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
-                                                            facilisis luctus, metus.</li>
-                                                        <li>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec
-                                                            consectetuer ligula vulputate sem tristique cursus. Nam
-                                                            nulla quam, gravida non, commodo a, sodales sit amet, nisi.
-                                                        </li>
-                                                        <li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis
-                                                            auctor, ultrices ut, elementum vulputate, nunc.</li>
-                                                        <li>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec
-                                                            consectetuer ligula vulputate sem tristique cursus. Nam
-                                                            nulla quam, gravida non, commodo a, sodales sit amet, nisi.
-                                                        </li>
-                                                        <li>Morbi in sem quis dui placerat ornare. Pellentesque odio
-                                                            nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.
-                                                            Cras consequat.</li>
-                                                        <li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis
-                                                            auctor, ultrices ut, elementum vulputate, nunc.</li>
-                                                        <li>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec
-                                                            consectetuer ligula vulputate sem tristique cursus. Nam
-                                                            nulla quam, gravida non, commodo a, sodales sit amet, nisi.
-                                                        </li>
-                                                        <li>Praesent dapibus, neque id cursus faucibus, tortor neque
-                                                            egestas augue, eu vulputate magna eros eu erat. Aliquam erat
-                                                            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
-                                                            facilisis luctus, metus.</li>
-                                                        <li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis
-                                                            auctor, ultrices ut, elementum vulputate, nunc.</li>
-                                                        <li>Morbi in sem quis dui placerat ornare. Pellentesque odio
-                                                            nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.
-                                                            Cras consequat.</li>
-                                                        <li>Praesent dapibus, neque id cursus faucibus, tortor neque
-                                                            egestas augue, eu vulputate magna eros eu erat. Aliquam erat
-                                                            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
-                                                            facilisis luctus, metus.</li>
-                                                    </ul>
-          </Typography>
-        </Box>
-      </Modal>
-                           
-                                    <div className="">
+                                                </div>
+                                                    
+                            <Modal show={show} onHide={handleClose} size="lg">
+                            <Modal.Header closeButton>
+                                <Modal.Title id="example-modal-sizes-title-show"></Modal.Title>
+                            </Modal.Header>
+
+                            <Modal.Body>
+                            <ul>
+                                                                                <li>Morbi in sem quis dui placerat ornare. Pellentesque odio
+                                                                                    nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.
+                                                                                    Cras consequat.</li>
+                                                                                <li>Praesent dapibus, neque id cursus faucibus, tortor neque
+                                                                                    egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+                                                                                    volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+                                                                                    facilisis luctus, metus.</li>
+                                                                                <li>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec
+                                                                                    consectetuer ligula vulputate sem tristique cursus. Nam
+                                                                                    nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+                                                                                </li>
+                                                                                <li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis
+                                                                                    auctor, ultrices ut, elementum vulputate, nunc.</li>
+                                                                                <li>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec
+                                                                                    consectetuer ligula vulputate sem tristique cursus. Nam
+                                                                                    nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+                                                                                </li>
+                                                                                <li>Morbi in sem quis dui placerat ornare. Pellentesque odio
+                                                                                    nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.
+                                                                                    Cras consequat.</li>
+                                                                                <li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis
+                                                                                    auctor, ultrices ut, elementum vulputate, nunc.</li>
+                                                                                <li>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec
+                                                                                    consectetuer ligula vulputate sem tristique cursus. Nam
+                                                                                    nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+                                                                                </li>
+                                                                                <li>Praesent dapibus, neque id cursus faucibus, tortor neque
+                                                                                    egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+                                                                                    volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+                                                                                    facilisis luctus, metus.</li>
+                                                                                <li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis
+                                                                                    auctor, ultrices ut, elementum vulputate, nunc.</li>
+                                                                                <li>Morbi in sem quis dui placerat ornare. Pellentesque odio
+                                                                                    nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.
+                                                                                    Cras consequat.</li>
+                                                                                <li>Praesent dapibus, neque id cursus faucibus, tortor neque
+                                                                                    egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+                                                                                    volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+                                                                                    facilisis luctus, metus.</li>
+                            </ul>
+                            </Modal.Body> 
+                            </Modal>
+                                         <div className="">
                                         
                                             <div className="form-group">
                                                 <div className="form-check">
@@ -301,15 +309,64 @@ const FeesChargesForm=(props)=> {
                                                     </label>
                                                 </div>
                                                 <div class="my-2">
-                                                    <button className="btn btn-success" 
+                                                    <button className="btn btn-success" onClick={()=>setPayShow(true)}
                                                         data-toggle="modal" data-target="#payemtModal">Pay Now</button>
                                                 </div>
+                                                {/* <Modal show={Payshow} onHide={handleClose} size="lg">
+                            <Modal.Header closeButton>
+                                <Modal.Title id="example-modal-sizes-title-Payshow"></Modal.Title>
+                            </Modal.Header>
+
+                            <Modal.Body>
+                            <ul>
+                                                                                <li>Morbi in sem quis dui placerat ornare. Pellentesque odio
+                                                                                    nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.
+                                                                                    Cras consequat.</li>
+                                                                                <li>Praesent dapibus, neque id cursus faucibus, tortor neque
+                                                                                    egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+                                                                                    volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+                                                                                    facilisis luctus, metus.</li>
+                                                                                <li>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec
+                                                                                    consectetuer ligula vulputate sem tristique cursus. Nam
+                                                                                    nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+                                                                                </li>
+                                                                                <li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis
+                                                                                    auctor, ultrices ut, elementum vulputate, nunc.</li>
+                                                                                <li>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec
+                                                                                    consectetuer ligula vulputate sem tristique cursus. Nam
+                                                                                    nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+                                                                                </li>
+                                                                                <li>Morbi in sem quis dui placerat ornare. Pellentesque odio
+                                                                                    nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.
+                                                                                    Cras consequat.</li>
+                                                                                <li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis
+                                                                                    auctor, ultrices ut, elementum vulputate, nunc.</li>
+                                                                                <li>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec
+                                                                                    consectetuer ligula vulputate sem tristique cursus. Nam
+                                                                                    nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+                                                                                </li>
+                                                                                <li>Praesent dapibus, neque id cursus faucibus, tortor neque
+                                                                                    egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+                                                                                    volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+                                                                                    facilisis luctus, metus.</li>
+                                                                                <li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis
+                                                                                    auctor, ultrices ut, elementum vulputate, nunc.</li>
+                                                                                <li>Morbi in sem quis dui placerat ornare. Pellentesque odio
+                                                                                    nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.
+                                                                                    Cras consequat.</li>
+                                                                                <li>Praesent dapibus, neque id cursus faucibus, tortor neque
+                                                                                    egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+                                                                                    volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+                                                                                    facilisis luctus, metus.</li>
+                            </ul>
+                            </Modal.Body> 
+                            </Modal> */}
                                            </div>
                                     {/* <div class="modal" tabindex="-1" id="licenceAgreement" role="modal">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header text-right">
-                                                    <!-- <h5 class="modal-title">Modal title</h5> -->
+                                                    <h5 class="modal-title">Modal title</h5> 
                                                     <i class="fa fa-close"
                                                         style="font-size: 24px; cursor:pointer;font-weight: 800;"
                                                         data-dismiss="modal" aria-label="Close">&times;</i>
@@ -359,21 +416,21 @@ const FeesChargesForm=(props)=> {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="">
-                                        <form [formGroup]="agreeForm">
+                                    </div> */}
+                                    {/* <div class="">
+                                        <form ></form>
                                             <div class="form-group">
                                                 <div class="form-check">
                                                     <input class="form-check-input" formControlName="agreeCheck"
-                                                        type="checkbox" value="" (change)="agreeChange($event)"
-                                                        id="flexCheckDefault">
+                                                        type="checkbox" value="" 
+                                                        id="flexCheckDefault"/>
                                                     <label class="form-check-label" for="flexCheckDefault">
                                                         I agree and accept the terms and conditions.<span
                                                             class="text-danger"><b>*</b></span>
                                                     </label>
                                                 </div>
                                                 <div class="my-2">
-                                                    <button class="btn btn-success" [disabled]="!marked"
+                                                    <button class="btn btn-success" 
                                                         data-toggle="modal" data-target="#payemtModal">Pay Now</button>
                                                 </div>
                                             </div>
@@ -383,13 +440,13 @@ const FeesChargesForm=(props)=> {
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <!-- <h5 class="modal-title">Modal title</h5> -->
+                                                     <h5 class="modal-title">Modal title</h5> 
                                                         <i class="fa fa-close"
                                                             style="font-size: 24px; cursor:pointer;font-weight: 800;"
                                                             data-dismiss="modal" aria-label="Close">&times;</i>
                                                     </div>
                                                     <div class="modal-body text-center p-3">
-                                                        <img src="assets/img/Razorpay-logo.png" width="45%">
+                                                        <img src="assets/img/Razorpay-logo.png" width="45%"/>
                                                         <div class="icon-success"><i class="fa fa-check-circle"></i>
                                                         </div>
                                                         <p class="text-success font-weight-bold"
@@ -404,10 +461,10 @@ const FeesChargesForm=(props)=> {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> */}
+                                        </div>
                                     
                                   
-                                   </div>
+                                   </div> */}
                              </div>
                              <Button style={{alignSelf:"center", marginTop:20, marginright:867}} variant="primary" type="submit">
                 Save 

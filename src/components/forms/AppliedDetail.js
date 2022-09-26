@@ -6,6 +6,14 @@ import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Button, Form } from "react-bootstrap";
 import { Card, Row, Col} from "react-bootstrap";
+import CalculateIcon from '@mui/icons-material/Calculate';
+import DDJAYForm from "./DDJAY";
+import NilpForm from "./Nilp";
+import CommercialPlottedForm from "./CommercialPlotted";
+import IndustrialPlottedForm from "./IndustrialPlotted";
+import ResidentialPlottedForm from "./ResidentialPlotted";
+import { useSelector } from "react-redux";
+import { selectDdjayFormShowDisplay } from "../../Redux/Slicer/Slicer";
 
 
 
@@ -106,14 +114,20 @@ const AppliedDetailForm =(props)=> {
   const[sitenczregional,setSiteNczRegional]=useState('');
   const[nczTruthingReport,setNczTruthingReport]=useState('');
   const[dlscRecommend,setDlscRecommend]=useState('');
-  const[exemption,setExemption]=useState('')
+  const[exemption,setExemption]=useState('');
+  const DdjayFormDisplay=useSelector(selectDdjayFormShowDisplay)
 
 
-
+    
     const { register, handleSubmit, formState: { errors } } = useForm([{XLongitude:'',YLatitude:''}]);
     const formSubmit = (data) => {
         console.log("data", data);
     };
+    useEffect(()=>{
+      console.log("dff",DdjayFormDisplay)
+
+    },[DdjayFormDisplay])
+    
     const [AppliedDetailFormSubmitted,SetAppliedDetailFormSubmitted] = useState(false);
     const AppliedDetailFormSubmitHandler=(e)=>{
         e.preventDefault();
@@ -258,6 +272,9 @@ const AppliedDetailForm =(props)=> {
     const [showhide10,setShowhide10]=useState("No");
     const [showhide11,setShowhide11]=useState("No");
     const [showhide12,setShowhide12]=useState("No");
+    const [showhide13,setShowhide13]=useState("No");
+    const [showhide14,setShowhide14]=useState("No");
+    const [showhide18,setShowhide18]=useState("2");
 
     const handleshow=e=>{
         const getshow=e.target.value;
@@ -315,6 +332,22 @@ const handleshow12=e=>{
   const getshow=e.target.value;
   setShowhide12(getshow);
 }
+const handleshow13=e=>{
+  const getshow=e.target.value;
+  setShowhide13(getshow);
+}
+const handleshow14=e=>{
+  const getshow=e.target.value;
+  setShowhide14(getshow);
+}
+const handleshow18=e=>{
+  const getshow=e.target.value;
+  setShowhide18(getshow);
+}
+onchange = e => {
+  this.setState({ value: e.target.value });
+
+}
     
    
     const handleChange=(e)=>{
@@ -332,17 +365,125 @@ const handleshow12=e=>{
                 <Row className="ml-auto" style={{marginBottom:5}}>
                 <Col col-12>
                    
-                            <h5 className="text-black" onChange={(e)=>setDgps(e.target.value)} value={dgps}>1. DGPS point</h5>
-                           
+                            <h5 className="text-black" onChange={(e)=>setDgps(e.target.value)} value={dgps}>1. DGPS points <span className="text-primary"> (Click here for instructions to capture DGPS points)</span></h5>
+{/*                            
                                     <div className="col col-4">
                                         <label for="pitentialZone" className="font-weight-bold"><b>Number of DGPS point</b></label>
                                         <input type="number" className="form-control"
                                         onChange={(e)=>setDgps(e.target.value)} value={dgps} />
+                                    </div> */}
+                                    <div className="px-2">
+                                        <div className="text-black">(i)Add point 1 &nbsp;
+                                        <div className="row ">
+                                            <div className="col col-4">
+                                                <label htmlFor="pitentialZone" className="font-weight-bold">X:Longitude</label>
+                                                <input type="number" name="XLongitude"className="form-control" />
+
+                                            </div>
+                                            <div className="col col-4">
+                                                <label htmlFor="pitentialZone" className="font-weight-bold">Y:Latitude</label>
+                                                <input type="number" name="YLatitude" className="form-control"/>
+
+                                            </div>
+                                            
+
+                                        </div>
+                                        {/* <button type="button" style={{ float: 'right'}} className="btn btn-primary" onClick={()=>setNoOfRows(noOfRows-1)}> <DeleteIcon/></button>&nbsp;&nbsp;&nbsp;
+                                             <button type="button" style={{ float: 'right'}} className="btn btn-primary" onClick={()=>setNoOfRows(noOfRows+1)}> <AddIcon/></button> */}
+                                            
+                                            
+                                        </div>
+                                        {/* {[...Array(noOfRows)].map((elementInArray,index)=>{
+                                       return(
+                                        <div className="row ">
+                                            <div className="col col-4">
+                                                <label htmlFor="pitentialZone" className="font-weight-bold">X:Longiude</label>
+                                                <input type="number" name="XLongitude"className="form-control" />
+
+                                            </div>
+                                            <div className="col col-4">
+                                                <label htmlFor="pitentialZone" className="font-weight-bold">Y:Latitude</label>
+                                                <input type="number" name="YLatitude" className="form-control"/>
+
+                                            </div>
+                                            
+
+                                        </div>);
+                                    })}
+                                         */}
                                     </div>
                                     <div className="px-2">
-                                        <div className="text-black">(i)Add point 1 as Point 1: &nbsp;
-                                        <button type="button" style={{ float: 'right'}} className="btn btn-primary" onClick={()=>setNoOfRows(noOfRows-1)}> <DeleteIcon/></button>&nbsp;&nbsp;&nbsp;
-                                             <button type="button" style={{ float: 'right'}} className="btn btn-primary" onClick={()=>setNoOfRows(noOfRows+1)}> <AddIcon/></button>
+                                        <div className="text-black">(ii)Add point 2 &nbsp;
+                                        <div className="row ">
+                                            <div className="col col-4">
+                                                <label htmlFor="pitentialZone" className="font-weight-bold">X:Longitude</label>
+                                                <input type="number" name="XLongitude"className="form-control" />
+
+                                            </div>
+                                            <div className="col col-4">
+                                                <label htmlFor="pitentialZone" className="font-weight-bold">Y:Latitude</label>
+                                                <input type="number" name="YLatitude" className="form-control"/>
+
+                                            </div>
+                                            
+
+                                        </div>
+                                             {/* {[...Array(noOfRow)].map((elementInArray,index)=>{
+                                       return(
+                                        <div className="row">
+                                            <div className="col col-4">
+                                                <label htmlFor="pitentialZone" className="font-weight-bold">X:Longiude</label>
+                                                <input type="number" name="Xlongitude" className="form-control"/>
+
+                                            </div>
+                                            <div className="col col-4">
+                                                <label htmlFor="pitentialZone" className="font-weight-bold">Y:Latitude</label>
+                                                <input type="number" name="Ylatitude" className="form-control"/>
+
+                                            </div>
+
+                                        </div>);
+                                })}
+                                         */}
+                                    </div>
+                                    </div>
+                                   
+                                    <div className="px-2">
+                                        <div className="text-black">(iii)Add point 3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div className="row ">
+                                            <div className="col col-4">
+                                                <label htmlFor="pitentialZone" className="font-weight-bold">X:Longitude</label>
+                                                <input type="number" name="XLongitude"className="form-control" />
+
+                                            </div>
+                                            <div className="col col-4">
+                                                <label htmlFor="pitentialZone" className="font-weight-bold">Y:Latitude</label>
+                                                <input type="number" name="YLatitude" className="form-control"/>
+
+                                            </div>
+                                            
+
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div className="px-2">
+                                        <div className="text-black">(iv)Add point 4 &nbsp;
+                                        <div className="row ">
+                                            <div className="col col-4">
+                                                <label htmlFor="pitentialZone" className="font-weight-bold">X:Longitude</label>
+                                                <input type="number" name="XLongitude"className="form-control" />
+
+                                            </div>
+                                            <div className="col col-4">
+                                                <label htmlFor="pitentialZone" className="font-weight-bold">Y:Latitude</label>
+                                                <input type="number" name="YLatitude" className="form-control"/>
+
+                                            </div>
+                                            
+
+                                        </div>
+                                         <button type="button" style={{ float: 'right'}} className="btn btn-primary" onClick={()=>setNoOfRows(noOfRows-1)}> <DeleteIcon/></button>&nbsp;&nbsp;&nbsp;
+                                             <button type="button" style={{ float: 'right',marginRight:15}} className="btn btn-primary" onClick={()=>setNoOfRows(noOfRows+1)}> <AddIcon/></button> 
                                             
                                             
                                         </div>
@@ -365,64 +506,32 @@ const handleshow12=e=>{
                                     })}
                                         
                                     </div>
-                                    <div className="px-2">
-                                        <div className="text-black">(ii)Add point 2 as Point 2: &nbsp;
-                                        <button type="button" style={{ float: 'right'}} className="btn btn-primary" onClick={()=>setNoOfRow(noOfRow-1)}> <DeleteIcon/></button>&nbsp;&nbsp;&nbsp;
-                                             <button type="button" style={{ float: 'right'}} className="btn btn-primary" onClick={()=>setNoOfRow(noOfRow+1)}> <AddIcon/></button>
-                                             {[...Array(noOfRow)].map((elementInArray,index)=>{
-                                       return(
-                                        <div className="row">
-                                            <div className="col col-4">
-                                                <label htmlFor="pitentialZone" className="font-weight-bold">X:Longiude</label>
-                                                <input type="number" name="Xlongitude" className="form-control"/>
-
-                                            </div>
-                                            <div className="col col-4">
-                                                <label htmlFor="pitentialZone" className="font-weight-bold">Y:Latitude</label>
-                                                <input type="number" name="Ylatitude" className="form-control"/>
-
-                                            </div>
-
-                                        </div>);
-                                })}
-                                        
-                                    </div>
-                                    </div>
-                                   
-                                    <div className="px-2">
-                                        <div className="text-black">(iii)Add point XX as Point XX: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button type="button" style={{ float: 'right'}} className="btn btn-primary" onClick={()=>setNoOfRow1(noOfRow1-1)}> <DeleteIcon/></button>&nbsp;&nbsp;&nbsp;
-                                             <button type="button" style={{ float: 'right'}} className="btn btn-primary" onClick={()=>setNoOfRow1(noOfRow1+1)}> <AddIcon/></button>
-                                             {[...Array(noOfRow1)].map((elementInArray,index)=>{
-                                       return(
-                                        <div className="row">
-                                            <div className="col col-4">
-                                                <label htmlFor="pitentialZone" className="font-weight-bold">X:Longiude</label>
-                                                <input type="number" className="form-control"/>
-
-                                            </div>
-                                            <div className="col col-4">
-                                                <label htmlFor="pitentialZone" className="font-weight-bold">Y:Latitude</label>
-                                                <input type="number" className="form-control"/>
-
-                                            </div>
-
-                                        </div>);
-                                })}
-                                    </div>
-                                    </div>
 
                                     <hr/>
-                                    <h5 className="text-black"><b>2.Details of Plots</b></h5>
+                                    <h5 className="text-black"><b>2.Details of Plots</b>&nbsp;&nbsp;
+                                   
+                                                                <input type="radio"  id="Yes" value="1"
+                                                                    onChange={handleChange} name="Yes"onClick={handleshow18} />&nbsp;&nbsp;
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="gen">Regular</label>&nbsp;&nbsp;
+                                                           
+                                                                <input type="radio"  id="Yes" value="2"
+                                                                    onChange={handleChange} name="Yes" onClick={handleshow18}/>&nbsp;&nbsp;
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="npnl">Irregular</label></h5>
+                                                                {
+                                            showhide18==="1" && (
+                                                           
+                                                                      
                                     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
         <TableHead>
           <TableRow>
             <TableCell><b>Type of plots</b></TableCell>
             <TableCell ><b>Plot No.</b></TableCell>
-            <TableCell ><b>Length in mtr</b></TableCell>
-            <TableCell ><b>Width in mtr</b></TableCell>
-            <TableCell ><b>Area in sqmtr</b></TableCell>
+            <TableCell ><b>Length in mtr</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
+            <TableCell ><b>Width in mtr</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
+            <TableCell ><b>Area in sqmtr</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -431,7 +540,7 @@ const handleshow12=e=>{
                             <div className="px-2">
                                  <p className="mb-2" onChange={(e)=>setResPlotno(e.target.value)} value={resplotno}><b>Residential
                                                             </b></p>
-                                                            <div className="row">
+                                                            {/* <div className="row">
                                                                 <div className="col col-3">
                                                                 <input type="radio" value="Yes" id="Yes"
                                                                     onChange={handleChange} name="Yes" />
@@ -451,7 +560,55 @@ const handleshow12=e=>{
                                                                 <label for="Yes"></label>
                                                                 <label htmlFor="gen">EWS</label>
                                                             </div>
-                                                            </div>
+                                                            </div> */}
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>Gen
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>NPNL
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>EWS
+                                                            </b></p>
                                                         </div>
                 </TableCell>
               <TableCell component="th" scope="row">
@@ -519,48 +676,103 @@ const handleshow12=e=>{
                                                             <p className="mb-2" onChange={(e)=>setPublicPlotno(e.target.value)} value={publicplotno}><b>Public Utilities
                                                             </b></p>
                                                               
-                                                           <div className="row">
-                                                                <div className="col col-3">
-                                                                <input type="radio" value="Yes" id="Yes"
-                                                                    onChange={handleChange} name="Yes" />
-                                                                <label for="Yes"></label>
-                                                                <label htmlFor="gen">STP</label>
-                                                            </div>
-                                                            <div className="col col-3">
-                                                                <input type="radio" value="Yes" id="Yes"
-                                                                    onChange={handleChange} name="Yes" />
-                                                                <label for="Yes"></label>
-                                                                <label htmlFor="gen">ETP</label>
-                                                            </div>
-                                                            
-                                                            <div className="col col-3">
-                                                                <input type="radio" value="Yes" id="Yes"
-                                                                    onChange={handleChange} name="Yes" />
-                                                                <label for="Yes"></label>
-                                                                <label htmlFor="gen">WTP</label>
-                                                            </div>
-                                                            </div>
-                                                            <div className="row">
-                                                                <div className="col col-3">
-                                                                <input type="radio" value="Yes" id="Yes"
-                                                                    onChange={handleChange} name="Yes" />
-                                                                <label for="Yes"></label>
-                                                                <label htmlFor="gen">UGT</label>
-                                                            </div>
-                                                            <div className="col col-3">
-                                                                <input type="radio" value="Yes" id="Yes"
-                                                                    onChange={handleChange} name="Yes" />
-                                                                <label for="Yes"></label>
-                                                                <label htmlFor="gen">Milk Booth</label>
-                                                            </div>
-                                                            
-                                                            <div className="col col-3">
-                                                                <input type="radio" value="Yes" id="Yes"
-                                                                    onChange={handleChange} name="Yes" />
-                                                                <label for="Yes"></label>
-                                                                <label htmlFor="gen">GSS</label>
-                                                            </div>
-                                                            </div>
+                                                         
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>STP
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>ETP
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>WTP
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>UGT
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>Milk Booth
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+             
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>GSS
+                                                            </b></p>
                                                         </div>
                 </TableCell>
               <TableCell component="th" scope="row">
@@ -574,23 +786,25 @@ const handleshow12=e=>{
             </TableRow>
         </TableBody>
       </Table>
-                                     </TableContainer>
+                                     </TableContainer>)}
+                                     {
+                                            showhide18==="2" && (
+                                    // <div></div><h5 className="text-black"><b>Irregular Plots</b></h5>
                                    
-                                    <h5 className="text-black"><b>Irregular Plots</b></h5>
                                     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive ">
         <TableHead>
           <TableRow>
           <TableCell><b>Details of Plot</b></TableCell>
-            <TableCell><b>Dimensions in mtr</b></TableCell>
-            <TableCell ><b>Area manually entered</b></TableCell>
+            <TableCell><b>Dimensions (in mtr)</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
+            <TableCell ><b>Entered Area</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
             <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2" onChange={(e)=>setIrPlotDimen(e.target.value)} value={irPlotDimen}><b>Irregular Plots
+                                                            <p className="mb-2" onChange={(e)=>setIrPlotDimen(e.target.value)} value={irPlotDimen}><b>Residential
                                                             </b></p>
                                                         </div>
                 </TableCell>
@@ -600,60 +814,115 @@ const handleshow12=e=>{
               <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2" onChange={(e)=>setIrSizeDimen(e.target.value)} value={irSizeDimen}><b>Irregular size SCOs
+                                                            <p className="mb-2" onChange={(e)=>setIrSizeDimen(e.target.value)} value={irSizeDimen}><b>Commercial
                                                             </b></p>
                                                         </div>
                 </TableCell>
               <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
               <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
               </TableRow>
-              <TableRow>
-                <TableCell >
-                                                        <div className="px-2">
-                                                            <p className="mb-2"onChange={(e)=>setPocketDimen(e.target.value)} value={pocketDimen}><b>Whether any pocket proposed to be transferred less than 1 acre? (Yes/No)
-                                                            </b></p>
-                                                            <input type="radio" value="Yes" id="Yes"
-                                                onChange={handleChange} name="Yes"  />
-                                                <label for="Yes">Yes</label>
-
-                                                <input type="radio" value="No" id="No"
-                                                onChange={handleChange} name="Yes"/>
-                                                <label for="No">No</label>
-                                                        </div>
-                </TableCell>
-              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
-              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell >
-                                                        <div className="px-2">
-                                                            <p className="mb-2" onChange={(e)=>setSurrenderDimen(e.target.value)} value={surrenderDimen}><b>Whether the surrendered area is having a minimum of 18 mtr independent access
- (Yes/No)
-                                                            </b></p>
-                                                            <input type="radio" value="Yes" id="Yes"
-                                                onChange={handleChange} name="Yes"  />
-                                                <label for="Yes">Yes</label>
-
-                                                <input type="radio" value="No" id="No"
-                                                onChange={handleChange} name="Yes"/>
-                                                <label for="No">No</label>
-                                                        </div>
-                </TableCell>
-              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
-              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
-              </TableRow>
+             
         </TableBody>
       </Table>
-                                     </TableContainer>
-                                    <h5 className="text-black"><b>3.Depending on Purpose</b></h5>
-                                    <h6 className="text-black"><b>Residential Plotted :-</b></h6>
+      <h5 className="text-black"><b>Area Under</b></h5>
+      <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
+        <TableHead>
+          <TableRow>
+            <TableCell><b>Detail of plots</b></TableCell>
+            <TableCell ><b> Plot No.</b></TableCell>
+            <TableCell ><b>Length (in mtr)</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
+            <TableCell ><b>Dimension (in mtr)</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
+            <TableCell ><b>Entered Area</b></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2"onChange={(e)=>setNpnlNo(e.target.value)} value={npnlNo}><b>Sectoral Plan Road
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" onChange={(e)=>setEwsNo(e.target.value)} value={ewsNo}><b>Green Belt
+
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" onChange={(e)=>setEwsNo(e.target.value)} value={ewsNo}><b>24/18 mtr wide internal circulation Plan road
+
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" onChange={(e)=>setEwsNo(e.target.value)} value={ewsNo}><b>Other Roads
+
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" onChange={(e)=>setEwsNo(e.target.value)} value={ewsNo}><b>Undetermined use(UD)
+
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell component="th" scope="row">
+                <input type="text" className="form-control"/>
+              </TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+            </TableRow>
+        </TableBody>
+      </Table>
+                                     </TableContainer> )}
+                                  
+                                    {/* <h5 className="text-black"><b>3.Depending on Purpose</b></h5> */}
+                                    <h6 className="text-black"><b>Residential Plotted</b></h6>
                                     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
         <TableHead>
           <TableRow>
             <TableCell><b>Detail of plots</b></TableCell>
             <TableCell ><b>No.</b></TableCell>
-            <TableCell ><b>Area</b></TableCell>
+            <TableCell ><b>Area</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -693,7 +962,7 @@ const handleshow12=e=>{
           <TableRow>
             <TableCell><b>Detail of plots</b></TableCell>
             <TableCell ><b>No.</b></TableCell>
-            <TableCell ><b>Area</b></TableCell>
+            <TableCell ><b>Area</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -709,7 +978,39 @@ const handleshow12=e=>{
                 <input type="number" className="form-control"/>
               </TableCell>
             </TableRow>
-            <TableRow>
+            </TableBody>
+      </Table>
+                                     </TableContainer>
+                                     <br></br>
+          
+              <div className="row">
+                <div className="col col-12">
+            <h6 onChange={(e)=>setorganizeNo(e.target.value)} value={organizeNo}><b> Whether one organizes open space/pocket of min area 0.3 acre proposed in the layout plan (Yes/No)</b>&nbsp;&nbsp;
+
+
+                                   <input type="radio" value="Yes" id="Yes"
+                                           onChange1={handleChange} name="Yes" onClick={handleshow12} />&nbsp;&nbsp;
+                                           <label for="Yes">Yes</label>&nbsp;&nbsp;
+
+                                           <input type="radio" value="No" id="No"
+                                           onChange1={handleChange} name="Yes" onClick={handleshow12}/>&nbsp;&nbsp;
+                                           <label for="No">No</label></h6>
+                                           {
+                                           showhide12==="Yes" && (
+                                               <div className="row " >
+                                                       <div className="col col-6">
+                                                           <label for="parentLicense" className="font-weight-bold">Area of such Pocket (in acres)</label>
+                                                           <input type="text" className="form-control"/>
+                                                       </div>
+                                                      
+                                                   </div> 
+
+                                           )
+                                       }
+                                       </div>
+              </div>
+                                  
+            {/* <TableRow>
                 <TableCell >
                                                         <div className="px-2">
                                                             <p className="mb-2" onChange={(e)=>setorganizeNo(e.target.value)} value={organizeNo}><b> Whether one organizes open space/pocket of min area 0.3 acre proposed in the layout plan (Yes/No) </b></p>
@@ -726,10 +1027,8 @@ const handleshow12=e=>{
               <TableCell component="th" scope="row">
                 <input type="number" className="form-control"/>
               </TableCell>
-            </TableRow>
-        </TableBody>
-      </Table>
-                                     </TableContainer>
+            </TableRow> */}
+        
                                      <h5 className="text-black"><b>Industrial Plotted Colony </b></h5>
                                     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
@@ -737,7 +1036,7 @@ const handleshow12=e=>{
           <TableRow>
             <TableCell><b>Detail of plots</b></TableCell>
             <TableCell ><b>No.</b></TableCell>
-            <TableCell ><b>Area in Acres</b></TableCell>
+            <TableCell ><b>Area in Acres</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -817,7 +1116,8 @@ const handleshow12=e=>{
       </Table>
                                      </TableContainer>
                                      <hr/>
-                                     <div className="row">
+                                     <h5 className="text-black"><b>Commercial Plotted</b>&nbsp;&nbsp;</h5>
+                                     {/* <div className="row">
                                         <div className="col col-12">
                                             <div className="form-group" >
                                                 <h6 onChange={(e)=>setPermissible(e.target.value)} value={permissible}><b>4.Whether you want to avail permissible commercial components </b>
@@ -872,35 +1172,39 @@ const handleshow12=e=>{
                                             )
                                         }
                                      </div>
-                                     <hr/>
+                                     <hr/> */}
                                      <div className="row">
-                                        <div className="col col-12">
+                                        <div className="col col-6">
                                             <div className="form-group" >
-                                                <h6 onChange={(e)=>setFar(e.target.value)} value={far}><b>5.Total FAR has been availed (radio 150% or 175%)
+                                                <h6 onChange={(e)=>setFar(e.target.value)} value={far}><b>Total FAR has been availed 
 
-(Yes/No):</b></h6><input type="radio" value="Yes" id="Yes"
-                                                onChange={handleChange} name="Yes" checked={true}/>
-                                                <label for="Yes">Yes</label>
-
-                                                <input type="radio" value="No" id="No"
-                                                onChange={handleChange} name="Yes"/>
-                                                <label for="No">No</label>
-         
-                                            </div>
+</b>&nbsp;&nbsp;
+<input type="radio" value="Yes" id="Yes"
+                                                                    onChange={handleChange} name="Yes" />&nbsp;&nbsp;
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="gen">150%</label>&nbsp;&nbsp;
+                                                           
+                                                                <input type="radio" value="Yes" id="Yes"
+                                                                    onChange={handleChange} name="Yes" />&nbsp;&nbsp;
+                                                                <label for="Yes"></label>
+                                                                <label htmlFor="npnl">175%</label>
+                                                                </h6>
+</div>
                                            
                                         </div>
+                                        
                                      </div>
-                                     <hr/>
-                                     <h5 className="text-black"><b>6.Number of Plots/SCOs (saleable area) :-</b></h5>
+                                    
+                                     <h5 className="text-black"><b>Number of Plots/SCOs (saleable area) :-</b></h5>
                                     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
         <TableHead>
           <TableRow>
             <TableCell><b>Types of plots</b></TableCell>
             <TableCell ><b>Plot No.</b></TableCell>
-            <TableCell ><b>Length in mtr</b></TableCell>
-            <TableCell ><b>Width in mtr</b></TableCell>
-            <TableCell ><b>Area in sqm</b></TableCell>
+            <TableCell ><b>Length in mtr</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
+            <TableCell ><b>Width in mtr</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
+            <TableCell ><b>Area in sqm</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -941,22 +1245,12 @@ const handleshow12=e=>{
                 <input type="number" className="form-control"/>
               </TableCell>
             </TableRow>
-            {/* <TableRow>
+            <TableRow>
                 <TableCell >
                                                         <div className="px-2">
-                                                            <p className="mb-2"><b>Public Utilities
+                                                            <p className="mb-2" ><b>Public utilities
+
                                                             </b></p>
-                                                            <select className="form-control" id="developer"
-                                                        name="developer"
-                                                    >
-                                                        <option value="" >
-                                                        </option>
-                                                        <option >STP </option>
-                                                        <option >WTP</option>
-                                                        <option >UGT</option>
-                                                        <option >Milk Booth</option>
-                                                        <option >GSS</option>
-                                                    </select>
                                                         </div>
                 </TableCell>
                 <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
@@ -969,19 +1263,168 @@ const handleshow12=e=>{
               <TableCell component="th" scope="row">
                 <input type="number" className="form-control"/>
               </TableCell>
-            </TableRow> */}
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>STP
+
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>WTP
+
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>UGT
+
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>Milk Booth
+
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" ><b>GSS
+
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+            </TableRow>
+         
            
         </TableBody>
       </Table>
                                      </TableContainer>
-                                     <hr/>
-                                     <div className="row">
-                                        <div className="col col-12">
-                                            <div className="form-group" >
-                                                <h6 onChange={(e)=>setEwsNpnlPlot(e.target.value)} value={ewsnpnlPlot}><b>7.Whether you want to surrender the 10% area of license colony to Govt. the instead of providing 10% under EWS and NPNL plots 
+                                    
+                                    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
+        <TableHead>
+          <TableRow>
+            <TableCell><b>Types of plots</b></TableCell>
+            <TableCell ><b>Dimension(in mtr)</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></TableCell>
+            <TableCell ><b>Entered Area</b></TableCell>
+           
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2"onChange={(e)=>setScono(e.target.value)} value={scono}><b>Irregular Size SCOs
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+             
+            </TableRow>
+            <TableRow>
+                <TableCell >
+                                                        <div className="px-2">
+                                                            <p className="mb-2" onChange={(e)=>setBoothPlotno(e.target.value)} value={boothplotno}><b> SCOs,Booths etc.
 
-(Yes/No):</b></h6>
-<input type="radio" value="Yes" id="Yes"
+                                                            </b></p>
+                                                        </div>
+                </TableCell>
+                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
+              <TableCell component="th" scope="row">
+                <input type="number" className="form-control"/>
+              </TableCell>
+             
+            </TableRow>
+        </TableBody>
+      </Table>
+                                     </TableContainer>
+                                     <hr/>
+                                     <h5 className="text-black"><b>NILP :-</b></h5>
+                                      
+                                    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
+        <TableHead>
+          <TableRow>
+            <TableCell><b>S.No.</b></TableCell>
+            <TableCell ><b>NLP Details</b></TableCell>
+            <TableCell ><b>Yes/No</b></TableCell>
+         
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            <TableRow>
+                <TableCell >1. </TableCell>
+                <TableCell > Whether you want to surrender the 10% area of license colony to Govt. the instead of providing 10% under EWS and NPNL plots  </TableCell>
+                 <TableCell component="th" scope="row">
+                 <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" onClick={handleshow0}/>
                                                 <label for="Yes">Yes</label>
 
@@ -991,7 +1434,7 @@ const handleshow12=e=>{
                                                  {
                                             showhide0==="Yes" && (
                                                 <div className="row " >
-                                                        <div className="col col-4">
+                                                        <div className="col col-12">
                                                             <label for="areaAcre" className="font-weight-bold">Area in Acres </label>
                                                             
                                                             <input type="text" className="form-control" />
@@ -1000,21 +1443,43 @@ const handleshow12=e=>{
                                             )
                                         } 
          
+              </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell >2. </TableCell>
+                <TableCell >Whether any pocket proposed to be transferred less than 1 acre </TableCell>
+                 <TableCell component="th" scope="row">
+                 <input type="radio" value="Yes" id="Yes"
+                                                onChange={handleChange} name="Yes" onClick={handleshow13}/>
+                                                <label for="Yes">Yes</label>
+
+                                                <input type="radio" value="No" id="No"
+                                                onChange={handleChange} name="Yes" onClick={handleshow13}/>
+                                                <label for="No">No</label>
+                                                 {
+                                            showhide13==="Yes" && (
+                                                <div className="row " >
+                                                        <div className="col col-6">
+                                                            <label for="areaAcre" className="font-weight-bold"> Dimension (in mtr) </label>
+                                                            
+                                                            <input type="text" className="form-control" />
+                                                        </div>
+                                                        <div className="col col-6">
+                                                            <label for="areaAcre" className="font-weight-bold"> Entered Area </label>
+                                                            
+                                                            <input type="text" className="form-control" />
+                                                        </div>
+                                                    </div> 
+                                            )
+                                        } 
          
-                                            </div>
-                                           
-                                        </div>
-                                      
-                                     </div>
-                                     <hr/>
-                                     <div className="row">
-                                        <div className="col col-12">
-                                            <div className="form-group" >
-                                                <h6 onChange={(e)=>setCollectorRate(e.target.value)} value={collectorRate}><b>8.Whether you want to deposit an amount @ of 3 times of collector rate instead of the surrender 10% land to Govt.  
-
-
-(Yes/No):</b></h6>
-<input type="radio" value="Yes" id="Yes"
+              </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell >3. </TableCell>
+                <TableCell >Whether you want to deposit an amount @ of 3 times of collector rate instead of the surrender 10% land to Govt. </TableCell>
+                 <TableCell component="th" scope="row">
+                 <input type="radio" value="Yes" id="Yes"
                                                 onChange={handleChange} name="Yes" onClick={handleshow1}/>
                                                 <label for="Yes">Yes</label>
 
@@ -1024,7 +1489,7 @@ const handleshow12=e=>{
                                                 {
                                             showhide1==="Yes" && (
                                                 <div className="row " >
-                                                        <div className="col col-4">
+                                                        <div className="col col-12">
                                                             <label for="areaAcre" className="font-weight-bold">Area in Acres </label>
                                                             
                                                             <input type="text" className="form-control" />
@@ -1033,14 +1498,75 @@ const handleshow12=e=>{
                                             )
                                         } 
          
+              </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell >4. </TableCell>
+                <TableCell >Whether the surrendered area is having a minimum of 18 mtr independent access   </TableCell>
+                 <TableCell component="th" scope="row">
+                 <input type="radio" value="Yes" id="Yes"
+                                                onChange={handleChange} name="Yes" onClick={handleshow14}/>
+                                                <label for="Yes">Yes</label>
+
+                                                <input type="radio" value="No" id="No"
+                                                onChange={handleChange} name="Yes"onClick={handleshow14}/>
+                                                <label for="No">No</label>
+                                                {
+                                            showhide14==="Yes" && (
+                                                <div className="row " >
+                                                        <div className="col col-12">
+                                                            <label for="areaAcre" className="font-weight-bold">Dimension(in mtr)</label>
+                                                            
+                                                            <input type="text" className="form-control" />
+                                                        </div>
+                                                        <div className="col col-12">
+                                                            <label for="areaAcre" className="font-weight-bold">Entered Area</label>
+                                                            
+                                                            <input type="text" className="form-control" />
+                                                        </div>
+                                                    </div> 
+                                            )
+                                        } 
          
-                                            </div>
-                                           
-                                        </div>
-                                     
-                                     </div>
+              </TableCell>
+            </TableRow>
+           
+        </TableBody>
+      </Table>
+    </TableContainer>
                                      <hr/>
                                      <div className="row">
+                                        <div className="col col-12">
+                                            <div className="form-group" >
+                                                <h6 ><b>Upload Layout Plan <span className="text-primary"> (Click here for instructions to capture DGPS points)</span></b>
+                                                   <input type="file" className="form-control"/></h6>
+                                            </div>
+                                        </div>
+                                     </div>
+                                     <hr/>
+                                     <h5 className="text-black"><b>Mandatory Documents</b></h5>
+                    <div className="row">
+                        <div className="col col-3">
+                                    <h6 ><b>Site plan.</b></h6>
+                                  <input type="file" className="form-control">
+                                    </input>
+                        </div>
+                        <div className="col col-3">
+                                    <h6 ><b>Democratic Plan.</b></h6>
+                                  <input type="file" className="form-control"></input>
+                        </div>
+                        <div className="col col-3">
+                                    <h6 ><b>Sectoral Plan/Layout Plan.</b></h6>
+                                  <input type="file" className="form-control"></input>
+                        </div>
+                        <div className="col col-3">
+                                    <h6 ><b>Development Plan. </b></h6>
+                                  <input type="file" className="form-control"></input>
+                        </div>
+                      
+                     </div>
+                                    
+                                     {/* <div className="row">
                                         <div className="col col-12">
                                             <div className="form-group" >
                                                 <h6 onChange={(e)=>setAnyOtherRoad(e.target.value)} value={anyotherroad}><b>9.Any other Road
@@ -1435,7 +1961,7 @@ const handleshow12=e=>{
                                             </div>
                                         </div>
                                        
-                                     </div>
+                                     </div> */}
                                      <Button style={{alignSelf:"center", marginTop:20, marginright:867}} variant="primary" type="submit">
                 Save as Draft
             </Button>
