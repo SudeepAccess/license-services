@@ -117,10 +117,11 @@ const handleChange=(e)=>{
     },[ResidentialPlottedFormSubmitted]);
  
     return (
-        <Form onSubmit={ResidentialPlottedFormSubmitHandler}>
+        <Form onSubmit={ResidentialPlottedFormSubmitHandler} style={{display:props.displayResidential}}>
          <Form.Group className="justify-content-center" controlId="formBasicEmail">
                 <Row className="ml-auto" style={{marginBottom:5}}>
                 <Col col-12>
+                <h6 className="text-black"><b>Residential Plotted</b></h6>
                 <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
         <TableHead>

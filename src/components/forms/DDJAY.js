@@ -121,6 +121,7 @@ const handleChange=(e)=>{
          <Form.Group className="justify-content-center" controlId="formBasicEmail">
                 <Row className="ml-auto" style={{marginBottom:5}}>
                 <Col col-12>
+                <h5 className="text-black"><b>3.Deen Dayal Jan Awas Yojna (DDJAY):-</b></h5>
                 <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
         <TableHead>

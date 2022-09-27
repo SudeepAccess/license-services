@@ -14,6 +14,7 @@ import IndustrialPlottedForm from "./IndustrialPlotted";
 import ResidentialPlottedForm from "./ResidentialPlotted";
 import { useSelector } from "react-redux";
 import { selectDdjayFormShowDisplay } from "../../Redux/Slicer/Slicer";
+import { selectResidentialFormShowDisplay } from "../../Redux/Slicer/Slicer";
 
 
 
@@ -115,7 +116,8 @@ const AppliedDetailForm =(props)=> {
   const[nczTruthingReport,setNczTruthingReport]=useState('');
   const[dlscRecommend,setDlscRecommend]=useState('');
   const[exemption,setExemption]=useState('');
-  const DdjayFormDisplay=useSelector(selectDdjayFormShowDisplay)
+  const DdjayFormDisplay=useSelector(selectDdjayFormShowDisplay);
+  const ResidentialFormDisplay=useSelector(selectResidentialFormShowDisplay)
 
 
     
@@ -127,6 +129,10 @@ const AppliedDetailForm =(props)=> {
       console.log("dff",DdjayFormDisplay)
 
     },[DdjayFormDisplay])
+    useEffect(()=>{
+      console.log("dff",ResidentialFormDisplay)
+
+    },[ResidentialFormDisplay])
     
     const [AppliedDetailFormSubmitted,SetAppliedDetailFormSubmitted] = useState(false);
     const AppliedDetailFormSubmitHandler=(e)=>{
@@ -915,7 +921,11 @@ onchange = e => {
                                      </TableContainer> )}
                                   
                                     {/* <h5 className="text-black"><b>3.Depending on Purpose</b></h5> */}
-                                    <h6 className="text-black"><b>Residential Plotted</b></h6>
+                                        {/* <h5 className="text-black"><b>3.Deen Dayal Jan Awas Yojna (DDJAY):-</b></h5> */}
+                                        <TableContainer component={Paper}>
+      <DDJAYForm displayDdjay={(DdjayFormDisplay===null)?"none":DdjayFormDisplay.displayDdjayForms}></DDJAYForm>
+                                     </TableContainer>
+                                    {/* <h6 className="text-black"><b>Residential Plotted</b></h6>
                                     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} className="table table-bordered table-responsive">
         <TableHead>
@@ -953,59 +963,14 @@ onchange = e => {
             </TableRow>
         </TableBody>
       </Table>
-                                     </TableContainer>
+                                     </TableContainer> */}
                                      <hr/>
-                                     <h5 className="text-black"><b>3.Deen Dayal Jan Awas Yojna (DDJAY):-</b></h5>
+                                     {/* <h5 className="text-black"><b>3.Deen Dayal Jan Awas Yojna (DDJAY):-</b></h5> */}
                                     <TableContainer component={Paper}>
-      <DDJAYForm displayDdjay={(DdjayFormDisplay===null)?"none":DdjayFormDisplay.displayDdjayForms}></DDJAYForm>
+      <ResidentialPlottedForm displayResidential={(ResidentialFormDisplay===null)?"none":ResidentialFormDisplay.displayResidentialForms}></ResidentialPlottedForm>
                                      </TableContainer>
                                      <br></br>
           
-              <div className="row">
-                <div className="col col-12">
-            <h6 onChange={(e)=>setorganizeNo(e.target.value)} value={organizeNo}><b> Whether one organizes open space/pocket of min area 0.3 acre proposed in the layout plan (Yes/No)</b>&nbsp;&nbsp;
-
-
-                                   <input type="radio" value="Yes" id="Yes"
-                                           onChange1={handleChange} name="Yes" onClick={handleshow12} />&nbsp;&nbsp;
-                                           <label for="Yes">Yes</label>&nbsp;&nbsp;
-
-                                           <input type="radio" value="No" id="No"
-                                           onChange1={handleChange} name="Yes" onClick={handleshow12}/>&nbsp;&nbsp;
-                                           <label for="No">No</label></h6>
-                                           {
-                                           showhide12==="Yes" && (
-                                               <div className="row " >
-                                                       <div className="col col-6">
-                                                           <label for="parentLicense" className="font-weight-bold">Area of such Pocket (in acres)</label>
-                                                           <input type="text" className="form-control"/>
-                                                       </div>
-                                                      
-                                                   </div> 
-
-                                           )
-                                       }
-                                       </div>
-              </div>
-                                  
-            {/* <TableRow>
-                <TableCell >
-                                                        <div className="px-2">
-                                                            <p className="mb-2" onChange={(e)=>setorganizeNo(e.target.value)} value={organizeNo}><b> Whether one organizes open space/pocket of min area 0.3 acre proposed in the layout plan (Yes/No) </b></p>
-                                                            <input type="radio" value="Yes" id="Yes"
-                                                onChange={handleChange} name="Yes"  />
-                                                <label for="Yes">Yes</label>
-
-                                                <input type="radio" value="No" id="No"
-                                                onChange={handleChange} name="Yes"/>
-                                                <label for="No">No</label>
-                                                        </div>
-                </TableCell>
-                <TableCell align="right">  <input type="number" className="form-control"/></TableCell>
-              <TableCell component="th" scope="row">
-                <input type="number" className="form-control"/>
-              </TableCell>
-            </TableRow> */}
         
                                      <h5 className="text-black"><b>Industrial Plotted Colony </b></h5>
                                     <TableContainer component={Paper}>

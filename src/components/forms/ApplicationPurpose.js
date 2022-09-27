@@ -17,7 +17,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import DDJAYForm from "./DDJAY";
 import {setDisplayDDAJForm  } from "../../Redux/Slicer/Slicer";
 import { useDispatch } from "react-redux";
-
+import {setDisplayResidentialForms} from "../../Redux/Slicer/Slicer"
 
 
 const ApllicantPuropseForm = (props) => {
@@ -88,7 +88,7 @@ const ApllicantPuropseForm = (props) => {
     const[displayDdjayForm,setDisplayDdjayForm]=useState(
         {display:"none"}
     )
-    const [displayCommercial,setDisplayCommercial]=useState(
+    const [displayResidential,setDisplayResidential]=useState(
         {display:"none"}
     )
     const dispatch=useDispatch();
@@ -409,23 +409,48 @@ const ApllicantPuropseForm = (props) => {
         setSelectPurpose(e.target.value)
         if(e.target.value==="08"){
             // setDisplayCommercial({display:"none"})
-            console.log("handleChangePurpose")
+            console.log("handleChangePurpose",e.target.value)
             if (displayDdjayForm.display==="none" ) {
                 setDisplayDdjayForm({display:"block"});
+                
                 const data = {"displayDdjayForms": {displayDdjayForms:"block"}}
                
                dispatch(setDisplayDDAJForm(data)) 
             }
-            else{
+            else {
                 setDisplayDdjayForm({display:"none"});
                 const data = {"displayDdjayForms": {displayDdjayForms:"none"}}
                dispatch(setDisplayDDAJForm(data)) 
+            }
+        
+            
+        }else if(e.target.value==="03"){
+            setDisplayDdjayForm({display:"none"})
+            setDisplayResidential({display:"block"})
+        }
+
+        if(e.target.value==="03"){
+            // setDisplayCommercial({display:"none"})
+            console.log("handleChangePurpose",e.target.value)
+            if (displayResidential.display==="none" ) {
+                setDisplayResidential({display:"block"})
+                setDisplayDdjayForm({display:"none"});
+                const data = {"displayResidentialForms": {displayResidentialForms:"block"}}
+               
+               dispatch(setDisplayResidentialForms(data)) 
+               console.log("resi",data)
+            }
+            else{
+                setDisplayResidential({display:"none"});
+                const data = {"displayResidentialForms": {displayResidentialForms:"none"}}
+               dispatch(setDisplayResidentialForms(data)) 
             }
         
         }
         // else if (e.target.value==="01") {
         //     setDisplayDdjayForm({display:"none"});
         //     setDisplayCommercial({display:"block"});
+        
         // }
     }
 

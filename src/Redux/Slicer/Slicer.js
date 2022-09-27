@@ -15,7 +15,8 @@ const InitialStateAddinfo=
             shareHoldingPatterens:null,
             addRemoveAuthoizedUsers:null,
             capacityDevelopAColony:null,
-            displayDdjayForms: null
+            displayDdjayForms: null,
+            displayResidentialForms:null
             
     }
 
@@ -45,6 +46,10 @@ const AddinfoSlicer = createSlice({
         },
         setDisplayDDAJForm:(state,action)=>{
             state.displayDdjayForms=action.payload.displayDdjayForms;
+        },
+        
+        setDisplayResidentialForms:(state,action)=>{
+            state.displayResidentialForms=action.payload.displayResidentialForms;
         }
 
     }
@@ -54,7 +59,7 @@ const AddinfoSlicer = createSlice({
 
 
 
-export const {setAddinfoData,setAddAuthUserData,setTechnicalData,setDisplayDDAJForm} = AddinfoSlicer.actions;
+export const {setAddinfoData,setAddAuthUserData,setTechnicalData,setDisplayDDAJForm,setDisplayResidentialForms} = AddinfoSlicer.actions;
 
 export const selectCinNumber=(state)=>state.addinfo.cin_Number;
 export const selectCompanayNAme=(state)=>state.addinfo.companyName;
@@ -68,7 +73,8 @@ export const selectShareHoldingPatterens=(state)=>state.addinfo.shareHoldingPatt
 export const selectFinancialCapacity=(state)=>state.addinfo.financialCapacity;
 export const selectmodalAuthUserValuesArray=(state)=>state.addinfo.addRemoveAuthoizedUsers;
 export const selectTechnicalValuesArray=(state)=>state.addinfo.capacityDevelopAColony;
-export const selectDdjayFormShowDisplay=(state)=>state.addinfo.displayDdjayForms
+export const selectDdjayFormShowDisplay=(state)=>state.addinfo.displayDdjayForms;
+export const selectResidentialFormShowDisplay=(state)=>state.addinfo.displayResidentialForms;
 
 
 export default AddinfoSlicer.reducer;
