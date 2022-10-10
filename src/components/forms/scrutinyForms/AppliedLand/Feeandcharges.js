@@ -6,6 +6,7 @@ import Box from '@material-ui/core//Box';
 import { useForm } from "react-hook-form";
 import Typography from '@material-ui/core/Typography'
 import Modal from '@material-ui/core//Modal';
+import InfoIcon from '@mui/icons-material/Info';
 
 const style = {
     position: 'absolute',
@@ -155,7 +156,7 @@ const Feeandcharges=(props)=>{
                    </div>
                    <div className="col col-3">
                               
-                              <h6><b>(iv)Total Fees (License fee 25% + Scrutiny Fees)</b>
+                   <h6 data-toggle="tooltip" data-placement="top" title="Total Fees (License fee 25% + Scrutiny Fees)"><b>(iv)&nbsp;Total Fees&nbsp;<InfoIcon style={{color:"blue"}}/> </b>&nbsp;&nbsp;
                               &nbsp;&nbsp;
                         <Form.Check value="Total Fees" 
                                     type="radio"  onChange1={handleChange} onClick={handleshow}
@@ -192,38 +193,10 @@ const Feeandcharges=(props)=>{
                                          onChange={(e)=>setRemark(e.target.value)} value={remark} onChange1={handleRemarkChange} />
                                          {errors.remark && <p></p>}
                              </div>
+                          
                              <div className="col col-3">
                               
-                                        <h6 ><b>(vi)Select Aggregator</b>
-                                        &nbsp;&nbsp;
-                                        <Form.Check value="Aggregator" 
-                                    type="radio"  onChange1={handleChange} onClick={handleshow}
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group115" inline></Form.Check>
-                        <Form.Check 
-                            onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                            value="Aggregator" 
-                            type="radio" id = "default-radio"  onChange1={handleChange} onClick={handleshow}
-                            label={<AiFillCloseCircle class="fa fa-times text-danger"  size={18}></AiFillCloseCircle>} 
-                            name="group115" inline></Form.Check></h6>
-                                        <select className="form-control" id="developer"
-                                                        name="developer"  onChange={(e)=>setAggregator(e.target.value)} value={aggregator}
-                                                        onChange1={handleAggregatorChange} >
-                               {errors.aggregator && <p></p>}
-                                                    
-                                                        <option value="" >
-                                                        </option>
-                                                        <option ></option>
-                                                        <option ></option>
-                                                      
-                                                    </select>
-                             </div>
-                             <div className="col col-3">
-                              
-                              <h6  required onChange={(e)=>setPreviousLic(e.target.value)} value={previousLic}
-                                 onChange1={handlePrevLicChange } >
-                                 {errors.previousLic && <p></p>}<b>(vii)Do you want to adjust the fee from any previous license (Yes/No)</b>
+                             <h6  data-toggle="tooltip" data-placement="top" title="Do you want to adjust the fee from any previous license (Yes/No)"><b>(vi)&nbsp;Adjust Fees&nbsp;<InfoIcon style={{color:"blue"}}/> </b>&nbsp;&nbsp;
                                  &nbsp;&nbsp;
                                         <Form.Check value="adjust" 
                                     type="radio"  onChange1={handleChange} onClick={handleshow}
@@ -246,10 +219,13 @@ const Feeandcharges=(props)=>{
                                                 <label for="No">No</label>
                                                 {
                                             showhide0==="Yes" && (
-                                                <div className="row " >
+                                                <div className="row "  >
                                                         <div className="col col-12">
                                                             <label for="parentLicense" className="font-weight-bold">Enter License Number/LOI number</label>
                                                             <input type="text" className="form-control"/>
+                                                            <label for="parentLicense" className="font-weight-bold">Amount (previous)</label>
+                                                            <input type="text" className="form-control" disabled/>
+                                                            
                                                         </div>
                                                        
                                                     </div> 
@@ -257,7 +233,7 @@ const Feeandcharges=(props)=>{
                                             )
                                         }
                    </div>
-                   <div className="col col-3">
+                   {/* <div className="col col-3">
                               
                               <h6><b>(viii)Amount (previous)</b>
                               &nbsp;&nbsp;
@@ -276,7 +252,7 @@ const Feeandcharges=(props)=>{
                                onChange={(e)=>setAmount(e.target.value)} value={amount}
                                onChange1={handleAmountChange  } />
                                {errors.amount && <p></p>}
-                   </div>
+                   </div> */}
                              </div>
                              <hr/>
                              <h5 className="text-black"><b>1.Undertakings:-</b>

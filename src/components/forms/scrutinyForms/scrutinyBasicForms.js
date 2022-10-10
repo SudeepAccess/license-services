@@ -4,6 +4,7 @@ import Genarelinfo from "./Generalinfo/Generalinfo";
 import Developerinfo from "./Developerinfo/Developerinfo";
 import AppliedLandinfo from "./AppliedLand/AppliedLand";
 import Feeandcharges from "./AppliedLand/Feeandcharges";
+import JeLandinfo from "./Scrutiny LOI/JE/JE";
 import DisApprovalList from "./DisApprovalList/DisApprovalList";
 import HistoryList from "./History/History";
 import { Button } from "react-bootstrap";
@@ -16,12 +17,16 @@ const ScrutitnyForms=()=>{
     const developerInfoRef = useRef();
     const appliedInfoRef = useRef();
     const feeandchargesInfoRef = useRef();
+    const jeLandInfoRef = useRef();
+
 
     const [displayPersonal,setDisplayPersonalInfo] = useState([]);
     const [displayPurpose,setDisplayPurposeInfo] = useState([]);
     const [displayGeneral,setDisplayGeneralInfo] = useState([]);
     const [displayAppliedLand,setDisplayAppliedLandInfo] = useState([]);
     const[displayFeeandCharges,setDisplayFeeandChargesInfo]=useState([]);
+    const[displayJeLand,setDisplayJeLand]=useState([]);
+
 
     const [uncheckedValue,setUncheckedVlue]=useState([]);
 
@@ -47,6 +52,10 @@ const ScrutitnyForms=()=>{
         setDisplayFeeandChargesInfo(data.data)
         console.log(data);
     };
+    const getUncheckedJeLandInfo=(data)=>{
+        setDisplayJeLand(data.data)
+        console.log(data);
+    };
 
  
     console.log(uncheckedValue);
@@ -68,6 +77,9 @@ const ScrutitnyForms=()=>{
     const handleScrolltoFeeandChargesInfo=()=>{
         feeandchargesInfoRef.current.scrollIntoView({behavior:"smooth"});
     };
+    const handleScrolltoJeLandInfo=()=>{
+        jeLandInfoRef.current.scrollIntoView({behavior:"smooth"});
+    };
 
     console.log(displayPersonal)
     return(
@@ -87,6 +99,7 @@ const ScrutitnyForms=()=>{
                     <Developerinfo developerInfoRef={developerInfoRef} passUncheckedList={getUncheckedPurposeinfos}></Developerinfo>
                     <AppliedLandinfo appliedInfoRef={appliedInfoRef} passUncheckedList={getUncheckedDeveloperinfos}></AppliedLandinfo>
                     <Feeandcharges feeandchargesInfoRef={feeandchargesInfoRef} passUncheckedList={getUncheckedFeeandChargesInfo}></Feeandcharges>
+                    <JeLandinfo jeLandInfoRef={jeLandInfoRef} passUncheckedList={getUncheckedJeLandInfo}></JeLandinfo>
                 </div>
            </div>
             <div style={{position:"relative",marginTop:400,width:"100%", height:"30%",display:"flex"}}>

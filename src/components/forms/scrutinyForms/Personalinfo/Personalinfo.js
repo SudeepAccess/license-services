@@ -189,14 +189,14 @@ const Personalinfo=(props)=>{
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} value="Email ID for communication" type="radio" id = "default-radio" label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} name="group18" inline></Form.Check>
                         <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
                     </Col>
-                    <Col md={4} xxl lg="3">
+                    {/* <Col md={4} xxl lg="3">
                         <div>
                             <Form.Label><b>Name of individual Land owner/ land-owning company/ firm/ LLP etc.</b></Form.Label>
                         </div>
                         <Form.Check value="Name of individual Land owner/ land-owning company/ firm/ LLP etc." type="radio" id = "default-radio" label={<AiFillCheckCircle class="fa fa-check text-success" size={18}></AiFillCheckCircle>} name="group19" inline></Form.Check>
                         <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} value="Name of individual Land owner/ land-owning company/ firm/ LLP etc." type="radio" id = "default-radio" label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} name="group19" inline></Form.Check>
                         <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
-                    </Col>
+                    </Col> */}
                 </Row>
             </Form.Group>
              <div style={{position:"relative", marginBottom:40}}>

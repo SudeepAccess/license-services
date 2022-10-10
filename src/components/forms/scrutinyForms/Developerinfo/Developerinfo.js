@@ -2,6 +2,9 @@ import React,{useState} from "react";
 import { Button, Form } from "react-bootstrap";
 import { Card, Row, Col} from "react-bootstrap";
 import {AiFillCheckCircle, AiFillCloseCircle} from "react-icons/ai";
+import CalculateIcon from '@mui/icons-material/Calculate';
+import InfoIcon from '@mui/icons-material/Info';
+
 
 
 const Developerinfo=(props)=>{
@@ -34,6 +37,9 @@ const Developerinfo=(props)=>{
      const [showhide8,setShowhide8]=useState("No");
      const [showhide9,setShowhide9]=useState("No");
      const [showhide0,setShowhide0]=useState("No");
+     const [showhide13,setShowhide13]=useState("No");
+     const [showhide18,setShowhide18]=useState("No");
+     const [showhide16,setShowhide16]=useState("No");
      const handleshow=e=>{
         const getshow=e.target.value;
         setShowhide1(getshow);
@@ -78,28 +84,26 @@ const Developerinfo=(props)=>{
         const getshow=e.target.value;
         setShowhide0(getshow);
     }
+    const handleshow13=e=>{
+        const getshow=e.target.value;
+        setShowhide13(getshow);
+    }
+    const handleshow18=e=>{
+        const getshow=e.target.value;
+        setShowhide18(getshow);
+    }
+    const handleshow16=e=>{
+        const getshow=e.target.value;
+        setShowhide16(getshow);
+    }
     const [uncheckedValue,setUncheckedVlue]=useState([]);
     console.log(uncheckedValue);
     return(
         <Form ref={props.developerInfoRef}>
-            {/* <div className="justify-content-center" 
-                onClick={()=>(displayGeneral==="none")?setDisplayGeneralInfo("block"):setDisplayGeneralInfo("none")} 
-                style={{
-                    width:"100%", 
-                    height:40,
-                    backgroundColor:"aliceblue",
-                    padding:5,
-                    borderColor:"darkblue", 
-                    borderWidth:2, 
-                    borderBlockStyle:"solid", 
-                    borderRadius:5,
-                    marginBottom:10
-                }}>
-                <h2 style={{fontSize:20, fontFamily:"Roboto", color:"GrayText"}}>General Information</h2>
-            </div> */}
+          
             <Form.Group style={{display:props.displayGeneral}} className="justify-content-center">
                 <Row className="ms-auto" style={{marginBottom:20}}>
-                    <Col className="ms-auto" md={4} xxl lg="6">
+                    <Col className="ms-auto" md={4} xxl lg="12">
                             <Form.Label><b>(i)Whether licence applied for additional area ?</b></Form.Label>&nbsp;&nbsp;
                         <Form.Check value="Yes" 
                                     type="radio"  onChange1={handleChange} onClick={handleshow}
@@ -121,17 +125,201 @@ const Developerinfo=(props)=>{
                             <label for="No">No</label>
                             {
                         showhide1==="Yes" && (
-                            <div className="row " >
-                                    <div className="col col">
-                                        <label for="parentLicense" className="font-weight-bold">License No. of Parent License </label>
-                                       <input type="text" className="form-control"/>
-                                    </div>
-                                </div> 
+                            <div className="row" >
+                            <div className="col col-3">
+                                <label for="parentLicense" className="font-weight-bold"><h6><b>License No. of Parent License</b></h6> </label>
+                                <Form.Check value="Yes" 
+                                    type="radio"  onChange1={handleChange} onClick={handleshow}
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group41" inline></Form.Check>
+                        <Form.Check 
+                            onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                            value="No" 
+                            type="radio" id = "default-radio"  onChange1={handleChange} onClick={handleshow}
+                            label={<AiFillCloseCircle class="fa fa-times text-danger"  size={18}></AiFillCloseCircle>} 
+                            name="group41" inline></Form.Check>
+                               <input type="number" className="form-control"/>
+                            </div>
+                    <div className="col col-3">
+                        <label htmlFor="potential"><h6><b>Potential Zone:</b></h6></label>
+                        <Form.Check value="Potential Zone" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group43" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Potential Zone" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group43" inline></Form.Check>
+                        <select className="form-control" id="potential"
+                            name="potential"
+                        >
+                            <option value="" >--Potential Zone--
+                            </option>
+                            <option value="K.Mishra">Hyper</option>
+                            <option value="potential 1">High I</option>
+                            <option value="potential 2">High II</option>
+                            <option value="potential 2">Medium</option>
+                            <option value="potential 2">Low I</option>
+                            <option value="potential 2">Low II</option>
+                        </select>
+                    
+                    </div>
+                    <div className="col col-3">
+                                <label for="parentLicense" className="font-weight-bold"><h6><b>Site Location Purpose</b></h6> </label>
+                                <Form.Check value="Site Location Purpose" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group44" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Site Location Purpose" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group44" inline></Form.Check>
+                               <input type="text" className="form-control" disabled/>
+                     </div>
+                     <div className="col col-3">
+            <div className="form-group">
+                <label htmlFor="approach"><h6><b>Approach Type (Type of Policy)</b></h6></label>
+                <Form.Check value="Approach Type " type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group45" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Approach Type " type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group45" inline></Form.Check>
+                <select className="form-control" id="approach"
+                    name="approach"
+                >
+                    <option value="" >
+                    </option>
+                    <option value="K.Mishra"></option>
+                    <option value="potential 1"></option>
+                    <option value="potential 2"></option>
+                </select>
+              
+            </div>
+        </div>
+        <div className="col col-3">
+            <div className="form-group ">
+                <label htmlFor="roadwidth"><h6><b>Approach Road Width</b>&nbsp;&nbsp;<CalculateIcon color="primary"/></h6> </label>
+                <Form.Check value="Approach Road Width " type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group46" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Approach Road Width" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group46" inline></Form.Check>
+                <input
+                    type="number"
+                    name="roadwidth"
+                    className="form-control"></input>
+            </div>
+        </div>
+        <div className="col col-3">
+            <div className="form-group ">
+                <label htmlFor="specify"><h6><b>Specify Others</b></h6></label>
+                <Form.Check value="Specify Others" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group47" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Specify Others" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group47" inline></Form.Check>
+                <input
+                    type="number"
+                    name="specify"
+                    className="form-control "
+                   
+                />
+            </div>
+        </div>
+        <div className="col col-3">
+            <div className="form-group ">
+                <label htmlFor="typeland"><h6><b>Type of land</b></h6> </label>
+                <Form.Check value="Type of land" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group49" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Type of land" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group49" inline></Form.Check>
+                <select className="form-control" id="typeland"
+                    name="typeland" >
+                     <option value="" >--Type of Land--
+                    </option>
+                    <option value="" >chahi/nehri
+                    </option>
+                    <option >Gair Mumkins</option>
+                    <option >others</option>
+                    <option ></option>
+                </select>
+                
+            </div>
+        </div>
+        <div className="col col-3 ">
+  
+ 
+  <label htmlFor="typeland"><h6><b>Third-party right created</b> </h6></label><br></br>
+ 
+  <input type="radio" value="Yes" id="Yes"
+          onChange1={handleChange} name="Yes"  onClick={handleshow13}/>&nbsp;&nbsp;
+          <label for="Yes"><h6>Yes</h6></label>&nbsp;&nbsp;
+
+          <input type="radio" value="No" id="No"
+          onChange1={handleChange} name="Yes"onClick={handleshow13}/>&nbsp;&nbsp;
+          <label for="No"><h6>No</h6></label>
+          <Form.Check value="Third-party right created" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group50" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="Third-party right created" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group50" inline></Form.Check>
+          {
+                showhide13==="Yes" && (
+                    <div className="row " >
+                            <div className="col col-12">
+                                <label for="parentLicense" className="font-weight-bold"> Remark </label>
+                                <input type="text" className="form-control"/>
+                            </div>
+                            <div className="col col-12">
+                                <label for="parentLicense" className="font-weight-bold"> Document Upload </label>
+                                <input type="file" className="form-control"/>
+                            </div>
+                        </div> 
+                )
+            }
+             {
+                showhide13==="No" && (
+                    <div className="row " >
+                            <div className="col col">
+                                <label for="parentLicense" className="font-weight-bold"> Document Upload </label>
+                                <input type="file" className="form-control"/>
+                            </div>
+                        </div> 
+                )
+            }
+        </div>
+                </div>
 
                         )
                     }
                     </Col>
-                    <Col md={4} xxl lg="6">
+                    </Row>
+                    <Row className="ms-auto">
+                    <Col md={4} xxl lg="12">
                       
                             <Form.Label><b>(ii)Whether licence applied under Migration policy?</b></Form.Label>&nbsp;&nbsp;
                        
@@ -154,136 +342,9 @@ const Developerinfo=(props)=>{
                     </Col>
                 </Row>
                 <hr></hr>
-                           <div className="row">
-                               <div className="col col-3">
-                                   <div className="form-group">
-                                       <label htmlFor="potential"><b>Potential Zone</b></label>&nbsp;&nbsp;
-                                       <Form.Check value="Potential Zone" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group43" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="Potential Zone" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group43" inline></Form.Check>
-                        <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
-                                   </div>
-                               </div>
-                               <div className="col col-3">
-                                   <div className="form-group">
-                                       <label htmlFor="locPurpose"><b>Site Location Purpose</b></label>&nbsp;&nbsp;
-                                       <Form.Check value="Site Location Purpose" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group44" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="Site Location Purpose" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group44" inline></Form.Check>
-                        <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
-                                   </div>
-                               </div>
-                               <div className="col col-3">
-                                   <div className="form-group">
-                                       <label htmlFor="approach"><b>Approach Type (type of Policy)</b></label>&nbsp;&nbsp;
-                                       <Form.Check value="Approach Type " type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group45" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="Approach Type " type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group45" inline></Form.Check>
-                        <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
-                                   </div>
-                               </div>
-                               <div className="col col-3">
-                                   <div className="form-group ">
-                                       <label htmlFor="roadwidth"><b>Approach Road Width</b> </label>&nbsp;&nbsp;
-                                       <Form.Check value="Approach Road Width " type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group46" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="Approach Road Width" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group46" inline></Form.Check>
-                        <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
-                                   </div>
-                               </div>
-                             
-                           </div><br></br>
-                           <div className="row">
-                           <div className="col col-3">
-                                   <div className="form-group ">
-                                       <label htmlFor="specify"><b>Specify Others</b></label>&nbsp;&nbsp;
-                                       <Form.Check value="Specify Others" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group47" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="Specify Others" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group47" inline></Form.Check>
-                        <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
-                                   </div>
-                               </div> 
-                               <div className="col col-3">
-                                   <div className="form-group ">
-                                       <label htmlFor="existingcase"><b>Existing Case No.</b></label>&nbsp;&nbsp;
-                                       <Form.Check value="Existing Case No." type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group48" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="Existing Case No." type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group48" inline></Form.Check>
-                        <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
-                                   </div>
-                               </div>
-                               <div className="col col-3">
-                                   <div className="form-group ">
-                                       <label htmlFor="typeland"><b>Type of land</b> </label>&nbsp;&nbsp;
-                                       <Form.Check value="Type of land" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group49" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="Type of land" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group49" inline></Form.Check>
-                        <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
-                                   </div>
-                               </div>
-                               <div className="col col-3 ">
-                         <label htmlFor="typeland"><b>Third-party right created</b> </label>&nbsp;&nbsp;
-                         <Form.Check value="Third-party right created" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group50" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="Third-party right created" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group50" inline></Form.Check>
-                        <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
-                               </div>
-                           </div>
-                           <hr></hr>
-                           <h5 className="text-black"><b>2. Any encumbrance with respect to following :</b></h5><br></br>
-                  <div className="row">
-                  <div className="col col-3 ">
-                              
-                              <h6 ><b>(a)Rehan / Mortgage</b> &nbsp;&nbsp;
-                              <Form.Check value="Rehan" type="radio" 
+                          
+                           <h5 className="text-black"><b>2. Any encumbrance with respect to following :</b>&nbsp;&nbsp;
+                           <Form.Check value="Rehan" type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
                                     name="group43" inline></Form.Check>
@@ -291,81 +352,29 @@ const Developerinfo=(props)=>{
                                     value="Rehan" type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group43" inline></Form.Check></h6>
-                                   
-                       <input type="radio" value="Yes" id="Yes"  
-                            onChange1={handleChange} name="Yes"  />
-                            <label for="Yes">Yes</label>&nbsp;&nbsp;
+                                    name="group43" inline></Form.Check></h5><br></br>
+                                <label htmlFor="gen">Rehan / Mortgage</label>&nbsp;&nbsp;
+                                    <input type="radio"  id="Yes" value="1"
+                                        onChange={handleChange} name="Yes"onClick={handleshow18} />&nbsp;&nbsp;
+                                    <label for="Yes"></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    
+                                    <label htmlFor="npnl">Patta/Lease</label>&nbsp;&nbsp;
+                                    <input type="radio"  id="Yes" value="2"
+                                        onChange={handleChange} name="Yes" onClick={handleshow18}/>&nbsp;&nbsp;
+                                    <label for="Yes"></label>&nbsp;&nbsp;&nbsp;&nbsp;
 
-                            <input type="radio" value="No" id="No"
-                            onChange1={handleChange} name="Yes"/>
-                            <label for="No">No</label>
-                   </div>
-                   <div className="col col-3 ">
-                              
-                              <h6 ><b>(b)Patta/Lease</b> &nbsp;&nbsp;
-                              <Form.Check value="Patta" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group44" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="Patta" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group44" inline></Form.Check></h6>
-                                  
-                       <input type="radio" value="Yes" id="Yes"  
-                            onChange1={handleChange} name="Yes"  />
-                            <label for="Yes">Yes</label>&nbsp;&nbsp;
+                                    <label htmlFor="npnl">Gair/Marusi</label>&nbsp;&nbsp;
+                                    <input type="radio"  id="Yes" value="2"
+                                        onChange={handleChange} name="Yes" onClick={handleshow18}/>&nbsp;&nbsp;
+                                    <label for="Yes"></label>
 
-                            <input type="radio" value="No" id="No"
-                            onChange1={handleChange} name="Yes"/>
-                            <label for="No">No</label>
-                   </div>
-                   <div className="col col-3 ">
-                              
-                              <h6 ><b>(c)GairMarusi</b>&nbsp;&nbsp;
-                              <Form.Check value="GairMarusi" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group45" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="GairMarusi" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group45" inline></Form.Check></h6>
-                                   
-                       <input type="radio" value="Yes" id="Yes"  
-                            onChange1={handleChange} name="Yes"  />
-                            <label for="Yes">Yes</label>&nbsp;&nbsp;
-
-                            <input type="radio" value="No" id="No"
-                            onChange1={handleChange} name="Yes"/>
-                            <label for="No">No</label>
-                   </div>
-                   <div className="col col-3 ">
-                              
-                              <h6 ><b>(d)Any other, please specify</b> &nbsp;&nbsp;
-                              <Form.Check value="Any other, please specify" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group46" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="Any other, please specify" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group46" inline></Form.Check> </h6>
-                                   
-                       <input type="radio" value="Yes" id="Yes"  
-                            onChange1={handleChange} name="Yes"  />
-                            <label for="Yes">Yes</label>&nbsp;&nbsp;
-
-                            <input type="radio" value="No" id="No"
-                            onChange1={handleChange} name="Yes"/>
-                            <label for="No">No</label>
-                   </div>
-                                  
-                    </div>
+                                    <div className="row">
+                                        <div className="col col-4">
+                                    <label htmlFor="npnl"><h6><b>Any other, please specify</b></h6></label>
+                                    <input type="text" className="form-control"/></div>
+                                    </div>
+                                    
+             
                     <hr/>
                     <h6 ><b>(ii) Existing litigation, if any, concerning applied land including co-sharers and collaborator</b>&nbsp;&nbsp;
                     <Form.Check value=" Existing litigation" type="radio" 
@@ -445,7 +454,7 @@ const Developerinfo=(props)=>{
                         </div>
                         
                         <div className="col col-3 ">
-                                    <h6 ><b>(b)If any revenue rasta abuts to the applied site (Yes/No)</b> &nbsp;&nbsp;
+                        <h6  data-toggle="tooltip" data-placement="top" title="If any revenue rasta abuts to the applied site ?"><b>(b)&nbsp;Revenue rasta&nbsp;<InfoIcon style={{color:"blue"}}/> </b>&nbsp;&nbsp;
                                     <Form.Check value=" revenue rasta " type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
@@ -479,7 +488,7 @@ const Developerinfo=(props)=>{
                       
                         <div className="col col-3 ">
                                     
-                                    <h6 ><b>(c)Any watercourse abuts/passes through the applied site (Yes/No)</b> &nbsp;&nbsp;
+                        <h6  data-toggle="tooltip" data-placement="top" title="Watercourse running along boundary through the applied site ?"><b>(c)&nbsp;Watercourse running&nbsp;<InfoIcon style={{color:"blue"}}/> </b>&nbsp;&nbsp;
                                     <Form.Check value=" Yes" type="radio" 
                                     id = "default-radio" onChange1={handleChange} onClick={handleshow2}
                                     label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
@@ -534,7 +543,7 @@ const Developerinfo=(props)=>{
                    <div className="row">
                         <div className="col col-3 ">
                                     
-                                    <h6 ><b>(e)If any other owners' land is sandwiched within applied land (Yes/No)</b> &nbsp;&nbsp;
+                        <h6 data-toggle="tooltip" data-placement="top" title="If any other owners' land is sandwiched within applied land."><b>(e)&nbsp;Land Sandwiched&nbsp;<InfoIcon style={{color:"blue"}}/> </b>&nbsp;&nbsp;
                                     <Form.Check value=" sandwiched" type="radio" 
                                     id = "default-radio" onChange1={handleChange} onClick={handleshow2}
                                     label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
@@ -584,51 +593,6 @@ const Developerinfo=(props)=>{
                                             )
                                         }
                         </div>
-                        <div className="col col-3 ">
-                                    
-                                    <h6 ><b>(g)Whether details/orders of release/exclusion of land uploaded</b> &nbsp;&nbsp;
-                                    <Form.Check value=" release/exclusion" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group59" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="release/exclusion" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group59" inline></Form.Check></h6>
-                                     <input type="radio" value="Yes" id="Yes"  
-                            onChange1={handleChange} name="Yes"  />
-                            <label for="Yes">Yes</label>&nbsp;&nbsp;
-
-                            <input type="radio" value="No" id="No"
-                            onChange1={handleChange} name="Yes"/>
-                            <label for="No">No</label>
-                        </div>
-                        <div className="col col-3 ">
-                                    
-                                    <h6 ><b>(h) Whether land compensation received</b>&nbsp;&nbsp;
-                                    <Form.Check value=" land compensation" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
-                                    name="group60" inline></Form.Check>
-                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
-                                    value="land compensation" type="radio" 
-                                    id = "default-radio" 
-                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
-                                    name="group60" inline></Form.Check></h6>
-                                     <input type="radio" value="Yes" id="Yes"  
-                            onChange1={handleChange} name="Yes"  />
-                            <label for="Yes">Yes</label>&nbsp;&nbsp;
-
-                            <input type="radio" value="No" id="No"
-                            onChange1={handleChange} name="Yes"/>
-                            <label for="No">No</label>
-                        </div>
-                    </div>
-                    </div>
-                    <hr/>
-                    <hr/>
-                    <div className="row">
                         <div className="col col-3">
                                         <div className="form-group ">
                                             <label ><b>Date of section 4 notification</b> </label>&nbsp;&nbsp;
@@ -659,9 +623,57 @@ const Developerinfo=(props)=>{
                                     <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
                                         </div>
                          </div>
-                         <div className="col col-3">
+                    </div>
+                    </div>
+                    <div className="row">
+                    <div className="col col-12 ">
+                                    
+                    <h6  data-toggle="tooltip" data-placement="top" title="Whether details/orders of release/exclusion of land uploaded."><b>(g)&nbsp;Orders Upload &nbsp;<InfoIcon style={{color:"blue"}}/> </b>&nbsp;&nbsp;
+                                    <Form.Check value=" release/exclusion" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group59" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="release/exclusion" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group59" inline></Form.Check></h6>
+                                     <input type="radio" value="Yes" id="Yes"  
+                            onChange1={handleChange} name="Yes" onClick={handleshow16} />
+                            <label for="Yes">Yes</label>&nbsp;&nbsp;
+
+                            <input type="radio" value="No" id="No"
+                            onChange1={handleChange} name="Yes" onClick={handleshow16}/>
+                            <label for="No">No</label>
+                            {
+                                            showhide16==="Yes" && (
+                        <div className="row " >
+                        <div className="col col-3 ">
+                                    
+                                    <h6 ><b>(h) Whether land compensation received</b>&nbsp;&nbsp;
+                                   
+                                    <input type="radio" value="Yes" id="Yes"
+                                            onChange1={handleChange} name="Yes"  />&nbsp;&nbsp;
+
+                                            <label for="Yes">Yes</label>&nbsp;&nbsp;
+
+                                            <input type="radio" value="No" id="No"
+                                            onChange1={handleChange} name="Yes"/>&nbsp;&nbsp;
+
+                                            <label for="No">No</label></h6>
+                                            <Form.Check value=" land compensation" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group60" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="land compensation" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group60" inline></Form.Check>
+                        </div>
+                        <div className="col col-3">
                                         <div className="form-group">
-                                            <label><b>Status of release</b></label>&nbsp;&nbsp;
+                                            <label htmlFor="releasestatus"><h6><b>Status of release</b></h6></label>
                                             <Form.Check value="Status of release" type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
@@ -671,12 +683,20 @@ const Developerinfo=(props)=>{
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
                                     name="group63" inline></Form.Check>
-                                    <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
+                                            <select className="form-control" id="releasestatus"
+                                                name="releasestatus" 
+                                            >
+                                                <option value="" >
+                                                </option>
+                                                <option ></option>
+                                                <option ></option>
+                                                <option ></option>
+                                            </select>
                                         </div>
                          </div>
                          <div className="col col-3">
                                         <div className="form-group ">
-                                            <label ><b>Date of Award</b></label>&nbsp;&nbsp;
+                                            <label htmlFor="awarddate"><h6><b>Date of Award</b></h6></label>
                                             <Form.Check value="Date of Award" type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
@@ -686,14 +706,15 @@ const Developerinfo=(props)=>{
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
                                     name="group64" inline></Form.Check>
-                                    <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
+                                            <input
+                                                type="date"
+                                                name="awarddate"
+                                                className="form-control"></input> 
                                         </div>
-                         </div>    
-                    </div><br></br>
-                    <div className="row">
+                         </div> 
                          <div className="col col-3">
                                         <div className="form-group ">
-                                            <label htmlFor="releasedate"><b>Date of Release</b> </label>&nbsp;&nbsp;
+                                            <label htmlFor="releasedate"><h6><b>Date of Release</b></h6> </label>
                                             <Form.Check value="Date of Release" type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
@@ -703,12 +724,14 @@ const Developerinfo=(props)=>{
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
                                     name="group65" inline></Form.Check>
-                                    <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
+                                            <input
+                                                type="date"
+                                                name="releasedate" className="form-control"></input>
                                         </div>
                          </div>
                          <div className="col col-3">
                                         <div className="form-group ">
-                                            <label htmlFor="sitedetails"><b>Site Details</b></label>&nbsp;&nbsp;
+                                            <label htmlFor="sitedetails"><h6><b>Site Details</b></h6></label>
                                             <Form.Check value="Site Details" type="radio" 
                                     id = "default-radio" 
                                     label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
@@ -718,11 +741,19 @@ const Developerinfo=(props)=>{
                                     id = "default-radio" 
                                     label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
                                     name="group66" inline></Form.Check>
-                                    <Form.Control style={{maxWidth:200, marginTop:10}} readOnly></Form.Control>
+                                            <input
+                                                type="number"
+                                                name="sitedetails"
+                                                className="form-control "/>
                                         </div>
                          </div>
-                     </div>
-                     <hr/>
+                        </div> 
+
+                                            )
+                                        }
+                        </div>
+                        </div>
+                  <br></br>
                      <div className="row">
                         <div className="col col-12 ">
                                     
@@ -965,7 +996,8 @@ const Developerinfo=(props)=>{
                         </div>
                         <div className="col col-3">
                                     
-                                    <h6 onChange={(e)=>setLayoutPlan(e.target.value)} value={layoutPlan}><b>(h) Whether any utility line passing through the site is incorporated/adjusted in the layout plan (Yes/No)</b>
+                        <h6  data-toggle="tooltip" data-placement="top" title="Whether any utility line passing through the site is incorporated/adjusted in the layout plan (Yes/No)
+"><b>(h)&nbsp;Utility Line &nbsp;<InfoIcon style={{color:"blue"}}/> </b>
 
  </h6><Form.Check value="utility" type="radio" 
                                     id = "default-radio" 
@@ -997,6 +1029,116 @@ const Developerinfo=(props)=>{
                                         }
                         </div>
                      </div>
+                     <hr/>
+                     <h5 className="text-black"><b>5. Enclose the following documents as Annexures</b>&nbsp;&nbsp;
+                     <Form.Check value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group76" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group76" inline></Form.Check></h5>
+                    <div className="row">
+                        <div className="col col-3">
+                                    <h6 ><b>Land schedule</b></h6>&nbsp;&nbsp;
+                                    <Form.Check value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group75" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group75" inline></Form.Check>
+                                  <input type="file" className="form-control">
+                                    </input>
+                        </div>
+                        <div className="col col-3">
+                                    <h6 ><b>Copy of Mutation</b></h6>&nbsp;&nbsp;
+                                    <Form.Check value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group75" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group75" inline></Form.Check>
+                                  <input type="file" className="form-control"></input>
+                        </div>
+                        <div className="col col-3">
+                                    <h6 ><b>Copy of Jamabandi</b></h6>&nbsp;&nbsp;
+                                    <Form.Check value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group75" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group75" inline></Form.Check>
+                                  <input type="file" className="form-control"></input>
+                        </div>
+                        <div className="col col-3">
+                                    <h6 ><b>Details of lease / patta, if any</b></h6>&nbsp;&nbsp;
+                                    <Form.Check value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group75" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group75" inline></Form.Check>
+                                  <input type="file" className="form-control"></input>
+                        </div>
+                      
+                     </div><br></br>
+                     <div className="row">
+                        <div className="col col-3">&nbsp;&nbsp;
+                                    <h6 ><b>Approved Layout of Plan/ Site plan for(GH)Showing Area(s)/Proposed migration </b></h6>&nbsp;&nbsp;
+                                    <Form.Check value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group75" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group75" inline></Form.Check>
+                                  <input type="file" className="form-control">
+                                    </input>
+                        </div>
+                        <div className="col col-3">
+                                    <h6 ><b>Proposed Layout of Plan /site plan for area applied for migration.</b></h6>&nbsp;&nbsp;
+                                    <Form.Check value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group75" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group75" inline></Form.Check>
+                                  <input type="file" className="form-control"></input>
+                        </div>
+                        <div className="col col-3">
+                                    <h6 ><b>Revised Land Schedule</b></h6>&nbsp;&nbsp;
+                                    <Form.Check value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCheckCircle  class="fa fa-check text-success" size={18}></AiFillCheckCircle>} 
+                                    name="group75" inline></Form.Check>
+                        <Form.Check onChange={(e)=>setUncheckedVlue((prev)=>[...prev,e.target.value])} 
+                                    value="utility" type="radio" 
+                                    id = "default-radio" 
+                                    label={<AiFillCloseCircle class="fa fa-times text-danger" size={18}></AiFillCloseCircle>} 
+                                    name="group75" inline></Form.Check>
+                                  <input type="file" className="form-control"></input>
+                        </div>
+                     </div>
+                     <br></br>
                       
             </Form.Group>
             <div style={{position:"relative", marginBottom:40}}>

@@ -4,6 +4,7 @@ import { Card, Row, Col} from "react-bootstrap";
 import { commoncolor, primarycolor } from "../../constants";
 import ScrutitnyForms from "../forms/scrutinyForms/scrutinyBasicForms";
 
+
 const ScrutinyFormcontainer=(props)=>{
     const [ApplicantFormshow,SetApplicantForm] = useState(true);
     const [PurposeFormshow,SetPurposeForm] = useState(false);
